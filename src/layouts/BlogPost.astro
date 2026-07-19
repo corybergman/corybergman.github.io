@@ -1,7 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import FormattedDate from '../components/FormattedDate.astro';
-import SubscribeForm from '../components/SubscribeForm.astro';
 
 interface Props {
 	title: string;
@@ -60,8 +59,6 @@ const {
 			}
 			<a href="/" class="all">All posts</a>
 		</nav>
-
-		<SubscribeForm variant="card" />
 	</article>
 </BaseLayout>
 
