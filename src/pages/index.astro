@@ -7,6 +7,20 @@ import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+// Feed excerpt = the opening of the post's own text (not the frontmatter
+// description). Strip light Markdown and collapse whitespace; the CSS then
+// clamps it to two lines with an ellipsis.
+function excerptFrom(body: string) {
+	return body
+		.replace(/^#{1,6}\s+/gm, '') // heading markers
+		.replace(/^>\s?/gm, '') // blockquote markers
+		.replace(/[*_`]/g, '') // emphasis / code ticks
+		.replace(/!?\[([^\]]*)\]\([^)]*\)/g, '$1') // links/images -> text
+		.replace(/\s+/g, ' ')
+		.trim()
+		.slice(0, 300);
+}
 ---
 
 <BaseLayout
@@ -21,7 +35,7 @@ const posts = (await getCollection('blog')).sort(
 				<PostListItem
 					href={`/blog/${post.id}/`}
 					title={post.data.title}
-					excerpt={post.data.description}
+					excerpt={excerptFrom(post.body ?? '')}
 					pubDate={post.data.pubDate}
 				/>
 			))
