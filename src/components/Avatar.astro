@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets';
+import avatar from '../assets/avatar.jpg';
+
+interface Props {
+	size: number; // rendered diameter in px
+}
+const { size } = Astro.props;
+---
+
+<Image
+	src={avatar}
+	alt="Cory Bergman"
+	width={size * 2}
+	height={size * 2}
+	class="avatar"
+	style={`width:${size}px;height:${size}px`}
+	loading="eager"
+/>
+
+<style>
+	.avatar {
+		border-radius: 50%;
+		object-fit: cover;
+		display: block;
+		flex-shrink: 0;
+	}
+</style>

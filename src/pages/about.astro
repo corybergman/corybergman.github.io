@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Avatar from '../components/Avatar.astro';
 import { SOCIAL } from '../consts';
 
 const roles = [
@@ -29,7 +30,7 @@ const roles = [
 >
 	<div class="about">
 		<div class="head">
-			<div class="avatar" aria-hidden="true">CB</div>
+			<Avatar size={96} />
 			<h1>About</h1>
 		</div>
 
@@ -83,18 +84,6 @@ const roles = [
 		align-items: center;
 		gap: 24px;
 		margin-bottom: 36px;
-	}
-	.avatar {
-		width: 96px;
-		height: 96px;
-		border-radius: 50%;
-		background: var(--avatar-bg);
-		color: var(--pine-2);
-		flex-shrink: 0;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-size: 30px;
 	}
 	.head h1 {
 		font-size: 34px;

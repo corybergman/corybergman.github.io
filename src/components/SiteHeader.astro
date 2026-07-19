@@ -1,5 +1,6 @@
 ---
 import { SITE_TITLE, SITE_BIO, SOCIAL } from '../consts';
+import Avatar from './Avatar.astro';
 
 interface Props {
 	variant?: 'home' | 'sub';
@@ -11,7 +12,7 @@ const { variant = 'home', active } = Astro.props;
 {
 	variant === 'home' ? (
 		<header class="home">
-			<div class="avatar lg" aria-hidden="true">CB</div>
+			<Avatar size={52} />
 			<div>
 				<div class="name">{SITE_TITLE}</div>
 				<div class="bio">{SITE_BIO}</div>
@@ -19,7 +20,7 @@ const { variant = 'home', active } = Astro.props;
 		</header>
 	) : (
 		<header class="sub">
-			<a href="/" class="avatar sm" aria-label="Home">CB</a>
+			<a href="/" class="avatar-link" aria-label="Home"><Avatar size={36} /></a>
 			<a href="/" class="name-link">{SITE_TITLE}</a>
 			<nav class="nav compact">
 				<a href="/" class:list={[active === 'writing' && 'active']}>Writing</a>
@@ -43,24 +44,9 @@ const { variant = 'home', active } = Astro.props;
 }
 
 <style>
-	.avatar {
-		border-radius: 50%;
-		background: var(--avatar-bg);
-		color: var(--pine-2);
+	.avatar-link {
+		display: inline-flex;
 		flex-shrink: 0;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-	.avatar.lg {
-		width: 52px;
-		height: 52px;
-		font-size: 18px;
-	}
-	.avatar.sm {
-		width: 36px;
-		height: 36px;
-		font-size: 13px;
 	}
 
 	.home {
