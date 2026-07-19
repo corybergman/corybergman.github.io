@@ -1,0 +1,161 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SOCIAL } from '../consts';
+
+const roles = [
+	{
+		years: '2017–now',
+		title: 'Co-founder and Chief Product Officer',
+		detail: 'Factal',
+	},
+	{
+		years: '2009–2016',
+		title: 'Co-founder and General Manager',
+		detail: 'BreakingNews.com at NBC News',
+	},
+	{
+		years: 'Earlier',
+		title: 'NBC News, KING TV, My Ballard, Lost Remote',
+		detail: '',
+	},
+];
+---
+
+<BaseLayout
+	title="About · Cory Bergman"
+	description="About Cory Bergman, co-founder of Factal."
+	variant="sub"
+	active="about"
+>
+	<div class="about">
+		<div class="head">
+			<div class="avatar" aria-hidden="true">CB</div>
+			<h1>About</h1>
+		</div>
+
+		<p>
+			Cory Bergman is the co-founder and chief product officer of{' '}
+			<a href="https://www.factal.com">Factal</a>, the verified risk intelligence
+			company. A journalist and a technologist, he spends his time at the
+			intersection of breaking news and AI. Prior to Factal, Cory led
+			BreakingNews.com and product development at NBC News, and he's won several
+			national awards for both TV and online journalism.
+		</p>
+
+		<h2 class="section">Work</h2>
+		<div class="work">
+			{
+				roles.map((role) => (
+					<div class="role">
+						<div class="years">{role.years}</div>
+						<div>
+							<span class="role-title">{role.title}</span>
+							{role.detail && <span class="role-detail"> — {role.detail}</span>}
+						</div>
+					</div>
+				))
+			}
+		</div>
+
+		<h2 class="section">Elsewhere</h2>
+		<div class="elsewhere">
+			<a href={SOCIAL.x}>X/Twitter</a>
+			<a href={SOCIAL.bluesky}>Bluesky</a>
+			<a href={SOCIAL.threads}>Threads</a>
+			<a href={SOCIAL.linkedin}>LinkedIn</a>
+			<a href={SOCIAL.email}>Email</a>
+			<a href="/rss.xml">RSS</a>
+		</div>
+	</div>
+</BaseLayout>
+
+<style>
+	.about {
+		max-width: var(--content-max);
+		margin: 72px auto 0;
+	}
+	.head {
+		display: flex;
+		align-items: center;
+		gap: 24px;
+		margin-bottom: 36px;
+	}
+	.avatar {
+		width: 96px;
+		height: 96px;
+		border-radius: 50%;
+		background: var(--avatar-bg);
+		color: var(--pine-2);
+		flex-shrink: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 30px;
+	}
+	.head h1 {
+		font-size: 34px;
+		font-weight: 600;
+		letter-spacing: -0.02em;
+		margin: 0;
+	}
+	.about p {
+		font-size: 16.5px;
+		line-height: 1.75;
+		color: var(--body);
+		margin: 0 0 22px;
+	}
+	.about p a {
+		color: var(--pine);
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+	.section {
+		font-size: 14px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--pine-2);
+		margin: 48px 0 20px;
+	}
+	.work {
+		display: flex;
+		flex-direction: column;
+		gap: 18px;
+	}
+	.role {
+		display: grid;
+		grid-template-columns: 96px 1fr;
+		gap: 14px;
+		font-size: 15.5px;
+	}
+	.years {
+		color: var(--faint);
+		font-size: 13px;
+		padding-top: 3px;
+	}
+	.role-title {
+		font-weight: 600;
+	}
+	.role-detail {
+		color: var(--muted);
+	}
+	.elsewhere {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+		font-size: 14px;
+		font-weight: 500;
+	}
+	.elsewhere a {
+		border: 1px solid var(--outline);
+		border-radius: 4px;
+		padding: 8px 14px;
+	}
+
+	@media (max-width: 700px) {
+		.role {
+			grid-template-columns: 1fr;
+			gap: 2px;
+		}
+	}
+</style>

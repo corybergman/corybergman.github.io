@@ -1,0 +1,102 @@
+---
+// Topographic trail masthead. SVG paths copied verbatim from the design handoff.
+// variant="tall" (homepage, 170px) | "short" (subpages, 96px)
+interface Props {
+	variant?: 'tall' | 'short';
+}
+const { variant = 'tall' } = Astro.props;
+---
+
+<div class:list={['masthead', variant]} aria-hidden="true">
+	{
+		variant === 'tall' ? (
+			<svg viewBox="0 0 920 170" preserveAspectRatio="xMidYMid slice">
+				<g fill="none" stroke="var(--contour)" stroke-width="1.5">
+					<path d="M-20 150 C 80 120, 140 60, 250 70 C 340 78, 360 140, 470 130 C 560 122, 600 60, 700 55 C 790 51, 860 90, 940 80" />
+					<path d="M-20 135 C 75 108, 145 45, 252 56 C 342 65, 370 128, 475 118 C 568 109, 605 48, 702 42 C 792 38, 862 76, 940 66" />
+					<path d="M-20 120 C 70 95, 150 30, 255 42 C 345 52, 380 115, 480 105 C 575 95, 610 35, 705 30 C 795 26, 865 62, 940 52" />
+					<path d="M-20 105 C 65 82, 155 15, 258 28 C 348 39, 390 102, 485 92 C 582 81, 618 21, 710 17 C 798 14, 868 48, 940 38" />
+					<path d="M-20 90 C 60 70, 160 0, 260 14 C 350 26, 400 90, 490 80 C 590 68, 625 8, 715 5 C 800 2, 870 34, 940 24" />
+					<path d="M-20 164 C 85 134, 135 76, 248 85 C 338 92, 352 152, 465 143 C 555 136, 595 74, 698 68 C 788 63, 858 104, 940 94" />
+					<path d="M-20 178 C 90 148, 130 92, 245 100 C 335 106, 345 165, 460 156 C 550 149, 590 88, 695 82 C 785 77, 855 118, 940 108" />
+					<ellipse cx="255" cy="52" rx="66" ry="21" transform="rotate(-8 255 52)" />
+					<ellipse cx="255" cy="52" rx="52" ry="16" transform="rotate(-8 255 52)" />
+					<ellipse cx="255" cy="52" rx="38" ry="11.5" transform="rotate(-8 255 52)" />
+					<ellipse cx="255" cy="52" rx="24" ry="7" transform="rotate(-8 255 52)" />
+					<ellipse cx="255" cy="52" rx="11" ry="3.5" transform="rotate(-8 255 52)" />
+					<ellipse cx="700" cy="42" rx="74" ry="23" transform="rotate(6 700 42)" />
+					<ellipse cx="700" cy="42" rx="60" ry="18" transform="rotate(6 700 42)" />
+					<ellipse cx="700" cy="42" rx="45" ry="13.5" transform="rotate(6 700 42)" />
+					<ellipse cx="700" cy="42" rx="30" ry="9" transform="rotate(6 700 42)" />
+					<ellipse cx="700" cy="42" rx="15" ry="4.5" transform="rotate(6 700 42)" />
+					<ellipse cx="480" cy="145" rx="40" ry="12" transform="rotate(-4 480 145)" />
+					<ellipse cx="480" cy="145" rx="22" ry="6.5" transform="rotate(-4 480 145)" />
+				</g>
+				<g fill="var(--summit)" opacity="0.35">
+					<ellipse cx="255" cy="52" rx="24" ry="7" transform="rotate(-8 255 52)" />
+					<ellipse cx="700" cy="42" rx="30" ry="9" transform="rotate(6 700 42)" />
+					<ellipse cx="480" cy="145" rx="22" ry="6.5" transform="rotate(-4 480 145)" />
+				</g>
+				<g fill="var(--elevation)" font-family="var(--font-mono)" font-size="9">
+					<text x="192" y="34" transform="rotate(-14 192 34)">4400</text>
+					<text x="214" y="48" transform="rotate(-12 214 48)">4600</text>
+					<text x="748" y="26" transform="rotate(10 748 26)">5200</text>
+					<text x="762" y="44" transform="rotate(12 762 44)">5000</text>
+					<text x="430" y="152" transform="rotate(-6 430 152)">3800</text>
+					<text x="60" y="98" transform="rotate(-16 60 98)">4000</text>
+					<text x="612" y="118" transform="rotate(-20 612 118)">4200</text>
+				</g>
+				<path d="M-20 165 C 100 150, 180 100, 300 105 C 420 110, 470 150, 580 130 C 690 110, 760 65, 940 60" fill="none" stroke="var(--pine-2)" stroke-width="2" stroke-dasharray="1 8" stroke-linecap="round" />
+				<circle cx="300" cy="105" r="4" fill="var(--pine-2)" />
+				<path d="M580 130 l-6 10 h12 Z" fill="var(--pine-2)" />
+				<circle cx="840" cy="74" r="4" fill="none" stroke="var(--pine-2)" stroke-width="2" />
+			</svg>
+		) : (
+			<svg viewBox="0 0 920 96" preserveAspectRatio="xMidYMid slice">
+				<g fill="none" stroke="var(--contour)" stroke-width="1.5">
+					<path d="M-20 82 C 80 66, 140 30, 250 36 C 340 41, 360 76, 470 70 C 560 65, 600 30, 700 27 C 790 24, 860 48, 940 42" />
+					<path d="M-20 64 C 75 52, 145 16, 252 24 C 342 30, 370 62, 475 56 C 568 51, 605 18, 702 15 C 792 12, 862 34, 940 28" />
+					<path d="M-20 46 C 70 38, 150 2, 255 10 C 345 16, 380 48, 480 42 C 575 37, 610 6, 705 3 C 795 0, 865 20, 940 14" />
+					<path d="M-20 98 C 85 80, 135 44, 248 50 C 338 55, 352 88, 465 82 C 555 78, 595 42, 698 38 C 788 34, 858 60, 940 54" />
+					<ellipse cx="255" cy="26" rx="44" ry="12" transform="rotate(-6 255 26)" />
+					<ellipse cx="255" cy="26" rx="28" ry="7.5" transform="rotate(-6 255 26)" />
+					<ellipse cx="255" cy="26" rx="13" ry="3.5" transform="rotate(-6 255 26)" />
+					<ellipse cx="700" cy="20" rx="50" ry="13" transform="rotate(5 700 20)" />
+					<ellipse cx="700" cy="20" rx="32" ry="8.5" transform="rotate(5 700 20)" />
+					<ellipse cx="700" cy="20" rx="15" ry="4" transform="rotate(5 700 20)" />
+				</g>
+				<g fill="var(--summit)" opacity="0.35">
+					<ellipse cx="255" cy="26" rx="13" ry="3.5" transform="rotate(-6 255 26)" />
+					<ellipse cx="700" cy="20" rx="15" ry="4" transform="rotate(5 700 20)" />
+				</g>
+				<g fill="var(--elevation)" font-family="var(--font-mono)" font-size="8">
+					<text x="196" y="16" transform="rotate(-10 196 16)">4600</text>
+					<text x="752" y="14" transform="rotate(8 752 14)">5200</text>
+					<text x="440" y="80" transform="rotate(-5 440 80)">3800</text>
+				</g>
+				<path d="M-20 92 C 100 84, 180 56, 300 60 C 420 63, 470 84, 580 72 C 690 61, 760 36, 940 33" fill="none" stroke="var(--pine-2)" stroke-width="2" stroke-dasharray="1 8" stroke-linecap="round" />
+				<circle cx="300" cy="60" r="3.5" fill="var(--pine-2)" />
+				<path d="M580 72 l-5 9 h10 Z" fill="var(--pine-2)" />
+			</svg>
+		)
+	}
+</div>
+
+<style>
+	.masthead {
+		position: relative;
+		background: var(--masthead);
+	}
+	.masthead.tall {
+		height: 170px;
+	}
+	.masthead.short {
+		height: 96px;
+	}
+	.masthead svg {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>

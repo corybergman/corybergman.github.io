@@ -1,0 +1,29 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import TopoMasthead from '../components/TopoMasthead.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+
+interface Props {
+	title: string;
+	description: string;
+	variant?: 'home' | 'sub';
+	active?: 'writing' | 'about';
+}
+const { title, description, variant = 'sub', active } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={description} />
+	</head>
+	<body>
+		<div class="frame">
+			<TopoMasthead variant={variant === 'home' ? 'tall' : 'short'} />
+			<div class="frame-body">
+				<SiteHeader variant={variant} active={active} />
+				<slot />
+			</div>
+		</div>
+	</body>
+</html>

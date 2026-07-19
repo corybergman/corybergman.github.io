@@ -1,0 +1,133 @@
+/*
+  corybe.com — design tokens & base styles
+  Ported from the design handoff (topographic trail masthead, IBM Plex, pine green).
+*/
+
+:root {
+	/* Fonts (provided by Astro's font pipeline — see astro.config.mjs) */
+	--font-sans: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+	--font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+	/* Text */
+	--ink: #1f1e1b; /* primary headings */
+	--body: #3c3933; /* post body */
+	--excerpt: #55524b; /* feed excerpts */
+	--muted: #6b6862; /* bios, nav, secondary */
+	--faint: #9a948a; /* dates, faint labels */
+
+	/* Brand greens */
+	--pine: #2f4438; /* primary accent, link hover */
+	--pine-2: #3d5245; /* secondary green */
+
+	/* Masthead / topo */
+	--masthead: linear-gradient(180deg, #e9efe6 0%, #f4f7f2 70%, #ffffff 100%);
+	--contour: #c3d2c0;
+	--summit: #9db89a;
+	--elevation: #87a383;
+
+	/* Surfaces & lines */
+	--page: #ffffff;
+	--avatar-bg: #e6ebe5;
+	--chip-bg: #eef1ed;
+	--card-bg: #f5f7f4;
+	--rule: #e4e8e3; /* hairlines between rows */
+	--outline: #d5dad4; /* input / button borders */
+
+	/* Layout */
+	--frame-max: 1040px;
+	--content-max: 620px;
+	--frame-pad: 104px;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	background: var(--page);
+	color: var(--body);
+	font-family: var(--font-sans);
+	font-size: 16px;
+	line-height: 1.6;
+	text-align: left;
+	word-wrap: break-word;
+	overflow-wrap: break-word;
+	-webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0 0 0.5rem 0;
+	color: var(--ink);
+	line-height: 1.2;
+	font-weight: 600;
+}
+
+/* Links inherit color and only warm to pine on hover (per the design). */
+a {
+	color: inherit;
+	text-decoration: none;
+	transition: color 0.15s ease;
+}
+a:hover {
+	color: var(--pine);
+}
+
+strong,
+b {
+	font-weight: 600;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+hr {
+	border: none;
+	border-top: 1px solid var(--rule);
+	margin: 0;
+}
+
+/* The centered page frame every view sits inside. */
+.frame {
+	background: var(--page);
+	max-width: var(--frame-max);
+	margin: 0 auto;
+	overflow: hidden;
+}
+
+.frame-body {
+	padding: 8px var(--frame-pad) var(--frame-pad);
+}
+
+.sr-only {
+	position: absolute !important;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%);
+	white-space: nowrap;
+	border: 0;
+}
+
+/* Responsive: not mocked, applied sensibly per the handoff. */
+@media (max-width: 700px) {
+	:root {
+		--frame-pad: 24px;
+	}
+}

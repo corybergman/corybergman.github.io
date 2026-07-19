@@ -1,0 +1,34 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import BlogPost from '../../layouts/BlogPost.astro';
+
+export async function getStaticPaths() {
+	// Newest → oldest, so the "previous" post is the next-older neighbor.
+	const posts = (await getCollection('blog')).sort(
+		(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+	);
+	return posts.map((post, i) => {
+		const older = posts[i + 1];
+		return {
+			params: { slug: post.id },
+			props: {
+				post,
+				prevPost: older
+					? { href: `/blog/${older.id}/`, title: older.data.title }
+					: null,
+			},
+		};
+	});
+}
+type Props = {
+	post: CollectionEntry<'blog'>;
+	prevPost: { href: string; title: string } | null;
+};
+
+const { post, prevPost } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BlogPost {...post.data} prevPost={prevPost}>
+	<Content />
+</BlogPost>

@@ -1,0 +1,62 @@
+---
+import FormattedDate from './FormattedDate.astro';
+
+interface Props {
+	href: string;
+	title: string;
+	excerpt: string;
+	pubDate: Date;
+}
+const { href, title, excerpt, pubDate } = Astro.props;
+---
+
+<article class="row">
+	<div class="date"><FormattedDate date={pubDate} /></div>
+	<div>
+		<h2 class="title"><a href={href}>{title}</a></h2>
+		<p class="excerpt">{excerpt}</p>
+		<a href={href} class="more">Read more →</a>
+	</div>
+</article>
+
+<style>
+	.row {
+		display: grid;
+		grid-template-columns: 96px 1fr;
+		gap: 14px;
+		margin-bottom: 48px;
+	}
+	.date {
+		font-size: 13px;
+		color: var(--faint);
+		padding-top: 4px;
+	}
+	.title {
+		font-size: 21px;
+		font-weight: 600;
+		margin: 0 0 8px;
+		letter-spacing: -0.01em;
+		line-height: 1.35;
+	}
+	.excerpt {
+		font-size: 15.5px;
+		line-height: 1.65;
+		margin: 0;
+		color: var(--excerpt);
+		text-wrap: pretty;
+	}
+	.more {
+		display: inline-block;
+		font-size: 13.5px;
+		font-weight: 500;
+		color: var(--pine-2);
+		margin-top: 10px;
+	}
+
+	@media (max-width: 700px) {
+		.row {
+			grid-template-columns: 1fr;
+			gap: 4px;
+		}
+	}
+</style>

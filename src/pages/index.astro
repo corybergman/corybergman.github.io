@@ -1,0 +1,32 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostListItem from '../components/PostListItem.astro';
+import SubscribeForm from '../components/SubscribeForm.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<BaseLayout
+	title={SITE_TITLE}
+	description={SITE_DESCRIPTION}
+	variant="home"
+	active="writing"
+>
+	<section class="feed">
+		{
+			posts.map((post) => (
+				<PostListItem
+					href={`/blog/${post.id}/`}
+					title={post.data.title}
+					excerpt={post.data.description}
+					pubDate={post.data.pubDate}
+				/>
+			))
+		}
+	</section>
+	<SubscribeForm variant="inline" />
+</BaseLayout>

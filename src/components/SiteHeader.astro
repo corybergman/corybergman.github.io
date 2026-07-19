@@ -1,0 +1,127 @@
+---
+import { SITE_TITLE, SITE_BIO, SOCIAL } from '../consts';
+
+interface Props {
+	variant?: 'home' | 'sub';
+	active?: 'writing' | 'about';
+}
+const { variant = 'home', active } = Astro.props;
+---
+
+{
+	variant === 'home' ? (
+		<header class="home">
+			<div class="avatar lg" aria-hidden="true">CB</div>
+			<div>
+				<div class="name">{SITE_TITLE}</div>
+				<div class="bio">{SITE_BIO}</div>
+			</div>
+		</header>
+	) : (
+		<header class="sub">
+			<a href="/" class="avatar sm" aria-label="Home">CB</a>
+			<a href="/" class="name-link">{SITE_TITLE}</a>
+			<nav class="nav compact">
+				<a href="/" class:list={[active === 'writing' && 'active']}>Writing</a>
+				<a href="/about" class:list={[active === 'about' && 'active']}>About</a>
+				<a href="/rss.xml">RSS</a>
+			</nav>
+		</header>
+	)
+}
+
+{
+	variant === 'home' && (
+		<nav class="nav full">
+			<a href="/" class:list={[active === 'writing' && 'active']}>Writing</a>
+			<a href="/about" class:list={[active === 'about' && 'active']}>About</a>
+			<a href={SOCIAL.x}>X/Twitter</a>
+			<a href={SOCIAL.linkedin}>LinkedIn</a>
+			<a href="/rss.xml" class="push">RSS</a>
+		</nav>
+	)
+}
+
+<style>
+	.avatar {
+		border-radius: 50%;
+		background: var(--avatar-bg);
+		color: var(--pine-2);
+		flex-shrink: 0;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.avatar.lg {
+		width: 52px;
+		height: 52px;
+		font-size: 18px;
+	}
+	.avatar.sm {
+		width: 36px;
+		height: 36px;
+		font-size: 13px;
+	}
+
+	.home {
+		display: flex;
+		align-items: center;
+		gap: 18px;
+	}
+	.name {
+		font-size: 24px;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		color: var(--ink);
+	}
+	.bio {
+		font-size: 15px;
+		color: var(--muted);
+	}
+
+	.sub {
+		display: flex;
+		align-items: center;
+		gap: 14px;
+	}
+	.name-link {
+		font-size: 16px;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		color: var(--ink);
+	}
+
+	.nav {
+		display: flex;
+		font-size: 14px;
+		font-weight: 500;
+		color: var(--muted);
+	}
+	.nav.full {
+		gap: 24px;
+		margin: 40px 0 60px;
+	}
+	.nav.compact {
+		gap: 22px;
+		margin-left: auto;
+	}
+	.nav .push {
+		margin-left: auto;
+	}
+	.nav a.active {
+		color: var(--pine);
+		border-bottom: 2px solid var(--pine);
+		padding-bottom: 4px;
+	}
+
+	@media (max-width: 700px) {
+		.nav.full {
+			flex-wrap: wrap;
+			gap: 16px;
+			margin: 28px 0 40px;
+		}
+		.nav .push {
+			margin-left: 0;
+		}
+	}
+</style>
