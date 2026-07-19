@@ -6,11 +6,10 @@ import { defineConfig, fontProviders } from 'astro/config';
 
 // https://astro.build/config
 export default defineConfig({
-	// Live at the GitHub user site for now. When corybe.com is pointed here,
-	// change this to 'https://corybe.com' and add a CNAME (see AGENTS.md).
-	// This drives canonical URLs and the RSS feed. Base stays '/' either way
-	// because a user site (corybergman.github.io) serves from the root.
-	site: 'https://corybergman.github.io',
+	// Custom domain. The public/CNAME file registers corybe.com with GitHub
+	// Pages on deploy. This drives canonical URLs and the RSS feed; base stays
+	// '/' because an apex domain serves from the root.
+	site: 'https://corybe.com',
 	integrations: [mdx(), sitemap()],
 	fonts: [
 		{
