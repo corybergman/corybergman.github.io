@@ -9,14 +9,30 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 //   date        – year or date string (optional)
 //   description – one short line (optional)
 //
+// "companies" = ventures Cory founded or helped build.
 // "writing" = pieces Cory wrote. "press" = coverage about Cory.
-const writing: Array<{
+const companies: Array<{
 	title: string;
-	url: string;
+	url?: string;
 	source?: string;
 	date?: string;
 	description?: string;
 }> = [
+	{
+		title: 'Factal',
+		url: 'https://www.factal.com',
+		date: '2018–present',
+	},
+	{
+		title: 'Breaking News (NBC News)',
+		date: '2010–2016',
+	},
+	{
+		title: 'My Ballard',
+		url: 'https://www.myballard.com',
+		date: '2007–present',
+		description: `I co-founded My Ballard with my wife Kate when we moved to the Seattle neighborhood of Ballard. It began as a part-time blog where we published anonymously as the "Geeky Swedes." As the neighborhood grew in size and popularity, so did My Ballard, becoming one of the largest hyperlocal sites in the country. It became the anchor of a <a href="https://www.myballard.com/2009/08/26/my-ballard-seattle-times-form-partnership/">larger network</a> of neighborhood sites we called Next Door Media, and My Ballard and its cousin PhinneyWood won national journalism awards. But as a labor of love, it was difficult to maintain with our day jobs. So in 2020, Kate and I stepped aside and <a href="https://www.myballard.com/2020/09/29/beginning-of-a-new-era-for-my-ballard-and-how-you-can-help/">sold My Ballard</a> to its editor, Meghan Walker, for a dollar. We're extremely happy to see the site live on as a valuable community resource.`,
+	},
 	{
 		title: 'Lost Remote',
 		url: 'http://www.lostremote.com',
@@ -25,23 +41,54 @@ const writing: Array<{
 	},
 ];
 
-const press: typeof writing = [
+const writing: typeof companies = [];
+
+const press: typeof companies = [
 	// { title: 'Example headline', url: 'https://…', source: 'Publication', date: '2024', description: 'One-line summary.' },
 ];
 // ─────────────────────────────────────────────────────────────────────────────
 ---
 
 <BaseLayout
-	title="Published · Cory Bergman"
-	description="An index of writing by Cory Bergman and press coverage about him over the years."
+	title="Projects · Cory Bergman"
+	description="An index of companies Cory Bergman founded, his writing, and press coverage about him over the years."
 	variant="sub"
-	active="published"
+	active="projects"
 >
 	<div class="page">
-		<h1>Published</h1>
+		<h1>Projects</h1>
 		<p class="intro">
-			Selected writing by me, and press coverage over the years.
+			Companies I've built, selected writing by me, and press coverage over the years.
 		</p>
+
+		<h2 class="section">Companies</h2>
+		{
+			companies.length > 0 ? (
+				<ul class="entries">
+					{companies.map((item) => (
+						<li class="entry">
+							{item.url ? (
+								<a href={item.url} class="entry-title">
+									{item.title}
+								</a>
+							) : (
+								<span class="entry-title">{item.title}</span>
+							)}
+							{(item.source || item.date) && (
+								<span class="entry-meta">
+									{[item.source, item.date].filter(Boolean).join(' · ')}
+								</span>
+							)}
+							{item.description && (
+								<p class="entry-desc" set:html={item.description} />
+							)}
+						</li>
+					))}
+				</ul>
+			) : (
+				<p class="soon">Coming soon.</p>
+			)
+		}
 
 		<h2 class="section">Writing</h2>
 		{

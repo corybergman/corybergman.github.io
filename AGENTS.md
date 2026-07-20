@@ -47,7 +47,7 @@ first; components reference the variables.
 - Avatar (circular headshot, `src/assets/avatar.jpg`): `src/components/Avatar.astro`
 - Post layout (date, H1, body, tags, prev/all nav): `src/layouts/BlogPost.astro`
 - Home feed: `src/pages/index.astro` · About: `src/pages/about.astro`
-- Published page (Writing + Press index): `src/pages/published.astro` — fill the `writing` / `press` arrays at the top of the file (each: title, url, source?, date?, description?). Empty section shows "Coming soon."
+- Projects page (Companies + Writing + Press index): `src/pages/projects.astro` — fill the `companies` / `writing` / `press` arrays at the top of the file (each: title, url, source?, date?, description?). Empty section shows "Coming soon."
 - Speaking page (pitch + engagements): `src/pages/speaking.astro` — fill the `engagements` array (each: event, url?, venue?, date?, description?).
 - Post route + prev-post logic: `src/pages/blog/[...slug].astro` (URLs are `/blog/<slug>/`)
 - RSS feed: `src/pages/rss.xml.js`

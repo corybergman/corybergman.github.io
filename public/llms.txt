@@ -4,7 +4,7 @@
 
 ## Pages
 - [Home](https://corybe.com/): Cory's blog — posts on news, mobile, product and AI.
-- [Published](https://corybe.com/published): Index of writing by Cory and press coverage about him.
+- [Projects](https://corybe.com/projects): Index of companies Cory founded, his writing, and press coverage about him.
 - [Speaking](https://corybe.com/speaking): Speaking topics and past engagements.
 - [About](https://corybe.com/about): Bio and career history.
 
