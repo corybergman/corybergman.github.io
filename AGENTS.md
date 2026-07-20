@@ -43,13 +43,17 @@ first; components reference the variables.
 - Topographic masthead SVG (tall/short): `src/components/TopoMasthead.astro`
 - Header + nav (home/sub variants, active state): `src/components/SiteHeader.astro`
 - Shared page shell (masthead + header + slot): `src/layouts/BaseLayout.astro`
-- Feed row: `src/components/PostListItem.astro`
-- Subscribe form (inline/card, set provider `action`): `src/components/SubscribeForm.astro`
-- Post layout (date, H1, body, tags, prev/all nav, subscribe): `src/layouts/BlogPost.astro`
+- Feed row (excerpt clamped to 3 lines, pulled from post body): `src/components/PostListItem.astro`
+- Avatar (circular headshot, `src/assets/avatar.jpg`): `src/components/Avatar.astro`
+- Post layout (date, H1, body, tags, prev/all nav): `src/layouts/BlogPost.astro`
 - Home feed: `src/pages/index.astro` · About: `src/pages/about.astro`
+- Published page (Writing + Press index): `src/pages/published.astro` — fill the `writing` / `press` arrays at the top of the file (each: title, url, source?, date?, description?). Empty section shows "Coming soon."
+- Speaking page (pitch + engagements): `src/pages/speaking.astro` — fill the `engagements` array (each: event, url?, venue?, date?, description?).
 - Post route + prev-post logic: `src/pages/blog/[...slug].astro` (URLs are `/blog/<slug>/`)
 - RSS feed: `src/pages/rss.xml.js`
 - Frontmatter schema (title, description=excerpt, pubDate, tags): `src/content.config.ts`
+- Google Analytics (gtag G-7S4QWH00Z4) + schema.org Person JSON-LD: `src/components/BaseHead.astro`
+- AI discoverability index: `public/llms.txt`
 - Final domain (for RSS + canonical URLs): `site` in `astro.config.mjs`
 
 ## Development
@@ -71,8 +75,11 @@ npm run preview  # preview the built site
 
 ## Publishing
 
-The site auto-deploys on `git push` once connected to Cloudflare Pages or
-Netlify. Set `site` in `astro.config.mjs` to the final domain first.
+Live at **https://corybe.com** via **GitHub Pages** (repo
+`corybergman/corybergman.github.io`). Every push to `main` triggers
+`.github/workflows/deploy.yml`, which builds on Node 22 and deploys. So:
+edit → commit → `git push origin main` → live in ~1 minute. Custom domain is
+set by `public/CNAME`; HTTPS is enforced.
 
 ## Astro documentation
 
