@@ -3,7 +3,7 @@
 > Personal site of Cory Bergman — co-founder and Chief Product Officer of Factal, the verified risk intelligence company. A journalist and technologist working at the intersection of breaking news and AI. Previously led BreakingNews.com and product development at NBC News, and won several national awards for TV and online journalism.
 
 ## Pages
-- [Writing](https://corybe.com/): Cory's blog — posts on news, mobile, product and AI.
+- [Home](https://corybe.com/): Cory's blog — posts on news, mobile, product and AI.
 - [Published](https://corybe.com/published): Index of writing by Cory and press coverage about him.
 - [Speaking](https://corybe.com/speaking): Speaking topics and past engagements.
 - [About](https://corybe.com/about): Bio and career history.

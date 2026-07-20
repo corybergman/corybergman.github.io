@@ -4,7 +4,7 @@ import Avatar from './Avatar.astro';
 
 interface Props {
 	variant?: 'home' | 'sub';
-	active?: 'writing' | 'published' | 'speaking' | 'about';
+	active?: 'home' | 'published' | 'speaking' | 'about';
 }
 const { variant = 'home', active } = Astro.props;
 ---
@@ -20,7 +20,7 @@ const { variant = 'home', active } = Astro.props;
 			<a href="/" class="avatar-link" aria-label="Home"><Avatar size={36} /></a>
 			<a href="/" class="name-link">{SITE_TITLE}</a>
 			<nav class="nav compact">
-				<a href="/" class:list={[active === 'writing' && 'active']}>Writing</a>
+				<a href="/" class:list={[active === 'home' && 'active']}>Home</a>
 				<a href="/published" class:list={[active === 'published' && 'active']}>Published</a>
 				<a href="/speaking" class:list={[active === 'speaking' && 'active']}>Speaking</a>
 				<a href="/about" class:list={[active === 'about' && 'active']}>About</a>
@@ -33,7 +33,7 @@ const { variant = 'home', active } = Astro.props;
 {
 	variant === 'home' && (
 		<nav class="nav full">
-			<a href="/" class:list={[active === 'writing' && 'active']}>Writing</a>
+			<a href="/" class:list={[active === 'home' && 'active']}>Home</a>
 			<a href="/published" class:list={[active === 'published' && 'active']}>Published</a>
 			<a href="/speaking" class:list={[active === 'speaking' && 'active']}>Speaking</a>
 			<a href="/about" class:list={[active === 'about' && 'active']}>About</a>
