@@ -17,7 +17,12 @@ const writing: Array<{
 	date?: string;
 	description?: string;
 }> = [
-	// { title: 'Example headline', url: 'https://…', source: 'Publication', date: '2024', description: 'One-line summary.' },
+	{
+		title: 'Lost Remote',
+		url: 'http://www.lostremote.com',
+		date: '1997–2024',
+		description: `I launched Lost Remote as a newsletter in 1997, and it grew into one of the first blogs on the web. Focused on how technology was changing TV, Lost Remote covered the industry's collision with the internet. Then with the rise of social media, it narrowed its coverage to social TV. Lost Remote was highly influential among media executives, and Mediabistro <a href="https://www.adweek.com/lostremote/lost-remote-acquired-by-mediabistro-team/">acquired Lost Remote</a> in 2012. Two years later, Adweek bought Mediabistro, and Lost Remote continued publishing until 2024. Much of the archive still lives on at <a href="https://www.adweek.com/lostremote/?category=">Adweek.com</a>, with earlier snapshots preserved on the <a href="https://web.archive.org/web/20260000000000*/lostremote.com">Wayback Machine</a>.`,
+	},
 ];
 
 const press: typeof writing = [
@@ -53,7 +58,7 @@ const press: typeof writing = [
 								</span>
 							)}
 							{item.description && (
-								<p class="entry-desc">{item.description}</p>
+								<p class="entry-desc" set:html={item.description} />
 							)}
 						</li>
 					))}
@@ -78,7 +83,7 @@ const press: typeof writing = [
 								</span>
 							)}
 							{item.description && (
-								<p class="entry-desc">{item.description}</p>
+								<p class="entry-desc" set:html={item.description} />
 							)}
 						</li>
 					))}
@@ -144,6 +149,11 @@ const press: typeof writing = [
 		line-height: 1.6;
 		color: var(--excerpt);
 		margin: 6px 0 0;
+	}
+	.entry-desc :global(a) {
+		color: var(--pine);
+		text-decoration: underline;
+		text-underline-offset: 3px;
 	}
 	.soon {
 		font-size: 15.5px;
