@@ -19,7 +19,7 @@ function excerptFrom(body: string) {
 		.replace(/!?\[([^\]]*)\]\([^)]*\)/g, '$1') // links/images -> text
 		.replace(/\s+/g, ' ')
 		.trim()
-		.slice(0, 300);
+		.slice(0, 400);
 }
 ---
 

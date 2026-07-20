@@ -43,11 +43,11 @@ const { href, title, excerpt, pubDate } = Astro.props;
 		line-height: 1.65;
 		margin: 0;
 		color: var(--excerpt);
-		/* Show the first two lines of the post, then truncate with an ellipsis. */
+		/* Show the first three lines of the post, then truncate with an ellipsis. */
 		display: -webkit-box;
 		-webkit-box-orient: vertical;
-		-webkit-line-clamp: 2;
-		line-clamp: 2;
+		-webkit-line-clamp: 3;
+		line-clamp: 3;
 		overflow: hidden;
 	}
 	.more {
