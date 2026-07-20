@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SOCIAL } from '../consts';
+
+// ── Fill these in ────────────────────────────────────────────────────────────
+// Each engagement: { event, url, venue, date, description }
+const engagements: Array<{
+	event: string;
+	url?: string;
+	venue?: string;
+	date?: string;
+	description?: string;
+}> = [
+	// { event: 'Talk title / event name', url: 'https://…', venue: 'Conference, City', date: '2024', description: 'One-line summary.' },
+];
+// ─────────────────────────────────────────────────────────────────────────────
+---
+
+<BaseLayout
+	title="Speaking · Cory Bergman"
+	description="Cory Bergman speaks on breaking news, AI, product and the future of real-time information. Booking and past engagements."
+	variant="sub"
+	active="speaking"
+>
+	<div class="page">
+		<h1>Speaking</h1>
+		<p class="pitch">
+			I speak about breaking news and AI, real-time information, and building
+			products at the intersection of the two — drawing on decades in the
+			newsroom and as a co-founder of Factal and BreakingNews.com. Talks range
+			from keynotes to panels and workshops, tailored to security, media,
+			technology and product audiences.
+		</p>
+		<p class="cta">
+			Interested in having me speak? <a href={SOCIAL.email}>Get in touch</a>.
+		</p>
+
+		<h2 class="section">Past engagements</h2>
+		{
+			engagements.length > 0 ? (
+				<ul class="entries">
+					{engagements.map((item) => (
+						<li class="entry">
+							{item.url ? (
+								<a href={item.url} class="entry-title">
+									{item.event}
+								</a>
+							) : (
+								<span class="entry-title">{item.event}</span>
+							)}
+							{(item.venue || item.date) && (
+								<span class="entry-meta">
+									{[item.venue, item.date].filter(Boolean).join(' · ')}
+								</span>
+							)}
+							{item.description && (
+								<p class="entry-desc">{item.description}</p>
+							)}
+						</li>
+					))}
+				</ul>
+			) : (
+				<p class="soon">Coming soon.</p>
+			)
+		}
+	</div>
+</BaseLayout>
+
+<style>
+	.page {
+		max-width: var(--content-max);
+		margin: 72px auto 0;
+	}
+	.page h1 {
+		font-size: 34px;
+		font-weight: 600;
+		letter-spacing: -0.02em;
+		margin: 0 0 20px;
+	}
+	.pitch {
+		font-size: 16.5px;
+		line-height: 1.75;
+		color: var(--body);
+		margin: 0 0 16px;
+	}
+	.cta {
+		font-size: 16.5px;
+		line-height: 1.7;
+		color: var(--body);
+		margin: 0;
+	}
+	.cta a {
+		color: var(--pine);
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+	.section {
+		font-size: 14px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--pine-2);
+		margin: 48px 0 20px;
+	}
+	.entries {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+	.entry-title {
+		font-size: 18px;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		color: var(--ink);
+		line-height: 1.35;
+	}
+	a.entry-title:hover {
+		color: var(--pine);
+	}
+	.entry-meta {
+		display: block;
+		font-size: 13px;
+		color: var(--faint);
+		margin-top: 3px;
+	}
+	.entry-desc {
+		font-size: 15.5px;
+		line-height: 1.6;
+		color: var(--excerpt);
+		margin: 6px 0 0;
+	}
+	.soon {
+		font-size: 15.5px;
+		color: var(--faint);
+		margin: 0;
+	}
+</style>

@@ -2,7 +2,7 @@
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
 import '../styles/global.css';
-import { SITE_TITLE } from '../consts';
+import { SITE_TITLE, SOCIAL } from '../consts';
 import { Font } from 'astro:assets';
 
 interface Props {
@@ -13,6 +13,23 @@ interface Props {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const { title, description } = Astro.props;
+
+// schema.org Person — lets AI/search read the site owner as an entity.
+const personLd = JSON.stringify({
+	'@context': 'https://schema.org',
+	'@type': 'Person',
+	name: SITE_TITLE,
+	url: Astro.site?.href ?? 'https://corybe.com/',
+	jobTitle: 'Co-founder and Chief Product Officer',
+	worksFor: {
+		'@type': 'Organization',
+		name: 'Factal',
+		url: 'https://www.factal.com',
+	},
+	description:
+		'Journalist and technologist working at the intersection of breaking news and AI.',
+	sameAs: [SOCIAL.x, SOCIAL.bluesky, SOCIAL.threads, SOCIAL.linkedin],
+});
 ---
 
 <!-- Global Metadata -->
@@ -63,3 +80,6 @@ const { title, description } = Astro.props;
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
+
+<!-- Structured data (schema.org Person) -->
+<script type="application/ld+json" is:inline set:html={personLd} />

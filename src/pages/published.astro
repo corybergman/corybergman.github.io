@@ -1,0 +1,153 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// ── Fill these in ────────────────────────────────────────────────────────────
+// Each entry: { title, url, source, date, description }
+//   title       – the headline (becomes the link text)
+//   url         – link to the piece
+//   source      – publication / outlet (optional)
+//   date        – year or date string (optional)
+//   description – one short line (optional)
+//
+// "writing" = pieces Cory wrote. "press" = coverage about Cory.
+const writing: Array<{
+	title: string;
+	url: string;
+	source?: string;
+	date?: string;
+	description?: string;
+}> = [
+	// { title: 'Example headline', url: 'https://…', source: 'Publication', date: '2024', description: 'One-line summary.' },
+];
+
+const press: typeof writing = [
+	// { title: 'Example headline', url: 'https://…', source: 'Publication', date: '2024', description: 'One-line summary.' },
+];
+// ─────────────────────────────────────────────────────────────────────────────
+---
+
+<BaseLayout
+	title="Published · Cory Bergman"
+	description="An index of writing by Cory Bergman and press coverage about him over the years."
+	variant="sub"
+	active="published"
+>
+	<div class="page">
+		<h1>Published</h1>
+		<p class="intro">
+			Selected writing by me, and press coverage over the years.
+		</p>
+
+		<h2 class="section">Writing</h2>
+		{
+			writing.length > 0 ? (
+				<ul class="entries">
+					{writing.map((item) => (
+						<li class="entry">
+							<a href={item.url} class="entry-title">
+								{item.title}
+							</a>
+							{(item.source || item.date) && (
+								<span class="entry-meta">
+									{[item.source, item.date].filter(Boolean).join(' · ')}
+								</span>
+							)}
+							{item.description && (
+								<p class="entry-desc">{item.description}</p>
+							)}
+						</li>
+					))}
+				</ul>
+			) : (
+				<p class="soon">Coming soon.</p>
+			)
+		}
+
+		<h2 class="section">Press</h2>
+		{
+			press.length > 0 ? (
+				<ul class="entries">
+					{press.map((item) => (
+						<li class="entry">
+							<a href={item.url} class="entry-title">
+								{item.title}
+							</a>
+							{(item.source || item.date) && (
+								<span class="entry-meta">
+									{[item.source, item.date].filter(Boolean).join(' · ')}
+								</span>
+							)}
+							{item.description && (
+								<p class="entry-desc">{item.description}</p>
+							)}
+						</li>
+					))}
+				</ul>
+			) : (
+				<p class="soon">Coming soon.</p>
+			)
+		}
+	</div>
+</BaseLayout>
+
+<style>
+	.page {
+		max-width: var(--content-max);
+		margin: 72px auto 0;
+	}
+	.page h1 {
+		font-size: 34px;
+		font-weight: 600;
+		letter-spacing: -0.02em;
+		margin: 0 0 12px;
+	}
+	.intro {
+		font-size: 16.5px;
+		line-height: 1.7;
+		color: var(--muted);
+		margin: 0;
+	}
+	.section {
+		font-size: 14px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
+		color: var(--pine-2);
+		margin: 48px 0 20px;
+	}
+	.entries {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 24px;
+	}
+	.entry-title {
+		font-size: 18px;
+		font-weight: 600;
+		letter-spacing: -0.01em;
+		color: var(--ink);
+		line-height: 1.35;
+	}
+	.entry-title:hover {
+		color: var(--pine);
+	}
+	.entry-meta {
+		display: block;
+		font-size: 13px;
+		color: var(--faint);
+		margin-top: 3px;
+	}
+	.entry-desc {
+		font-size: 15.5px;
+		line-height: 1.6;
+		color: var(--excerpt);
+		margin: 6px 0 0;
+	}
+	.soon {
+		font-size: 15.5px;
+		color: var(--faint);
+		margin: 0;
+	}
+</style>
