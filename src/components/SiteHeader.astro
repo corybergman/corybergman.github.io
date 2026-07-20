@@ -105,5 +105,18 @@ const { variant = 'home', active } = Astro.props;
 		.nav .push {
 			margin-left: 0;
 		}
+
+		/* Sub-page header: let the compact nav wrap to its own line so no
+		   items get clipped by the frame. */
+		.sub {
+			flex-wrap: wrap;
+		}
+		.nav.compact {
+			margin-left: 0;
+			margin-top: 6px;
+			width: 100%;
+			flex-wrap: wrap;
+			gap: 16px 18px;
+		}
 	}
 </style>
