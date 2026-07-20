@@ -1,5 +1,5 @@
 ---
-import { SITE_TITLE, SOCIAL } from '../consts';
+import { SITE_TITLE } from '../consts';
 import Avatar from './Avatar.astro';
 
 interface Props {
@@ -37,8 +37,6 @@ const { variant = 'home', active } = Astro.props;
 			<a href="/published" class:list={[active === 'published' && 'active']}>Published</a>
 			<a href="/speaking" class:list={[active === 'speaking' && 'active']}>Speaking</a>
 			<a href="/about" class:list={[active === 'about' && 'active']}>About</a>
-			<a href={SOCIAL.x}>X/Twitter</a>
-			<a href={SOCIAL.linkedin}>LinkedIn</a>
 			<a href="/rss.xml" class="push">RSS</a>
 		</nav>
 	)
