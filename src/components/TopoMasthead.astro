@@ -111,12 +111,18 @@ const { variant = 'short' } = Astro.props;
 		height: 100%;
 		display: block;
 	}
+	/* On narrow screens the wide artwork would crop heavily under `slice`,
+	   lopping off the outer markers. Instead show the full width and let the
+	   band height follow the artwork's aspect ratio (no cropping). */
 	@media (max-width: 700px) {
-		.masthead--tall {
-			height: 132px;
-		}
+		.masthead--tall,
 		.masthead--short {
-			height: 76px;
+			height: auto;
+		}
+		.masthead svg {
+			position: relative;
+			inset: auto;
+			height: auto;
 		}
 	}
 </style>
