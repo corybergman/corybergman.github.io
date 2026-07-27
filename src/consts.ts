@@ -11,5 +11,5 @@ export const SOCIAL = {
 	bluesky: 'https://bsky.app/profile/corybe.com',
 	threads: 'https://www.threads.com/@corybe',
 	linkedin: 'https://www.linkedin.com/in/corybergman/',
-	email: 'mailto:corybergman@gmail.com',
+	email: 'mailto:blog+corybergman@gmail.com',
 };
