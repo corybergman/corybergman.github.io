@@ -130,26 +130,28 @@ const press: typeof companies = [
 				<ul class="entries">
 					{companies.map((item) => (
 						<li class:list={['entry', item.logo && 'entry--logo']}>
-							{item.logo && (
-								<Image src={item.logo} alt={`${item.title} logo`} class="entry-logo" />
-							)}
-							<div class="entry-body">
-								{item.url ? (
-									<a href={item.url} class="entry-title">
-										{item.title}
-									</a>
-								) : (
-									<span class="entry-title">{item.title}</span>
+							<div class="entry-head">
+								{item.logo && (
+									<Image src={item.logo} alt={`${item.title} logo`} class="entry-logo" />
 								)}
-								{(item.source || item.date) && (
-									<span class="entry-meta">
-										{[item.source, item.date].filter(Boolean).join(' · ')}
-									</span>
-								)}
-								{item.description && (
-									<p class="entry-desc" set:html={item.description} />
-								)}
+								<div class="entry-heading">
+									{item.url ? (
+										<a href={item.url} class="entry-title">
+											{item.title}
+										</a>
+									) : (
+										<span class="entry-title">{item.title}</span>
+									)}
+									{(item.source || item.date) && (
+										<span class="entry-meta">
+											{[item.source, item.date].filter(Boolean).join(' · ')}
+										</span>
+									)}
+								</div>
 							</div>
+							{item.description && (
+								<p class="entry-desc" set:html={item.description} />
+							)}
 						</li>
 					))}
 				</ul>
@@ -243,22 +245,24 @@ const press: typeof companies = [
 		flex-direction: column;
 		gap: 24px;
 	}
-	.entry--logo {
+	.entry-head {
 		display: flex;
-		align-items: flex-start;
+		align-items: center;
 		gap: 14px;
 	}
 	.entry-logo {
 		flex: none;
 		width: 44px;
 		height: 44px;
-		margin-top: 2px;
 		border-radius: 9px;
 		object-fit: cover;
 		border: 1px solid rgba(31, 30, 27, 0.1);
 	}
-	.entry-body {
+	.entry-heading {
 		min-width: 0;
+	}
+	.entry--logo .entry-desc {
+		margin-top: 12px;
 	}
 	.entry-title {
 		font-size: 18px;
