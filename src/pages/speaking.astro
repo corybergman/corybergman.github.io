@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import speakingPhoto from '../assets/cory_osac_ai.jpeg';
 
 // ── Fill these in ────────────────────────────────────────────────────────────
 // Each engagement: { event, url, venue, date, description }
@@ -52,6 +54,17 @@ const recentEvents: Array<{
 				>AI events page</a
 			>.
 		</p>
+
+		<figure class="hero">
+			<Image
+				src={speakingPhoto}
+				alt="Cory Bergman delivering an AI keynote to a packed room at a regional OSAC event"
+				widths={[620, 940, 1240]}
+				sizes="(max-width: 660px) 100vw, 620px"
+				class="hero-img"
+			/>
+			<figcaption>Keynote to a regional OSAC audience.</figcaption>
+		</figure>
 
 		<h2 class="section">Upcoming events</h2>
 		{
@@ -125,6 +138,24 @@ const recentEvents: Array<{
 		color: var(--pine);
 		text-decoration: underline;
 		text-underline-offset: 3px;
+	}
+	.hero {
+		margin: 28px 0 0;
+	}
+	.hero-img {
+		display: block;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 21 / 9;
+		object-fit: cover;
+		object-position: center 38%;
+		border-radius: 6px;
+		border: 1px solid var(--contour);
+	}
+	.hero figcaption {
+		font-size: 13px;
+		color: var(--faint);
+		margin-top: 8px;
 	}
 	.section {
 		font-size: 14px;
