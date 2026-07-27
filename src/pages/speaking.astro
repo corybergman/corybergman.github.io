@@ -10,7 +10,12 @@ const engagements: Array<{
 	date?: string;
 	description?: string;
 }> = [
-	// { event: 'Talk title / event name', url: 'https://…', venue: 'Conference, City', date: '2024', description: 'One-line summary.' },
+	{
+		event: 'Global Security Briefing',
+		url: 'https://www.factal.com/promo/globalsecuritybriefing/',
+		date: 'every two weeks',
+		description: `I make routine appearances in the Global Security Briefing, a webinar co-hosted by Factal and Emergent Risk International. The "GSB" began in the first days of COVID, and has since grown into the largest virtual event of its kind in the industry. Factal editors and ERI analysts dissect the biggest geopolitical events of the day, and I typically speak about AI. Make sure you <a href="https://www.factal.com/promo/globalsecuritybriefing/">register to attend</a> (it's free).`,
+	},
 ];
 // ─────────────────────────────────────────────────────────────────────────────
 ---
@@ -32,7 +37,7 @@ const engagements: Array<{
 			you're organizing an event, <a href="/about">get in touch</a>.
 		</p>
 
-		<h2 class="section">Past engagements</h2>
+		<h2 class="section">Upcoming events</h2>
 		{
 			engagements.length > 0 ? (
 				<ul class="entries">
@@ -51,7 +56,7 @@ const engagements: Array<{
 								</span>
 							)}
 							{item.description && (
-								<p class="entry-desc">{item.description}</p>
+								<p class="entry-desc" set:html={item.description} />
 							)}
 						</li>
 					))}
@@ -122,6 +127,11 @@ const engagements: Array<{
 		line-height: 1.6;
 		color: var(--excerpt);
 		margin: 6px 0 0;
+	}
+	.entry-desc :global(a) {
+		color: var(--pine);
+		text-decoration: underline;
+		text-underline-offset: 3px;
 	}
 	.soon {
 		font-size: 15.5px;
