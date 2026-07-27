@@ -43,7 +43,24 @@ const companies: Array<{
 	},
 ];
 
-const writing: typeof companies = [];
+const writing: typeof companies = [
+	{
+		title: 'Medium (personal)',
+		url: 'https://corybe.medium.com/',
+		description: `I published some blog posts on Medium for a few years. A few of my favorites:
+<ul>
+<li><a href="https://corybe.medium.com/why-news-organizations-should-drop-or-rebrand-online-opinion-columns-6837f227630f">Why news organizations should drop (or rebrand) online opinion columns</a></li>
+<li><a href="https://corybe.medium.com/finding-new-markets-for-journalism-with-the-20-use-case-cdff6c2a04d1">Finding new markets in journalism with the 20% use case</a></li>
+<li><a href="https://corybe.medium.com/lessons-from-my-mom-on-how-to-give-df2357e7cd11">Lessons from my mom on how to give</a></li>
+<li><a href="https://medium.com/cory-bergman/suicidal-reporter-drones-a51cc73db42b">Suicidal reporter drones (a fictional short story)</a></li>
+</ul>`,
+	},
+	{
+		title: 'Medium (Breaking News)',
+		url: 'https://medium.com/@breakingnews',
+		description: `The last few years' worth of Breaking News' announcements.`,
+	},
+];
 
 const press: typeof companies = [
 	// { title: 'Example headline', url: 'https://…', source: 'Publication', date: '2024', description: 'One-line summary.' },
@@ -107,7 +124,7 @@ const press: typeof companies = [
 								</span>
 							)}
 							{item.description && (
-								<p class="entry-desc" set:html={item.description} />
+								<div class="entry-desc" set:html={item.description} />
 							)}
 						</li>
 					))}
@@ -203,6 +220,13 @@ const press: typeof companies = [
 		color: var(--pine);
 		text-decoration: underline;
 		text-underline-offset: 3px;
+	}
+	.entry-desc :global(ul) {
+		margin: 8px 0 0;
+		padding-left: 20px;
+	}
+	.entry-desc :global(li) {
+		margin: 4px 0;
 	}
 	.soon {
 		font-size: 15.5px;
