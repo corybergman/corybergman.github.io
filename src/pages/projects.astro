@@ -131,9 +131,14 @@ const press: typeof companies = [
 					{companies.map((item) => (
 						<li class:list={['entry', item.logo && 'entry--logo']}>
 							<div class="entry-head">
-								{item.logo && (
-									<Image src={item.logo} alt={`${item.title} logo`} class="entry-logo" />
-								)}
+								{item.logo &&
+									(item.url ? (
+										<a href={item.url} class="entry-logo-link" aria-label={item.title}>
+											<Image src={item.logo} alt={`${item.title} logo`} class="entry-logo" />
+										</a>
+									) : (
+										<Image src={item.logo} alt={`${item.title} logo`} class="entry-logo" />
+									))}
 								<div class="entry-heading">
 									{item.url ? (
 										<a href={item.url} class="entry-title">
@@ -250,8 +255,18 @@ const press: typeof companies = [
 		align-items: center;
 		gap: 14px;
 	}
+	.entry-logo-link {
+		flex: none;
+		display: inline-flex;
+		border-radius: 9px;
+		transition: opacity 0.15s ease;
+	}
+	.entry-logo-link:hover {
+		opacity: 0.82;
+	}
 	.entry-logo {
 		flex: none;
+		display: block;
 		width: 44px;
 		height: 44px;
 		border-radius: 9px;
