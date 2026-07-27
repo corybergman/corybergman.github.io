@@ -17,6 +17,18 @@ const engagements: Array<{
 		description: `I make routine appearances in the Global Security Briefing, a webinar co-hosted by Factal and Emergent Risk International. The "GSB" began in the first days of COVID, and has since grown into the largest virtual event of its kind in the industry. Factal editors and ERI analysts dissect the biggest geopolitical events of the day, and I typically speak about AI. Make sure you <a href="https://www.factal.com/promo/globalsecuritybriefing/">register to attend</a> (it's free).`,
 	},
 ];
+
+// Each recent event: { title, date, context }
+const recentEvents: Array<{
+	title: string;
+	date?: string;
+	context?: string;
+}> = [
+	{ title: 'Emerging AI risks for CSOs', date: 'June 2026', context: 'keynote at ISMA 2026' },
+	{ title: 'AI and disinformation in risk management', date: 'April 2026', context: 'regional OSAC keynote' },
+	{ title: 'Strategic communication for security leaders', date: 'April 2026', context: 'SVSG Create fireside chat' },
+	{ title: 'A practical guide to identifying AI videos', date: 'Feb 2026', context: 'Factal webinar' },
+];
 // ─────────────────────────────────────────────────────────────────────────────
 ---
 
@@ -61,6 +73,26 @@ const engagements: Array<{
 							)}
 							{item.description && (
 								<p class="entry-desc" set:html={item.description} />
+							)}
+						</li>
+					))}
+				</ul>
+			) : (
+				<p class="soon">Coming soon.</p>
+			)
+		}
+
+		<h2 class="section">Recent events</h2>
+		{
+			recentEvents.length > 0 ? (
+				<ul class="entries">
+					{recentEvents.map((item) => (
+						<li class="entry">
+							<span class="entry-title">{item.title}</span>
+							{(item.date || item.context) && (
+								<span class="entry-meta">
+									{[item.date, item.context].filter(Boolean).join(' · ')}
+								</span>
 							)}
 						</li>
 					))}
