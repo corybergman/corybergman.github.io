@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SOCIAL } from '../consts';
 
 // ── Fill these in ────────────────────────────────────────────────────────────
 // Each engagement: { event, url, venue, date, description }
@@ -25,14 +24,12 @@ const engagements: Array<{
 	<div class="page">
 		<h1>Speaking</h1>
 		<p class="pitch">
-			I speak about breaking news and AI, real-time information, and building
-			products at the intersection of the two — drawing on decades in the
-			newsroom and as a co-founder of Factal and BreakingNews.com. Talks range
-			from keynotes to panels and workshops, tailored to security, media,
-			technology and product audiences.
-		</p>
-		<p class="cta">
-			Interested in having me speak? <a href={SOCIAL.email}>Get in touch</a>.
+			I speak regularly to global security and risk audiences about AI, including
+			hands-on training for teams putting it into practice. As a longtime journalist
+			and product builder, I focus on practical applications and steer clear of hype
+			and speculation. Talks include keynotes (OSAC and ISMA), fireside interviews
+			(SVSG), panels (AIRIP and AR) and bespoke training sessions (Fortune 500s). If
+			you're organizing an event, <a href="/about">get in touch</a>.
 		</p>
 
 		<h2 class="section">Past engagements</h2>
@@ -83,13 +80,7 @@ const engagements: Array<{
 		color: var(--body);
 		margin: 0 0 16px;
 	}
-	.cta {
-		font-size: 16.5px;
-		line-height: 1.7;
-		color: var(--body);
-		margin: 0;
-	}
-	.cta a {
+	.pitch a {
 		color: var(--pine);
 		text-decoration: underline;
 		text-underline-offset: 3px;
