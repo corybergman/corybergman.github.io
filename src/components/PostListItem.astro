@@ -38,6 +38,9 @@ const { href, title, excerpt, pubDate } = Astro.props;
 		letter-spacing: -0.01em;
 		line-height: 1.35;
 	}
+	.title a:hover {
+		color: var(--pine-hover);
+	}
 	.excerpt {
 		font-size: 15.5px;
 		line-height: 1.65;
@@ -56,6 +59,9 @@ const { href, title, excerpt, pubDate } = Astro.props;
 		font-weight: 500;
 		color: var(--pine-2);
 		margin-top: 10px;
+	}
+	.more:hover {
+		color: var(--pine-hover);
 	}
 
 	@media (max-width: 700px) {

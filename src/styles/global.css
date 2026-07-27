@@ -18,6 +18,7 @@
 	/* Brand greens */
 	--pine: #2f4438; /* primary accent, link hover */
 	--pine-2: #3d5245; /* secondary green */
+	--pine-hover: #2f7d57; /* brighter green for interactive hover */
 
 	/* Masthead / topo */
 	--masthead: linear-gradient(180deg, #e9efe6 0%, #f4f7f2 70%, #ffffff 100%);
