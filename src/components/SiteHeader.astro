@@ -13,7 +13,13 @@ const { variant = 'home', active } = Astro.props;
 	variant === 'home' ? (
 		<header class="home">
 			<Avatar size={52} />
-			<div class="name">{SITE_TITLE}</div>
+			<div class="intro">
+				<div class="name">{SITE_TITLE}</div>
+				<p class="tagline">
+					I'm a product builder and journalist exploring how AI is changing
+					how we understand the world.
+				</p>
+			</div>
 		</header>
 	) : (
 		<header class="sub">
@@ -53,11 +59,24 @@ const { variant = 'home', active } = Astro.props;
 		align-items: center;
 		gap: 18px;
 	}
+	.intro {
+		display: flex;
+		flex-direction: column;
+		gap: 3px;
+		min-width: 0;
+	}
 	.name {
 		font-size: 24px;
 		font-weight: 600;
 		letter-spacing: -0.01em;
 		color: var(--ink);
+	}
+	.tagline {
+		font-size: 14.5px;
+		line-height: 1.45;
+		color: var(--muted);
+		margin: 0;
+		max-width: 52ch;
 	}
 	.sub {
 		display: flex;
