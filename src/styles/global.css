@@ -16,9 +16,9 @@
 	--faint: #9a948a; /* dates, faint labels */
 
 	/* Brand greens */
-	--pine: #2f4438; /* primary accent, link hover */
-	--pine-2: #3d5245; /* secondary green */
-	--pine-hover: #2f7d57; /* brighter green for interactive hover */
+	--pine: #1d5f9e; /* primary accent / links — sky blue from the masthead */
+	--pine-2: #2c567e; /* secondary blue (section labels) */
+	--pine-hover: #2f83c9; /* brighter sky blue for interactive hover */
 
 	/* Masthead / topo */
 	--masthead: linear-gradient(180deg, #e9efe6 0%, #f4f7f2 70%, #ffffff 100%);
