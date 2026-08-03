@@ -1,5 +1,5 @@
 ---
-title: 'The AI mindset'
+title: "Learning from AI that doesn't work"
 description: "A lot of people try AI, get poor results, and conclude it's not good enough. The better mindset is to hold yourself accountable for the output."
 pubDate: 'Jul 27 2026'
 tags: ['ai']
