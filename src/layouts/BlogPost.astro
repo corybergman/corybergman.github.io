@@ -115,6 +115,49 @@ const {
 		color: var(--pine);
 		font-style: italic;
 	}
+
+	/* Featured pull-quote — a distinctive card for a standout quotation. */
+	.body :global(.pullquote) {
+		position: relative;
+		margin: 44px 0;
+		padding: 46px 34px 26px;
+		background: var(--card-bg);
+		border-left: 4px solid var(--pine);
+		border-radius: 10px;
+	}
+	.body :global(.pullquote::before) {
+		content: '\201C';
+		position: absolute;
+		top: 12px;
+		left: 26px;
+		font-family: Georgia, 'Times New Roman', serif;
+		font-size: 72px;
+		line-height: 1;
+		color: var(--elevation);
+		opacity: 0.55;
+	}
+	.body :global(.pullquote blockquote) {
+		border: none;
+		margin: 0;
+		padding: 0;
+		font-style: normal;
+		font-size: 21px;
+		line-height: 1.5;
+		letter-spacing: -0.01em;
+		color: var(--pine);
+	}
+	.body :global(.pullquote blockquote p) {
+		margin: 0;
+	}
+	.body :global(.pullquote figcaption) {
+		margin-top: 18px;
+		font-family: var(--font-mono);
+		font-size: 13.5px;
+		color: var(--muted);
+	}
+	.body :global(.pullquote figcaption a) {
+		color: var(--pine-2);
+	}
 	.body :global(img) {
 		border-radius: 6px;
 	}
