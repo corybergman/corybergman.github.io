@@ -17,6 +17,7 @@ function excerptFrom(body: string) {
 		.replace(/^>\s?/gm, '') // blockquote markers
 		.replace(/[*_`]/g, '') // emphasis / code ticks
 		.replace(/!?\[([^\]]*)\]\([^)]*\)/g, '$1') // links/images -> text
+		.replace(/<[^>]+>/g, ' ') // strip raw HTML tags (keep their text)
 		.replace(/\s+/g, ' ')
 		.trim()
 		.slice(0, 400);
