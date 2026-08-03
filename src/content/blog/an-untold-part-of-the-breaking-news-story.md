@@ -15,6 +15,6 @@ They were unmoved. We were going to sell software subscriptions? Not only was B2
 
 In November 2016, NBC made its second $200 million investment in BuzzFeed, a buzzy advertising business. A month later, <a href="https://www.usatoday.com/story/tech/news/2016/12/08/nbc-shut-down-breaking-news-app-service/95149264/">they shut us down</a>.
 
-In retrospect, I'm happy with the outcome. That Fortune 500 company became our first customer at Factal, now a thriving B2B SaaS company with journalism at its core. And we call the shots.
+In retrospect, I'm happy with the outcome. That Fortune 500 company became our first customer at <a href="https://www.factal.com">Factal</a>, now a thriving B2B SaaS company with journalism at its core. And we call the shots.
 
 Every big company has a shape it recognizes as a business. They don't reject good ideas. They reject small ones, and every good idea starts small.
