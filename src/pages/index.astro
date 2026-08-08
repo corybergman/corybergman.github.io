@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostListItem from '../components/PostListItem.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import { SITE_DESCRIPTION } from '../consts';
 
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -25,7 +25,7 @@ function excerptFrom(body: string) {
 ---
 
 <BaseLayout
-	title={SITE_TITLE}
+	title="Cory Bergman — AI, Global Security & Journalism"
 	description={SITE_DESCRIPTION}
 	variant="home"
 	active="home"
