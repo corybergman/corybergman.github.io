@@ -15,10 +15,21 @@ const posts = (await getCollection('blog')).sort(
 const archiveStart = posts.findIndex((post) => post.data.tumblrId);
 
 // Feed excerpt = the opening of the post's own text (not the frontmatter
-// description). Strip light Markdown and collapse whitespace; the CSS then
-// clamps it to two lines with an ellipsis.
+// description). Skip leading images and their italic captions (e.g. photo
+// credits) so the teaser starts on real prose, then strip light Markdown and
+// collapse whitespace; the CSS clamps it to three lines with an ellipsis.
 function excerptFrom(body: string) {
-	return body
+	const prose = body
+		.split('\n')
+		.filter((line) => {
+			const l = line.trim();
+			if (l === '') return false;
+			if (/^!\[[^\]]*\]\([^)]*\)$/.test(l)) return false; // standalone image
+			if (/^\*[^*].*\*$/.test(l)) return false; // italic caption / photo credit
+			return true;
+		})
+		.join(' ');
+	return prose
 		.replace(/^#{1,6}\s+/gm, '') // heading markers
 		.replace(/^>\s?/gm, '') // blockquote markers
 		.replace(/[*_`]/g, '') // emphasis / code ticks
