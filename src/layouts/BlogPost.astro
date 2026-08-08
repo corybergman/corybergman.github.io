@@ -8,6 +8,7 @@ interface Props {
 	pubDate: Date;
 	updatedDate?: Date;
 	tags?: string[];
+	canonical?: string;
 	prevPost?: { href: string; title: string } | null;
 }
 
@@ -17,11 +18,18 @@ const {
 	pubDate,
 	updatedDate,
 	tags = [],
+	canonical,
 	prevPost = null,
 } = Astro.props;
 ---
 
-<BaseLayout title={title} description={description} variant="sub" active="home">
+<BaseLayout
+	title={title}
+	description={description}
+	variant="sub"
+	active="home"
+	canonical={canonical}
+>
 	<article class="post">
 		<div class="date">
 			<FormattedDate date={pubDate} />

@@ -20,6 +20,9 @@ const blog = defineCollection({
 			// the post is served at its original `/post/<tumblrId>/<slug>/` URL
 			// (matching what search engines indexed) instead of `/blog/<slug>/`.
 			tumblrId: z.string().optional(),
+			// Set on posts republished from Medium. Points rel=canonical at the
+			// original Medium URL so search engines credit that copy, not this one.
+			canonical: z.string().url().optional(),
 		}),
 });
 

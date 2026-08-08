@@ -8,14 +8,15 @@ interface Props {
 	description: string;
 	variant?: 'home' | 'sub';
 	active?: 'writing' | 'about';
+	canonical?: string;
 }
-const { title, description, variant = 'sub', active } = Astro.props;
+const { title, description, variant = 'sub', active, canonical } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} />
+		<BaseHead title={title} description={description} canonical={canonical} />
 	</head>
 	<body>
 		<div class="frame">
