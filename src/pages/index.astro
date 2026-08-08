@@ -8,6 +8,12 @@ const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
+// Posts migrated from the old Tumblr blog carry a `tumblrId`. They sort to the
+// bottom of the feed; mark where they begin so we can draw a quiet divider
+// between recent writing and the archive. Data-driven, so it stays correct as
+// new posts are published (no hardcoded date).
+const archiveStart = posts.findIndex((post) => post.data.tumblrId);
+
 // Feed excerpt = the opening of the post's own text (not the frontmatter
 // description). Strip light Markdown and collapse whitespace; the CSS then
 // clamps it to two lines with an ellipsis.
@@ -32,14 +38,48 @@ function excerptFrom(body: string) {
 >
 	<section class="feed">
 		{
-			posts.map((post) => (
-				<PostListItem
-					href={postUrl(post)}
-					title={post.data.title}
-					excerpt={excerptFrom(post.body ?? '')}
-					pubDate={post.data.pubDate}
-				/>
+			posts.map((post, i) => (
+				<Fragment>
+					{i === archiveStart && archiveStart > 0 && (
+						<div class="feed-divider">
+							<span>Earlier writing · 2011–2024</span>
+						</div>
+					)}
+					<PostListItem
+						href={postUrl(post)}
+						title={post.data.title}
+						excerpt={excerptFrom(post.body ?? '')}
+						pubDate={post.data.pubDate}
+					/>
+				</Fragment>
 			))
 		}
 	</section>
 </BaseLayout>
+
+<style>
+	/* Quiet boundary between recent posts and the migrated Tumblr archive:
+	   a hairline with a small mono label centered on it, echoing the
+	   coordinate/trail feel of the masthead. */
+	.feed-divider {
+		display: flex;
+		align-items: center;
+		gap: 18px;
+		margin: 14px 0 50px;
+		font-family: var(--font-mono);
+		font-size: 12px;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--faint);
+	}
+	.feed-divider::before,
+	.feed-divider::after {
+		content: '';
+		flex: 1;
+		height: 1px;
+		background: var(--rule);
+	}
+	.feed-divider span {
+		flex: none;
+	}
+</style>
