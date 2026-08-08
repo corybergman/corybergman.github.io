@@ -2,7 +2,7 @@
 title: "How the news media can work to regain the trust of America"
 description: "It’s time to fix our credibility problem"
 pubDate: "Nov 10 2016"
-tags: ["social-media", "public-service", "politics", "journalism"]
+tags: ["journalism", "media"]
 canonical: "https://medium.com/@corybe/how-the-news-media-can-work-to-regain-the-trust-of-america-ce763f3d001d"
 ---
 

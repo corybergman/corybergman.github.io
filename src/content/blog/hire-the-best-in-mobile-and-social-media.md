@@ -2,7 +2,7 @@
 title: "Hire the best in mobile and social media"
 description: "Breaking News has shut down, and we’re looking for work"
 pubDate: "Dec 12 2016"
-tags: ["social-media", "mobile", "journalism"]
+tags: ["mobile", "social"]
 canonical: "https://medium.com/@corybe/hire-the-best-in-mobile-and-social-media-e2ed42c42787"
 ---
 

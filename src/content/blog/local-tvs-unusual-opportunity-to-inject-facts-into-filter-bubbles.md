@@ -2,7 +2,7 @@
 title: "Local TV’s unusual opportunity to inject facts into filter bubbles"
 description: "With the election upon us, local TV news can make a difference"
 pubDate: "Sep 27 2020"
-tags: ["fact-checking", "elections", "journalism"]
+tags: ["media", "journalism"]
 canonical: "https://medium.com/@corybe/local-tvs-unusual-opportunity-to-inject-facts-into-filter-bubbles-8361de16d99a"
 ---
 

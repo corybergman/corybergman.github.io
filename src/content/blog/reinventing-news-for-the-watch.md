@@ -1,7 +1,8 @@
 ---
-title: "Reinventing News for the Watch"
+title: "Reinventing news for the Watch"
 description: "The best Apple Watch apps are connected to the world around you."
 pubDate: "Apr 14 2015"
+tags: ["mobile", "breaking news"]
 canonical: "https://medium.com/@corybe/reinventing-news-for-the-watch-8bfa39431e55"
 ---
 

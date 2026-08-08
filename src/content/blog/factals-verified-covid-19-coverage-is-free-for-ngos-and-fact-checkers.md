@@ -2,6 +2,7 @@
 title: "Factal’s verified COVID-19 coverage is free for NGOs and fact-checkers"
 description: "Factal has been covering the coronavirus outbreak since our first report on Dec. 30th, publishing thousands of verified updates spanning…"
 pubDate: "Mar 14 2020"
+tags: ["factal", "journalism"]
 canonical: "https://medium.com/@corybe/factals-verified-covid-19-coverage-is-free-for-ngos-and-fact-checkers-29da6db59993"
 ---
 

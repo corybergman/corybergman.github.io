@@ -1,7 +1,8 @@
 ---
-title: "Lessons From My Mom on How To Give"
+title: "Lessons from my mom on how to give"
 description: "The gift of time and attention in a distracted world"
 pubDate: "Jun 13 2016"
+tags: ["personal"]
 canonical: "https://medium.com/@corybe/lessons-from-my-mom-on-how-to-give-df2357e7cd11"
 ---
 

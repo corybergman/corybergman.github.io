@@ -1,8 +1,8 @@
 ---
-title: "Let’s Make the Future of Media Again"
+title: "Let’s make the future of media again"
 description: "Instead of just watching everyone else make it"
 pubDate: "Apr 14 2016"
-tags: ["journalism", "tvs", "tv", "medium"]
+tags: ["media", "journalism"]
 canonical: "https://medium.com/@corybe/let-s-make-the-future-of-media-again-93ffcc2dcdf7"
 ---
 

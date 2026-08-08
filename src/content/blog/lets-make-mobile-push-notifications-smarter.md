@@ -1,7 +1,8 @@
 ---
-title: "Let’s Make Mobile Push Notifications Smarter"
+title: "Let’s make mobile push notifications smarter"
 description: "Before everyone instinctively turns them off"
 pubDate: "Jan 23 2014"
+tags: ["mobile", "breaking news"]
 canonical: "https://medium.com/@corybe/lets-make-mobile-push-notifications-smarter-b76edc451741"
 ---
 

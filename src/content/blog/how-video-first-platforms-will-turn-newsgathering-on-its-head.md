@@ -2,7 +2,7 @@
 title: "How ‘video first’ platforms will turn newsgathering on its head"
 description: "What the second wave of user video means for newsrooms"
 pubDate: "Nov 22 2016"
-tags: ["journalism", "social-media", "facebook", "google"]
+tags: ["media", "social"]
 canonical: "https://medium.com/@corybe/how-video-first-platforms-will-turn-newsgathering-on-its-head-27a8ac44df6d"
 ---
 

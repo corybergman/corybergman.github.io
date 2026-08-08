@@ -1,7 +1,8 @@
 ---
-title: "Reinventing Breaking News Around You"
+title: "Reinventing Breaking News around you"
 description: "Because it seems like just about everything is #breaking these days"
 pubDate: "Nov 04 2013"
+tags: ["breaking news", "mobile"]
 canonical: "https://medium.com/@corybe/reinventing-breaking-news-around-you-18998994dfb0"
 ---
 

@@ -2,7 +2,7 @@
 title: "Amazing stories from Breaking News users"
 description: "‘I credit your app with saving my sister’s life’"
 pubDate: "Dec 29 2016"
-tags: ["security", "social-media", "journalism", "news"]
+tags: ["breaking news", "journalism"]
 canonical: "https://medium.com/@corybe/short-stories-from-breaking-news-users-9cbf66d9ca81"
 ---
 

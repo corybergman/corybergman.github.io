@@ -2,6 +2,7 @@
 title: "How to make breaking news matter again"
 description: "Breaking news is broken, and it’s only getting worse"
 pubDate: "Jun 19 2014"
+tags: ["breaking news", "mobile"]
 canonical: "https://medium.com/@corybe/how-to-make-breaking-news-matter-again-65b7cb525f29"
 ---
 

@@ -2,7 +2,7 @@
 title: "The 8 great innovations of Breaking News"
 description: "Our best inventions and a bit of our history"
 pubDate: "Jan 24 2017"
-tags: ["social-media", "journalism", "mobile", "technology"]
+tags: ["breaking news", "innovation"]
 canonical: "https://medium.com/@corybe/the-8-great-innovations-of-breaking-news-8c5ebb42ebc3"
 ---
 

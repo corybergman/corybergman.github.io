@@ -2,7 +2,7 @@
 title: "Why news organizations should drop (or rebrand) online opinion columns"
 description: "The world has changed. Let’s count the ways."
 pubDate: "Jul 15 2020"
-tags: ["newspapers", "journalism", "fact-checking"]
+tags: ["journalism", "media"]
 canonical: "https://medium.com/@corybe/why-news-organizations-should-drop-or-rebrand-online-opinion-columns-6837f227630f"
 ---
 

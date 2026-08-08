@@ -2,7 +2,7 @@
 title: "Introducing Factal, a new startup from the founders of Breaking News"
 description: "In our dangerous and disorienting world, facts save lives"
 pubDate: "Aug 29 2018"
-tags: ["social-media", "fact-checking", "security", "startup"]
+tags: ["factal", "startups"]
 canonical: "https://medium.com/@corybe/introducing-factal-a-new-startup-from-the-founders-of-breaking-news-66a5c69ab04f"
 ---
 

@@ -1,8 +1,8 @@
 ---
-title: "Finding New Markets for Journalism With the 20% Use Case"
+title: "Finding new markets for journalism with the 20% use case"
 description: "How key user insights can lead to new revenue opportunities"
 pubDate: "Nov 10 2019"
-tags: ["journalism", "security", "language", "social-media"]
+tags: ["journalism", "factal"]
 canonical: "https://medium.com/@corybe/finding-new-markets-for-journalism-with-the-20-use-case-cdff6c2a04d1"
 ---
 

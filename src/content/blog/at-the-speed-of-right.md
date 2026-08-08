@@ -1,7 +1,8 @@
 ---
-title: "At the Speed of Right"
+title: "At the speed of right"
 description: "Reducing Information Lag With Breaking News That Matters"
 pubDate: "Jan 30 2015"
+tags: ["breaking news", "journalism"]
 canonical: "https://medium.com/@corybe/at-the-speed-of-right-58e43bcd6fe5"
 ---
 

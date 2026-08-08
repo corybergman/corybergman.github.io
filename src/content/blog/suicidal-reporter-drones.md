@@ -1,8 +1,8 @@
 ---
-title: "Suicidal Reporter Drones"
+title: "Suicidal reporter drones"
 description: "A fictional short story about two war journalists, drones and a dangerous assignment outside the wall"
 pubDate: "Feb 05 2017"
-tags: ["short-story", "drones", "fiction", "war"]
+tags: ["fiction", "drones"]
 canonical: "https://medium.com/@corybe/suicidal-reporter-drones-a51cc73db42b"
 ---
 
