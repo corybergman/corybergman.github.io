@@ -3,7 +3,7 @@
 
 export const SITE_TITLE = 'Cory Bergman';
 export const SITE_DESCRIPTION =
-	'Writing on news, mobile and product by Cory Bergman, co-founder of Factal.';
+	'Cory Bergman, co-founder and chief product officer of Factal, writes about the confluence of AI, global security and journalism.';
 
 // Social / nav links.
 export const SOCIAL = {
