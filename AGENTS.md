@@ -49,7 +49,7 @@ first; components reference the variables.
 - Home feed: `src/pages/index.astro` · About: `src/pages/about.astro`
 - Projects page (Companies + Writing + Press index): `src/pages/projects.astro` — fill the `companies` / `writing` / `press` arrays at the top of the file (each: title, url, source?, date?, description?). Empty section shows "Coming soon."
 - Speaking page (pitch + engagements): `src/pages/speaking.astro` — fill the `engagements` array (each: event, url?, venue?, date?, description?).
-- Post route + prev-post logic: `src/pages/blog/[...slug].astro` (URLs are `/blog/<slug>/`)
+- Post URLs: native posts live at `/blog/<slug>/` (`src/pages/blog/[...slug].astro`). Posts migrated from the old Tumblr blog carry a `tumblrId` in frontmatter and are served at their original `/post/<tumblrId>/<slug>/` path (`src/pages/post/[id]/[...slug].astro`) so search-indexed links don't break. Always build post links with the `postUrl(post)` helper in `src/consts.ts` — never hardcode `/blog/${post.id}/`.
 - RSS feed: `src/pages/rss.xml.js`
 - Frontmatter schema (title, description=excerpt, pubDate, tags): `src/content.config.ts`
 - Google Analytics (gtag G-7S4QWH00Z4) + schema.org Person JSON-LD: `src/components/BaseHead.astro`

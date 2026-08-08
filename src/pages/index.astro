@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PostListItem from '../components/PostListItem.astro';
-import { SITE_DESCRIPTION } from '../consts';
+import { SITE_DESCRIPTION, postUrl } from '../consts';
 
 const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
@@ -34,7 +34,7 @@ function excerptFrom(body: string) {
 		{
 			posts.map((post) => (
 				<PostListItem
-					href={`/blog/${post.id}/`}
+					href={postUrl(post)}
 					title={post.data.title}
 					excerpt={excerptFrom(post.body ?? '')}
 					pubDate={post.data.pubDate}

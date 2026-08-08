@@ -16,6 +16,10 @@ const blog = defineCollection({
 			updatedDate: z.coerce.date().optional(),
 			// Optional tag chips shown at the bottom of a post.
 			tags: z.array(z.string()).default([]),
+			// Set only on posts migrated from the old Tumblr blog. When present,
+			// the post is served at its original `/post/<tumblrId>/<slug>/` URL
+			// (matching what search engines indexed) instead of `/blog/<slug>/`.
+			tumblrId: z.string().optional(),
 		}),
 });
 

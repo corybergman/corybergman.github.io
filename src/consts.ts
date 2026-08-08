@@ -5,6 +5,18 @@ export const SITE_TITLE = 'Cory Bergman';
 export const SITE_DESCRIPTION =
 	'Cory Bergman, co-founder and chief product officer of Factal, writes about the confluence of AI, global security and journalism.';
 
+// Canonical URL for a blog post. Posts migrated from the old Tumblr blog keep
+// their original `/post/<tumblrId>/<slug>/` path so search-indexed links don't
+// break; native posts live at `/blog/<slug>/`.
+export function postUrl(post: {
+	id: string;
+	data: { tumblrId?: string };
+}): string {
+	return post.data.tumblrId
+		? `/post/${post.data.tumblrId}/${post.id}/`
+		: `/blog/${post.id}/`;
+}
+
 // Social / nav links.
 export const SOCIAL = {
 	x: 'https://x.com/corybe',

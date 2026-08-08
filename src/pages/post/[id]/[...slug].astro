@@ -1,21 +1,21 @@
 ---
 import { type CollectionEntry, getCollection, render } from 'astro:content';
-import BlogPost from '../../layouts/BlogPost.astro';
-import { postUrl } from '../../consts';
+import BlogPost from '../../../layouts/BlogPost.astro';
+import { postUrl } from '../../../consts';
 
+// Migrated Tumblr posts are served at their original `/post/<tumblrId>/<slug>/`
+// URL so search-indexed links keep resolving. Native posts use `/blog/`.
 export async function getStaticPaths() {
-	// Newest → oldest, so the "previous" post is the next-older neighbor. Prev
-	// links span the whole feed, but this route only emits native posts —
-	// migrated Tumblr posts are served from `/post/<id>/<slug>/` instead.
 	const all = (await getCollection('blog')).sort(
 		(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 	);
 	return all
-		.filter((post) => !post.data.tumblrId)
+		.filter((post) => post.data.tumblrId)
 		.map((post) => {
-			const older = all[all.indexOf(post) + 1];
+			const i = all.indexOf(post);
+			const older = all[i + 1];
 			return {
-				params: { slug: post.id },
+				params: { id: post.data.tumblrId, slug: post.id },
 				props: {
 					post,
 					prevPost: older
