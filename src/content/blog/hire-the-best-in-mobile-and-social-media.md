@@ -12,7 +12,7 @@ This is breaking news we hoped we’d never have to report. Our parent company, 
 
 We thank everyone for your many notes of support.
 
-Breaking News invented a new way to discover, fact-check and deliver relevant breaking stories faster than any other single newsroom in the world — with a staff of just 22 people. Our team is now looking for work, and we’ve listed all our names and email addresses below. But first, a little background.
+Breaking News invented a new way to discover, fact-check and deliver relevant breaking stories faster than any other single newsroom in the world — with a staff of just 22 people. Our team is now looking for work, and we’ve listed all our names below. But first, a little background.
 
 Our team is divided between product and editorial with lots of overlap. With the exception of me, everyone either writes code or writes news on a _daily basis._ This is a multi-talented team that knows how to get things done and loves to experiment.
 
@@ -20,63 +20,63 @@ Our product folks have invented so many things, I’ve lost track: nearby tippin
 
 Our editors are not only experts in mobile and notifications, but in social media discovery and publishing. They’re adept at tagging and geolocation, adding a treasure trove of metadata behind the scenes that powers our real-time personalization. They’re FAST (duh) with rock solid news judgment — a nose for sniffing out misinformation on social media — and surprisingly low key for the high-pressure work that we do.
 
-Here’s the list. If you’re interesting in hiring, we’ve included personal email addresses for you to contact directly:
+Here’s the list:
 
 **Editors (8):**
 
-Dave Wyllie (London) — [DavidAWyllie@gmail.com](mailto:DavidAWyllie@gmail.com)
+Dave Wyllie (London)
 
-Grace Banks (London) — [graceelenabanks@gmail.com](mailto:graceelenabanks@gmail.com)
+Grace Banks (London)
 
-Jillian Stampher (Seattle) — [jstampher@gmail.com](mailto:jstampher@gmail.com)
+Jillian Stampher (Seattle)
 
-Jimmy Lovaas (Seattle) — [Jimlovaas@gmail.com](mailto:Jimlovaas@gmail.com)
+Jimmy Lovaas (Seattle)
 
-Rebecca Bratek (NYC) — [rebeccabratek@gmail.com](mailto:rebeccabratek@gmail.com)
+Rebecca Bratek (NYC)
 
-Shelley Ng (NYC) — [shelley.ng08@gmail.com](mailto:shelley.ng08@gmail.com)
+Shelley Ng (NYC)
 
-Stephanie Clary (Seattle) — [Clarystephanie@gmail.com](mailto:Clarystephanie@gmail.com) (leads editorial)
+Stephanie Clary (Seattle) (leads editorial)
 
-Tricia McDermott (NYC) — [triciamcdermott@gmail.com](mailto:triciamcdermott@gmail.com) (leads NY/London)
+Tricia McDermott (NYC) (leads NY/London)
 
 **Part-time editors (2):**
 
-Andrew Villegas — [andrew.villegas@gmail.com](mailto:andrew.villegas@gmail.com)
+Andrew Villegas
 
-Imana Gunawan (Seattle) — [imanagunawan@gmail.com](mailto:imanagunawan@gmail.com)
+Imana Gunawan (Seattle)
 
 **Android developers (3):**
 
-Gaston Sweeten (Seattle) — [Gsweeten@gmail.com](mailto:Gsweeten@gmail.com)
+Gaston Sweeten (Seattle)
 
-Sufei Zhao (NYC) — [sufeizhao@gmail.com](mailto:sufeizhao@gmail.com)
+Sufei Zhao (NYC)
 
-Zoya Ali (Seattle) — [zoya.84@gmail.com](mailto:zoya.84@gmail.com)
+Zoya Ali (Seattle)
 
 **iOS developers (3):**
 
-Christopher Matsumoto (LA) — [matsumoto.christopher@gmail.com](mailto:matsumoto.christopher@gmail.com)
+Christopher Matsumoto (LA)
 
-Corwin Light-Williams (Seattle) — [corwin@thethirdman.org](mailto:corwin@thethirdman.org)
+Corwin Light-Williams (Seattle)
 
-John Jacecko (LA) — [johnj@psygo.com](mailto:johnj@psygo.com)
+John Jacecko (LA)
 
 **Web and app design + web front-end (1):**
 
-Martin McClellan (Seattle) — [martin@martinmcclellan.com](mailto:martin@martinmcclellan.com)
+Martin McClellan (Seattle)
 
 **Web front/back-end and platform (2):**
 
-Andy Boyle (Chicago) — [andymboyle@gmail.com](mailto:andymboyle@gmail.com)
+Andy Boyle (Chicago)
 
-Ryan Nagle (Chicago) — [rmnagle@gmail.com](mailto:rmnagle@gmail.com)
+Ryan Nagle (Chicago)
 
 **Co-founders (2):**
 
-Ben Tesch (Seattle) — [ben@bentesch.com](mailto:ben@bentesch.com) (architect+leads product)
+Ben Tesch (Seattle) (architect+leads product)
 
-Cory Bergman (Seattle) — [corybergman@gmail.com](mailto:corybergman@gmail.com) (GM)
+Cory Bergman (Seattle) (GM)
 
 Please hit the “recommend” button below and share this post far and wide. Thank you for your consideration.
 
