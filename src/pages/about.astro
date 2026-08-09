@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Avatar from '../components/Avatar.astro';
+import { Image } from 'astro:assets';
+import headshot from '../assets/corybergman_photo.png';
 import { SOCIAL } from '../consts';
 
 const roles = [
@@ -30,8 +31,23 @@ const roles = [
 >
 	<div class="about">
 		<div class="head">
-			<Avatar size={96} />
-			<h1>About</h1>
+			<Image
+				src={headshot}
+				alt="Cory Bergman"
+				width={312}
+				height={201}
+				class="headshot"
+			/>
+			<div class="head-text">
+				<h1>About</h1>
+				<a
+					class="download"
+					href="/corybergman.jpg"
+					download="cory-bergman.jpg"
+				>
+					↓ Download headshot
+				</a>
+			</div>
 		</div>
 
 		<p>
@@ -92,11 +108,32 @@ const roles = [
 		gap: 24px;
 		margin-bottom: 36px;
 	}
+	.headshot {
+		width: 104px;
+		height: 104px;
+		border-radius: 50%;
+		object-fit: cover;
+		object-position: 52% 20%;
+		flex: none;
+	}
 	.head h1 {
 		font-size: 34px;
 		font-weight: 600;
 		letter-spacing: -0.02em;
 		margin: 0;
+	}
+	.download {
+		display: inline-block;
+		margin-top: 8px;
+		font-family: var(--font-mono);
+		font-size: 12.5px;
+		color: var(--pine);
+		text-decoration: none;
+		letter-spacing: 0.02em;
+	}
+	.download:hover {
+		color: var(--pine-hover);
+		text-decoration: underline;
 	}
 	.about p {
 		font-size: 16.5px;
