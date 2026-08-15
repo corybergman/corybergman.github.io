@@ -15,4 +15,4 @@ While they begin with such optimism, the vast majority end like a jam session th
 
 It’s hard to finish ideas, but it’s easier than ever to start them. AI makes divergence nearly free while convergence remains hard. “Which may explain why proximity to people with proven judgment suddenly feels more valuable again,” Blaschke writes.
 
-For most of my life, ideas felt scarce enough to save. Now they’re abundant enough that I need to get better at throwing them away.
+For most of my life, ideas felt scarce enough to save. Now they’re so abundant, I need to get better at throwing them away.
