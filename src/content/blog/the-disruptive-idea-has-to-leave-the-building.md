@@ -1,6 +1,6 @@
 ---
-title: 'The disruptive idea has to leave the building'
-description: "The lead of OpenAI's Codex team says Google had ChatGPT a year before it launched — and was too nervous to ship it. That's the Innovator's Dilemma in a single tweet, and why the idea has to leave the building."
+title: 'The disruptive product has to leave the building'
+description: "The lead of OpenAI's Codex team says Google had ChatGPT a year before it launched — and was too nervous to ship it. That's the Innovator's Dilemma in a single tweet, and why the product has to leave the building."
 pubDate: 'Aug 03 2026'
 tags: ['startups', 'ai', 'innovation']
 ---
@@ -16,4 +16,4 @@ Tibo Sottiaux runs the Codex team at OpenAI, and he previously worked at Google 
 
 This is classic Innovator's Dilemma territory, and it explains why startups are nearly always the disruptors. It's not that legacy companies don't have disruptive ideas — they're just blocked from shipping them.
 
-It certainly maps to my <a href="/blog/an-untold-part-of-the-breaking-news-story/">own experience</a>. I was once a believer in "intrapreneurs" and "internal startups," but I have since concluded they're akin to beating your head against a wall. The disruptive idea has to leave the building. If you're an entrepreneur inside a big company, maybe you should, too.
+It certainly maps to my <a href="/blog/an-untold-part-of-the-breaking-news-story/">own experience</a>. I was once a believer in "intrapreneurs" and "internal startups," but I have since concluded they're akin to beating your head against a wall. The disruptive product has to leave the building. If you're an entrepreneur inside a big company, maybe you should, too.
