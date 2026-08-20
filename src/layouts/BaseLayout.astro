@@ -9,14 +9,39 @@ interface Props {
 	variant?: 'home' | 'sub';
 	active?: 'writing' | 'about';
 	canonical?: string;
+	image?: string;
+	article?: boolean;
+	publishedDate?: Date;
+	modifiedDate?: Date;
+	tags?: string[];
 }
-const { title, description, variant = 'sub', active, canonical } = Astro.props;
+const {
+	title,
+	description,
+	variant = 'sub',
+	active,
+	canonical,
+	image,
+	article,
+	publishedDate,
+	modifiedDate,
+	tags,
+} = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={title} description={description} canonical={canonical} />
+		<BaseHead
+			title={title}
+			description={description}
+			canonical={canonical}
+			image={image}
+			article={article}
+			publishedDate={publishedDate}
+			modifiedDate={modifiedDate}
+			tags={tags}
+		/>
 	</head>
 	<body>
 		<div class="frame">

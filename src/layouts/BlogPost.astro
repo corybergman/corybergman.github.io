@@ -3,24 +3,31 @@ import BaseLayout from './BaseLayout.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 
 interface Props {
+	id: string;
 	title: string;
 	description: string;
 	pubDate: Date;
 	updatedDate?: Date;
 	tags?: string[];
 	canonical?: string;
+	// Optional frontmatter OG image; falls back to the generated card.
+	image?: string;
 	prevPost?: { href: string; title: string } | null;
 }
 
 const {
+	id,
 	title,
 	description,
 	pubDate,
 	updatedDate,
 	tags = [],
 	canonical,
+	image,
 	prevPost = null,
 } = Astro.props;
+
+const ogImage = image ?? `/og/${id}.png`;
 ---
 
 <BaseLayout
@@ -29,6 +36,11 @@ const {
 	variant="sub"
 	active="home"
 	canonical={canonical}
+	image={ogImage}
+	article
+	publishedDate={pubDate}
+	modifiedDate={updatedDate}
+	tags={tags}
 >
 	<article class="post">
 		<div class="date">

@@ -10,11 +10,47 @@ interface Props {
 	description: string;
 	// Override the canonical URL (e.g. a Medium original for republished posts).
 	canonical?: string;
+	// OG/Twitter preview image (path under public/ or absolute URL). Defaults to
+	// the site card. Post pages pass their generated /og/<id>.png card.
+	image?: string;
+	// Post pages set article=true → og:type=article + BlogPosting JSON-LD.
+	article?: boolean;
+	publishedDate?: Date;
+	modifiedDate?: Date;
+	tags?: string[];
 }
 
-const { title, description, canonical } = Astro.props;
+const {
+	title,
+	description,
+	canonical,
+	image,
+	article = false,
+	publishedDate,
+	modifiedDate,
+	tags = [],
+} = Astro.props;
 
 const canonicalURL = canonical ?? new URL(Astro.url.pathname, Astro.site);
+const ogImageURL = new URL(image ?? '/og/default.png', Astro.site).href;
+
+// schema.org BlogPosting — emitted only on post pages, so AI/search can read
+// each post as an authored article with dates, image and topics.
+const blogPostingLd = article
+	? JSON.stringify({
+			'@context': 'https://schema.org',
+			'@type': 'BlogPosting',
+			headline: title,
+			description,
+			image: ogImageURL,
+			datePublished: publishedDate?.toISOString(),
+			...(modifiedDate ? { dateModified: modifiedDate.toISOString() } : {}),
+			author: { '@type': 'Person', name: SITE_TITLE, url: Astro.site?.href },
+			publisher: { '@type': 'Person', name: SITE_TITLE, url: Astro.site?.href },
+			mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalURL.toString() },
+			...(tags.length ? { keywords: tags.join(', ') } : {}),
+		})
+	: null;
 
 // schema.org Person — lets AI/search read the site owner as an entity.
 const personLd = JSON.stringify({
@@ -73,15 +109,26 @@ const personLd = JSON.stringify({
 <meta name="description" content={description} />
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
+<meta property="og:type" content={article ? 'article' : 'website'} />
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
+<meta property="og:image" content={ogImageURL} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+{article && publishedDate && (
+	<meta property="article:published_time" content={publishedDate.toISOString()} />
+)}
+{article && modifiedDate && (
+	<meta property="article:modified_time" content={modifiedDate.toISOString()} />
+)}
 
 <!-- Twitter -->
-<meta name="twitter:card" content="summary" />
+<meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageURL} />
 
 <!-- Structured data (schema.org Person) -->
 <script type="application/ld+json" is:inline set:html={personLd} />
+{blogPostingLd && <script type="application/ld+json" is:inline set:html={blogPostingLd} />}

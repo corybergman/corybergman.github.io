@@ -53,6 +53,7 @@ first; components reference the variables.
 - RSS feed: `src/pages/rss.xml.js`
 - Frontmatter schema (title, description=excerpt, pubDate, tags): `src/content.config.ts`
 - Google Analytics (gtag G-7S4QWH00Z4) + schema.org Person JSON-LD: `src/components/BaseHead.astro`
+- OG / social preview images: auto-generated per post at build. Card design + renderer (satori → SVG → sharp → PNG) in `src/og/card.ts`; fonts in `src/og/fonts/` (IBM Plex woff). Per-post endpoint `src/pages/og/[slug].png.ts` emits `/og/<post-id>.png`; `src/pages/og/default.png.ts` is the fallback card for non-post pages. A post can override with an `image` frontmatter field (path or URL). `BaseHead` wires `og:image`/`twitter:image` (summary_large_image) and, on posts (`article` prop), `og:type=article` + a `BlogPosting` JSON-LD block. Post pages thread `image`/`article`/dates/tags via `BlogPost` → `BaseLayout` → `BaseHead`; routes pass `id={post.id}`.
 - AI discoverability index: `public/llms.txt`
 - Final domain (for RSS + canonical URLs): `site` in `astro.config.mjs`
 
