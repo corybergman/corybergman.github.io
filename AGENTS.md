@@ -47,6 +47,7 @@ first; components reference the variables.
 - Avatar (circular headshot, `src/assets/avatar.jpg`): `src/components/Avatar.astro`
 - Post layout (date, H1, body, tags, prev/all nav): `src/layouts/BlogPost.astro`
 - Home feed: `src/pages/index.astro` · About: `src/pages/about.astro`
+- 404 page: `src/pages/404.astro` (full-size annoyed avatar from `src/assets/avatar.jpg`; GitHub Pages serves the built `404.html` for unknown paths)
 - Projects page (Companies + Writing + Press index): `src/pages/projects.astro` — fill the `companies` / `writing` / `press` arrays at the top of the file (each: title, url, source?, date?, description?). Empty section shows "Coming soon."
 - Speaking page (pitch + engagements): `src/pages/speaking.astro` — fill the `engagements` array (each: event, url?, venue?, date?, description?).
 - Post URLs: native posts live at `/blog/<slug>/` (`src/pages/blog/[...slug].astro`). Posts migrated from the old Tumblr blog carry a `tumblrId` in frontmatter and are served at their original `/post/<tumblrId>/<slug>/` path (`src/pages/post/[id]/[...slug].astro`) so search-indexed links don't break. Always build post links with the `postUrl(post)` helper in `src/consts.ts` — never hardcode `/blog/${post.id}/`.

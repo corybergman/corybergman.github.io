@@ -1,0 +1,68 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import avatar from '../assets/avatar.jpg';
+---
+
+<BaseLayout title="404 · Page not found — Cory Bergman" description="That page doesn't exist." variant="sub">
+	<div class="notfound">
+		<Image
+			class="face"
+			src={avatar}
+			alt="Cory looking distinctly unimpressed"
+			width={380}
+			height={380}
+			loading="eager"
+		/>
+		<h1>404</h1>
+		<p class="lead">That page doesn't exist. This is my face about it.</p>
+		<p class="actions">
+			<a href="/">← Back to the homepage</a>
+			<span class="sep">·</span>
+			<a href="/tags/">browse by topic</a>
+		</p>
+	</div>
+</BaseLayout>
+
+<style>
+	.notfound {
+		max-width: var(--content-max);
+		margin: 64px auto 0;
+		text-align: center;
+	}
+	.face {
+		width: min(380px, 72vw);
+		height: auto;
+		border-radius: 24px;
+		box-shadow: 0 12px 32px rgba(31, 30, 27, 0.16);
+	}
+	.notfound h1 {
+		font-size: 72px;
+		font-weight: 700;
+		letter-spacing: -0.03em;
+		margin: 28px 0 8px;
+		color: var(--ink);
+	}
+	.lead {
+		font-size: 18px;
+		line-height: 1.6;
+		color: var(--body);
+		margin: 0 0 24px;
+	}
+	.actions {
+		font-size: 15.5px;
+		color: var(--muted);
+	}
+	.actions a {
+		color: var(--pine);
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+	.actions a:hover {
+		color: var(--pine-hover);
+	}
+	.sep {
+		margin: 0 10px;
+		color: var(--faint);
+	}
+</style>
