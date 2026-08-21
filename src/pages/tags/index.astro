@@ -1,0 +1,98 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { tagSlug } from '../../consts';
+
+// All tags across the blog, most-used first. Each links to its archive page.
+const posts = await getCollection('blog');
+const counts = new Map<string, { tag: string; count: number }>();
+for (const post of posts) {
+	for (const tag of post.data.tags ?? []) {
+		const slug = tagSlug(tag);
+		const entry = counts.get(slug) ?? { tag, count: 0 };
+		entry.count += 1;
+		counts.set(slug, entry);
+	}
+}
+const tags = [...counts.entries()]
+	.map(([slug, { tag, count }]) => ({ slug, tag, count }))
+	.sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag));
+---
+
+<BaseLayout
+	title="Tags · Cory Bergman"
+	description="Browse Cory Bergman's writing by topic."
+	variant="sub"
+>
+	<div class="page">
+		<h1>Tags</h1>
+		<p class="intro">Browse writing by topic.</p>
+		{
+			tags.length > 0 ? (
+				<ul class="tags">
+					{tags.map((t) => (
+						<li>
+							<a href={`/tags/${t.slug}/`}>
+								{t.tag}
+								<span class="count">{t.count}</span>
+							</a>
+						</li>
+					))}
+				</ul>
+			) : (
+				<p class="soon">Coming soon.</p>
+			)
+		}
+	</div>
+</BaseLayout>
+
+<style>
+	.page {
+		max-width: var(--content-max);
+		margin: 72px auto 0;
+	}
+	.page h1 {
+		font-size: 34px;
+		font-weight: 600;
+		letter-spacing: -0.02em;
+		margin: 0 0 12px;
+	}
+	.intro {
+		font-size: 16.5px;
+		line-height: 1.7;
+		color: var(--muted);
+		margin: 0 0 32px;
+	}
+	.tags {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+	}
+	.tags a {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		border: 1px solid var(--outline);
+		border-radius: 5px;
+		padding: 8px 14px;
+		font-size: 14.5px;
+		font-weight: 500;
+		color: var(--ink);
+	}
+	.tags a:hover {
+		border-color: var(--pine);
+		color: var(--pine-hover);
+	}
+	.count {
+		font-family: var(--font-mono);
+		font-size: 12px;
+		color: var(--faint);
+	}
+	.soon {
+		font-size: 15.5px;
+		color: var(--faint);
+	}
+</style>

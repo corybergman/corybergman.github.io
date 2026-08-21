@@ -1,6 +1,7 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import { tagSlug } from '../consts';
 
 interface Props {
 	id: string;
@@ -63,7 +64,9 @@ const ogImage = image ?? `/og/${id}.png`;
 			tags.length > 0 && (
 				<div class="tags">
 					{tags.map((tag) => (
-						<span class="tag">{tag}</span>
+						<a class="tag" href={`/tags/${tagSlug(tag)}/`}>
+							{tag}
+						</a>
 					))}
 				</div>
 			)
@@ -210,6 +213,9 @@ const ogImage = image ?? `/og/${id}.png`;
 		background: var(--chip-bg);
 		border-radius: 3px;
 		padding: 4px 10px;
+	}
+	.tag:hover {
+		color: var(--pine-hover);
 	}
 
 	.post-nav {

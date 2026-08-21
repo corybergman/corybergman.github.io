@@ -1,0 +1,96 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostListItem from '../../components/PostListItem.astro';
+import { postUrl, tagSlug } from '../../consts';
+import { excerptFrom } from '../../lib/excerpt';
+
+// One archive page per tag, at /tags/<slug>/, listing its posts newest-first.
+export async function getStaticPaths() {
+	const posts = (await getCollection('blog')).sort(
+		(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+	);
+	const bySlug = new Map<string, { tag: string; posts: typeof posts }>();
+	for (const post of posts) {
+		for (const tag of post.data.tags ?? []) {
+			const slug = tagSlug(tag);
+			if (!bySlug.has(slug)) bySlug.set(slug, { tag, posts: [] });
+			bySlug.get(slug)!.posts.push(post);
+		}
+	}
+	return [...bySlug.entries()].map(([slug, { tag, posts }]) => ({
+		params: { tag: slug },
+		props: { tag, posts },
+	}));
+}
+
+type Props = {
+	tag: string;
+	posts: Awaited<ReturnType<typeof getCollection<'blog'>>>;
+};
+const { tag, posts } = Astro.props;
+---
+
+<BaseLayout
+	title={`Tagged “${tag}” · Cory Bergman`}
+	description={`Writing tagged “${tag}” by Cory Bergman.`}
+	variant="sub"
+>
+	<div class="page">
+		<p class="crumb"><a href="/tags/">Tags</a> <span>/</span> {tag}</p>
+		<h1>{tag}</h1>
+		<p class="intro">
+			{posts.length} post{posts.length === 1 ? '' : 's'} tagged “{tag}”.
+		</p>
+		<section class="feed">
+			{
+				posts.map((post) => (
+					<PostListItem
+						href={postUrl(post)}
+						title={post.data.title}
+						excerpt={excerptFrom(post.body ?? '')}
+						pubDate={post.data.pubDate}
+					/>
+				))
+			}
+		</section>
+	</div>
+</BaseLayout>
+
+<style>
+	.page {
+		max-width: var(--content-max);
+		margin: 72px auto 0;
+	}
+	.crumb {
+		font-family: var(--font-mono);
+		font-size: 12px;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--faint);
+		margin: 0 0 14px;
+	}
+	.crumb a {
+		color: var(--pine-2);
+	}
+	.crumb a:hover {
+		color: var(--pine-hover);
+	}
+	.crumb span {
+		margin: 0 6px;
+	}
+	.page h1 {
+		font-size: 34px;
+		font-weight: 600;
+		letter-spacing: -0.02em;
+		margin: 0 0 8px;
+	}
+	.intro {
+		font-size: 15.5px;
+		color: var(--muted);
+		margin: 0 0 40px;
+	}
+	.feed {
+		margin-top: 8px;
+	}
+</style>

@@ -17,6 +17,17 @@ export function postUrl(post: {
 		: `/blog/${post.id}/`;
 }
 
+// URL-safe slug for a tag chip, e.g. "breaking news" → "breaking-news".
+// Used for both the /tags/<slug>/ routes and the links on tag chips, so they
+// must stay in sync — always build tag links with this helper.
+export function tagSlug(tag: string): string {
+	return tag
+		.toLowerCase()
+		.trim()
+		.replace(/[^a-z0-9]+/g, '-')
+		.replace(/^-+|-+$/g, '');
+}
+
 // Social / nav links.
 export const SOCIAL = {
 	x: 'https://x.com/corybe',
