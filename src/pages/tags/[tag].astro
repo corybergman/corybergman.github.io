@@ -61,7 +61,9 @@ const { tag, posts } = Astro.props;
 <style>
 	.page {
 		max-width: var(--content-max);
-		margin: 72px auto 0;
+		/* 24px, not 50px: like a post's date line, the crumb above the title is
+		   ~33px tall, so this lands the h1 level with every other page's h1. */
+		margin: 24px auto 0;
 	}
 	.crumb {
 		font-family: var(--font-mono);

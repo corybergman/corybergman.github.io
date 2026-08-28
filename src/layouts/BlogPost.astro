@@ -88,7 +88,10 @@ const ogImage = image ?? `/og/${id}.png`;
 <style>
 	.post {
 		max-width: var(--content-max);
-		margin: 50px auto 0;
+		/* 24px, not the 50px other pages use: the date line above the title is
+		   ~33px tall, so this lands the h1 at roughly the same optical height
+		   as the h1 on About/Projects/Speaking/Topics. */
+		margin: 24px auto 0;
 	}
 	.date {
 		font-size: 13px;
