@@ -2,11 +2,23 @@
 import { SITE_TITLE } from '../consts';
 import Avatar from './Avatar.astro';
 
+export type NavKey = 'home' | 'topics' | 'projects' | 'speaking' | 'about';
+
 interface Props {
 	variant?: 'home' | 'sub';
-	active?: 'home' | 'projects' | 'speaking' | 'about';
+	active?: NavKey;
 }
 const { variant = 'home', active } = Astro.props;
+
+// Single source of truth for the nav, used by both the home and sub headers.
+// RSS is appended separately — it has no active state and gets pushed right.
+const links: Array<{ href: string; label: string; key: NavKey }> = [
+	{ href: '/', label: 'Home', key: 'home' },
+	{ href: '/tags/', label: 'Topics', key: 'topics' },
+	{ href: '/projects', label: 'Projects', key: 'projects' },
+	{ href: '/speaking', label: 'Speaking', key: 'speaking' },
+	{ href: '/about', label: 'About', key: 'about' },
+];
 ---
 
 {
@@ -26,10 +38,11 @@ const { variant = 'home', active } = Astro.props;
 			<a href="/" class="avatar-link" aria-label="Home"><Avatar size={36} /></a>
 			<a href="/" class="name-link">{SITE_TITLE}</a>
 			<nav class="nav compact">
-				<a href="/" class:list={[active === 'home' && 'active']}>Home</a>
-				<a href="/projects" class:list={[active === 'projects' && 'active']}>Projects</a>
-				<a href="/speaking" class:list={[active === 'speaking' && 'active']}>Speaking</a>
-				<a href="/about" class:list={[active === 'about' && 'active']}>About</a>
+				{links.map((link) => (
+					<a href={link.href} class:list={[active === link.key && 'active']}>
+						{link.label}
+					</a>
+				))}
 				<a href="/rss.xml">RSS</a>
 			</nav>
 		</header>
@@ -39,10 +52,11 @@ const { variant = 'home', active } = Astro.props;
 {
 	variant === 'home' && (
 		<nav class="nav full">
-			<a href="/" class:list={[active === 'home' && 'active']}>Home</a>
-			<a href="/projects" class:list={[active === 'projects' && 'active']}>Projects</a>
-			<a href="/speaking" class:list={[active === 'speaking' && 'active']}>Speaking</a>
-			<a href="/about" class:list={[active === 'about' && 'active']}>About</a>
+			{links.map((link) => (
+				<a href={link.href} class:list={[active === link.key && 'active']}>
+					{link.label}
+				</a>
+			))}
 			<a href="/rss.xml" class="push">RSS</a>
 		</nav>
 	)
@@ -114,9 +128,15 @@ const { variant = 'home', active } = Astro.props;
 	}
 
 	@media (max-width: 700px) {
+		/* Six links plus RSS won't fit a phone row at 14px — a small step down
+		   in size and gap keeps them on one line at 375px wide, and they still
+		   wrap cleanly on anything narrower. */
+		.nav {
+			font-size: 13px;
+		}
 		.nav.full {
 			flex-wrap: wrap;
-			gap: 16px;
+			gap: 14px 13px;
 			margin: 28px 0 40px;
 		}
 		.nav .push {
@@ -133,7 +153,7 @@ const { variant = 'home', active } = Astro.props;
 			margin-top: 6px;
 			width: 100%;
 			flex-wrap: wrap;
-			gap: 16px 18px;
+			gap: 14px 13px;
 		}
 	}
 </style>

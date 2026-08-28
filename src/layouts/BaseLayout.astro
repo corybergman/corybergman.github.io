@@ -2,12 +2,13 @@
 import BaseHead from '../components/BaseHead.astro';
 import TopoMasthead from '../components/TopoMasthead.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import type { NavKey } from '../components/SiteHeader.astro';
 
 interface Props {
 	title: string;
 	description: string;
 	variant?: 'home' | 'sub';
-	active?: 'writing' | 'about';
+	active?: NavKey;
 	canonical?: string;
 	image?: string;
 	article?: boolean;

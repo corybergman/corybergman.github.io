@@ -8,14 +8,27 @@
 	--font-sans: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
 	--font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 
+	/* Layout (theme-independent) */
+	--frame-max: 1040px;
+	--content-max: 620px;
+	--frame-pad: 104px;
+
+	/* ── Light theme ─────────────────────────────────────────────────────────
+	   Every color the site uses is declared here, on bare :root, so the light
+	   palette is always complete. The dark blocks below redefine the same
+	   names and nothing else — never give a color its only definition inside
+	   a media query or a [data-theme] block. */
+	color-scheme: light;
+
 	/* Text */
 	--ink: #1f1e1b; /* primary headings */
 	--body: #3c3933; /* post body */
 	--excerpt: #55524b; /* feed excerpts */
 	--muted: #6b6862; /* bios, nav, secondary */
 	--faint: #9a948a; /* dates, faint labels */
+	--section-label: #423f39; /* small caps section headings */
 
-	/* Brand greens */
+	/* Brand blues (named "pine" from the original green palette) */
 	--pine: #1d5f9e; /* primary accent / links — sky blue from the masthead */
 	--pine-2: #2c567e; /* secondary blue (section labels) */
 	--pine-hover: #2f83c9; /* brighter sky blue for interactive hover */
@@ -25,6 +38,7 @@
 	--contour: #c3d2c0;
 	--summit: #9db89a;
 	--elevation: #87a383;
+	--photo-filter: none; /* photos render untouched on a white page */
 
 	/* Surfaces & lines */
 	--page: #ffffff;
@@ -33,11 +47,76 @@
 	--card-bg: #f5f7f4;
 	--rule: #e4e8e3; /* hairlines between rows */
 	--outline: #d5dad4; /* input / button borders */
+	--shadow: rgba(31, 30, 27, 0.16);
+	--hairline: rgba(31, 30, 27, 0.1);
+}
 
-	/* Layout */
-	--frame-max: 1040px;
-	--content-max: 620px;
-	--frame-pad: 104px;
+/* ── Dark theme ──────────────────────────────────────────────────────────────
+   Declared twice on purpose. The media query serves viewers on the default
+   "system" setting; the [data-theme='dark'] block lets an explicit choice win
+   if a toggle is ever added. The media query is guarded against
+   [data-theme='light'] so that toggle would work in both directions. */
+@media (prefers-color-scheme: dark) {
+	:root:not([data-theme='light']) {
+		color-scheme: dark;
+
+		--ink: #f0eee9;
+		--body: #cdc9c1;
+		--excerpt: #b4b0a8;
+		--muted: #98948c;
+		--faint: #77736c;
+		--section-label: #d8d4cc;
+
+		--pine: #6fb2ef;
+		--pine-2: #8ec4f5;
+		--pine-hover: #9ecffa;
+
+		--masthead: linear-gradient(180deg, #1d2024 0%, #191b1f 70%, #16171a 100%);
+		--contour: #3a3d44;
+		--summit: #4d5a4c;
+		--elevation: #8fae8b;
+		/* Full-brightness photos glare against a dark page; take the edge off. */
+		--photo-filter: brightness(0.88) contrast(1.02);
+
+		--page: #16171a;
+		--avatar-bg: #23252a;
+		--chip-bg: #22242a;
+		--card-bg: #1c1e22;
+		--rule: #2b2d33;
+		--outline: #3a3d44;
+		--shadow: rgba(0, 0, 0, 0.55);
+		--hairline: rgba(240, 238, 233, 0.12);
+	}
+}
+
+:root[data-theme='dark'] {
+	color-scheme: dark;
+
+	--ink: #f0eee9;
+	--body: #cdc9c1;
+	--excerpt: #b4b0a8;
+	--muted: #98948c;
+	--faint: #77736c;
+	--section-label: #d8d4cc;
+
+	--pine: #6fb2ef;
+	--pine-2: #8ec4f5;
+	--pine-hover: #9ecffa;
+
+	--masthead: linear-gradient(180deg, #1d2024 0%, #191b1f 70%, #16171a 100%);
+	--contour: #3a3d44;
+	--summit: #4d5a4c;
+	--elevation: #8fae8b;
+	--photo-filter: brightness(0.88) contrast(1.02);
+
+	--page: #16171a;
+	--avatar-bg: #23252a;
+	--chip-bg: #22242a;
+	--card-bg: #1c1e22;
+	--rule: #2b2d33;
+	--outline: #3a3d44;
+	--shadow: rgba(0, 0, 0, 0.55);
+	--hairline: rgba(240, 238, 233, 0.12);
 }
 
 *,
