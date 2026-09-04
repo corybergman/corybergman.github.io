@@ -1,15 +1,18 @@
 ---
 // Photo masthead (900×200). variant="tall" → homepage (masthead1),
-// variant="short" → all other pages (masthead2).
+// variant="short" → all other pages (masthead2). A page can pass its own
+// `image` to override both — supply it at 1800×400 (2x) so retina stays sharp.
 import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import mastheadHome from '../assets/masthead1.png';
 import mastheadSub from '../assets/masthead2.png';
 
 interface Props {
 	variant?: 'tall' | 'short';
+	image?: ImageMetadata;
 }
-const { variant = 'short' } = Astro.props;
-const src = variant === 'tall' ? mastheadHome : mastheadSub;
+const { variant = 'short', image } = Astro.props;
+const src = image ?? (variant === 'tall' ? mastheadHome : mastheadSub);
 ---
 
 <div class="masthead" aria-hidden="true">
