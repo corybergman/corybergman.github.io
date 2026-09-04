@@ -1,0 +1,132 @@
+---
+// One page per company, at /projects/<slug>/. The /projects index lists just
+// logo, name and date and links here; this page carries the description.
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import { companies, companySummary, type Company } from '../../lib/companies';
+
+export function getStaticPaths() {
+	return companies.map((company) => ({
+		params: { company: company.slug },
+		props: { company },
+	}));
+}
+
+type Props = { company: Company };
+const { company } = Astro.props;
+---
+
+<BaseLayout
+	title={`${company.title} — Cory Bergman`}
+	description={companySummary(company) ||
+		`${company.title}, one of the companies Cory Bergman founded or helped build.`}
+	variant="sub"
+	active="projects"
+>
+	<div class="page">
+		<a href="/projects" class="back">← Projects</a>
+
+		<div class="head">
+			{company.logo && (
+				<Image
+					src={company.logo}
+					alt={`${company.title} logo`}
+					class="logo"
+				/>
+			)}
+			<div class="head-text">
+				<h1>{company.title}</h1>
+				{company.date && <span class="meta">{company.date}</span>}
+			</div>
+		</div>
+
+		{company.description && <div class="desc" set:html={company.description} />}
+
+		{
+			company.url && (
+				<p class="visit">
+					<a href={company.url}>Visit {company.title} ↗</a>
+				</p>
+			)
+		}
+	</div>
+</BaseLayout>
+
+<style>
+	.page {
+		max-width: var(--content-max);
+		margin: 50px auto 0;
+	}
+	.back {
+		display: inline-block;
+		font-family: var(--font-mono);
+		font-size: 12.5px;
+		letter-spacing: 0.04em;
+		color: var(--faint);
+		margin-bottom: 26px;
+	}
+	.back:hover {
+		color: var(--pine-hover);
+	}
+	.head {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		margin-bottom: 26px;
+	}
+	.logo {
+		flex: none;
+		display: block;
+		width: 60px;
+		height: 60px;
+		border-radius: 12px;
+		object-fit: cover;
+		border: 1px solid var(--hairline);
+	}
+	.head-text {
+		min-width: 0;
+	}
+	.head h1 {
+		font-size: 30px;
+		font-weight: 600;
+		letter-spacing: -0.02em;
+		margin: 0;
+		line-height: 1.2;
+	}
+	.meta {
+		display: block;
+		font-size: 13.5px;
+		color: var(--faint);
+		margin-top: 5px;
+	}
+	.desc {
+		font-size: 16.5px;
+		line-height: 1.7;
+		color: var(--excerpt);
+	}
+	.desc :global(a) {
+		color: var(--pine);
+		text-decoration: underline;
+		text-underline-offset: 3px;
+	}
+	.visit {
+		margin: 28px 0 0;
+		padding-top: 22px;
+		border-top: 1px solid var(--rule);
+		font-size: 15px;
+		font-weight: 500;
+	}
+	.visit a:hover {
+		color: var(--pine-hover);
+	}
+
+	@media (max-width: 700px) {
+		.head h1 {
+			font-size: 26px;
+		}
+		.logo {
+			width: 52px;
+			height: 52px;
+		}
+	}
+</style>

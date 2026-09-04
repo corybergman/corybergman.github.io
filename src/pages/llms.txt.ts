@@ -1,6 +1,7 @@
 import type { APIRoute } from 'astro';
 import { getCollection } from 'astro:content';
 import { SOCIAL, postUrl, tagSlug } from '../consts';
+import { companies, companyUrl } from '../lib/companies';
 
 // /llms.txt — a plain-text index of this site for AI crawlers and assistants.
 // GENERATED AT BUILD TIME from the blog collection, so it can never fall out of
@@ -76,7 +77,8 @@ This file indexes ${posts.length} posts published ${years}, plus the site's stan
 
 ## Pages
 - [Home](${SITE}/): Reverse-chronological feed of every post.
-- [Projects](${SITE}/projects): Companies Cory founded or helped build (Factal, Breaking News, My Ballard, Lost Remote), plus his writing elsewhere and press coverage.
+- [Projects](${SITE}/projects): Index of the companies Cory founded or helped build, plus his writing elsewhere and press coverage. Each company has its own page:
+${companies.map((c) => `  - [${c.title}](${SITE}${companyUrl(c)})${c.date ? ` — ${c.date}` : ''}`).join('\n')}
 - [Speaking](${SITE}/speaking): Speaking topics, recent talks and booking. Cory speaks to global security and risk audiences about applying AI in practice.
 - [About](${SITE}/about): Biography and career history.
 - [Topics](${SITE}/tags/): Every post grouped by topic.
