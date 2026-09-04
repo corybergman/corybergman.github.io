@@ -66,13 +66,22 @@ export function companyUrl(company: Pick<Company, 'slug'>): string {
 	return `/projects/${company.slug}/`;
 }
 
-/** Plain-text opening of a description, for meta descriptions. */
-export function companySummary(company: Company, max = 200): string {
+/**
+ * A description with its markup stripped. Used for the teaser on /projects,
+ * where the visible length is set by a CSS line clamp rather than a character
+ * count — inline links are dropped so they don't compete with "Read more".
+ */
+export function companyPlainText(company: Company): string {
 	if (!company.description) return '';
-	const text = company.description
+	return company.description
 		.replace(/<[^>]+>/g, '')
 		.replace(/\s+/g, ' ')
 		.trim();
+}
+
+/** Plain-text opening of a description, capped, for meta descriptions. */
+export function companySummary(company: Company, max = 200): string {
+	const text = companyPlainText(company);
 	if (text.length <= max) return text;
 	return `${text.slice(0, text.lastIndexOf(' ', max))}\u2026`;
 }

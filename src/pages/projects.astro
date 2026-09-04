@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
-import { companies, companyUrl } from '../lib/companies';
+import { companies, companyUrl, companyPlainText } from '../lib/companies';
 
 // ── Fill these in ────────────────────────────────────────────────────────────
 // Each entry: { title, url, source, date, description, logo }
@@ -247,7 +247,7 @@ const press: Entry[] = [
 		</p>
 
 		<h2 class="section">Companies</h2>
-		<ul class="entries">
+		<ul class="entries entries--companies">
 			{
 				companies.map((item) => (
 					<li class="entry entry--logo">
@@ -273,6 +273,12 @@ const press: Entry[] = [
 								{item.date && <span class="entry-meta">{item.date}</span>}
 							</div>
 						</div>
+						{item.description && (
+							<p class="entry-excerpt">{companyPlainText(item)}</p>
+						)}
+						<a href={companyUrl(item)} class="entry-more">
+							Read more →
+						</a>
 					</li>
 				))
 			}
@@ -367,6 +373,11 @@ const press: Entry[] = [
 		flex-direction: column;
 		gap: 24px;
 	}
+	/* Company cards now carry a teaser, so they need more air between them
+	   than the single-line Writing and Press rows. */
+	.entries--companies {
+		gap: 34px;
+	}
 	.entry-head {
 		display: flex;
 		align-items: center;
@@ -395,6 +406,29 @@ const press: Entry[] = [
 	}
 	.entry--logo .entry-desc {
 		margin-top: 12px;
+	}
+	/* Company teaser: first couple of lines, then truncate — same treatment as
+	   the post excerpts on the home feed, two lines instead of three. */
+	.entry-excerpt {
+		font-size: 15.5px;
+		line-height: 1.65;
+		color: var(--excerpt);
+		margin: 12px 0 0;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		line-clamp: 2;
+		overflow: hidden;
+	}
+	.entry-more {
+		display: inline-block;
+		font-size: 13.5px;
+		font-weight: 500;
+		color: var(--pine-2);
+		margin-top: 8px;
+	}
+	.entry-more:hover {
+		color: var(--pine-hover);
 	}
 	.entry-title {
 		font-size: 18px;
