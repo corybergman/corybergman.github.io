@@ -9,11 +9,26 @@ const posts = (await getCollection('blog')).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 
-// Posts migrated from the old Tumblr blog carry a `tumblrId`. They sort to the
-// bottom of the feed; mark where they begin so we can draw a quiet divider
-// between recent writing and the archive. Data-driven, so it stays correct as
-// new posts are published (no hardcoded date).
-const archiveStart = posts.findIndex((post) => post.data.tumblrId);
+// The feed shows the most recent RECENT_COUNT posts and collapses everything
+// older behind a toggle, so the homepage stays short without pushing anything
+// onto a second page (every post keeps one URL, good for search and linking).
+//
+// The split is deliberately by COUNT, not by `tumblrId`. The archive is three
+// eras — post-relaunch (2026), Medium imports (2011–2020) and Tumblr imports
+// (2011–2024) — and only the Tumblr ones carry `tumblrId`, so keying off that
+// field lands on the right row purely by accident and would move the boundary
+// the moment an older native post is added.
+const RECENT_COUNT = 12;
+const recent = posts.slice(0, RECENT_COUNT);
+const archive = posts.slice(RECENT_COUNT);
+
+const archiveYears = archive.length
+	? (() => {
+			const years = archive.map((p) => p.data.pubDate.getUTCFullYear());
+			const [lo, hi] = [Math.min(...years), Math.max(...years)];
+			return lo === hi ? `${lo}` : `${lo}–${hi}`;
+		})()
+	: '';
 ---
 
 <BaseLayout
@@ -24,48 +39,125 @@ const archiveStart = posts.findIndex((post) => post.data.tumblrId);
 >
 	<section class="feed">
 		{
-			posts.map((post, i) => (
-				<Fragment>
-					{i === archiveStart && archiveStart > 0 && (
-						<div class="feed-divider">
-							<span>Earlier writing · 2011–2024</span>
-						</div>
-					)}
-					<PostListItem
-						href={postUrl(post)}
-						title={post.data.title}
-						excerpt={excerptFrom(post.body ?? '')}
-						pubDate={post.data.pubDate}
-					/>
-				</Fragment>
+			recent.map((post) => (
+				<PostListItem
+					href={postUrl(post)}
+					title={post.data.title}
+					excerpt={excerptFrom(post.body ?? '')}
+					pubDate={post.data.pubDate}
+				/>
 			))
+		}
+
+		{
+			archive.length > 0 && (
+				<details class="archive">
+					<summary>
+						<span class="archive-label">
+							Earlier writing<span class="archive-years"> · {archiveYears}</span>
+							<span class="archive-count">{archive.length} posts</span>
+						</span>
+					</summary>
+					<div class="archive-list">
+						{archive.map((post) => (
+							<PostListItem
+								href={postUrl(post)}
+								title={post.data.title}
+								excerpt={excerptFrom(post.body ?? '')}
+								pubDate={post.data.pubDate}
+							/>
+						))}
+					</div>
+				</details>
+			)
 		}
 	</section>
 </BaseLayout>
 
 <style>
-	/* Quiet boundary between recent posts and the migrated Tumblr archive:
-	   a hairline with a small mono label centered on it, echoing the
-	   coordinate/trail feel of the masthead. */
-	.feed-divider {
+	/* The archive collapses behind a hairline divider that doubles as the
+	   toggle — same quiet coordinate/trail feel as the masthead label. Built on
+	   <details> so it works with no JavaScript. */
+	.archive {
+		margin-top: 14px;
+	}
+	.archive summary {
 		display: flex;
 		align-items: center;
 		gap: 18px;
-		margin: 14px 0 50px;
+		margin: 0 0 6px;
+		padding: 6px 0;
+		cursor: pointer;
+		list-style: none;
 		font-family: var(--font-mono);
 		font-size: 12px;
 		letter-spacing: 0.14em;
 		text-transform: uppercase;
 		color: var(--faint);
+		transition: color 0.15s ease;
 	}
-	.feed-divider::before,
-	.feed-divider::after {
+	/* Hide the native disclosure triangle in every engine. */
+	.archive summary::-webkit-details-marker {
+		display: none;
+	}
+	.archive summary::before,
+	.archive summary::after {
 		content: '';
 		flex: 1;
 		height: 1px;
 		background: var(--rule);
 	}
-	.feed-divider span {
+	.archive-label {
 		flex: none;
+		display: inline-flex;
+		align-items: baseline;
+		gap: 10px;
+	}
+	/* Chevron, rotated when open. */
+	.archive-label::after {
+		content: '';
+		display: inline-block;
+		width: 5px;
+		height: 5px;
+		margin-left: 2px;
+		border-right: 1.5px solid currentColor;
+		border-bottom: 1.5px solid currentColor;
+		transform: translateY(-2px) rotate(45deg);
+		transition: transform 0.18s ease;
+	}
+	.archive[open] .archive-label::after {
+		transform: translateY(0) rotate(-135deg);
+	}
+	.archive-count {
+		letter-spacing: 0.08em;
+		opacity: 0.75;
+	}
+	.archive summary:hover {
+		color: var(--pine);
+	}
+	.archive summary:focus-visible {
+		outline: 2px solid var(--pine);
+		outline-offset: 4px;
+		border-radius: 2px;
+	}
+	.archive-list {
+		margin-top: 44px;
+	}
+
+	/* At phone widths the full label squeezes the hairlines to nothing and
+	   pushes the chevron against the edge, so drop the year range and tighten
+	   up — the post count is the more useful half. */
+	@media (max-width: 700px) {
+		.archive summary {
+			gap: 12px;
+			font-size: 11px;
+			letter-spacing: 0.1em;
+		}
+		.archive-years {
+			display: none;
+		}
+		.archive-list {
+			margin-top: 34px;
+		}
 	}
 </style>

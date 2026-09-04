@@ -1,0 +1,91 @@
+---
+import { SOCIAL } from '../consts';
+
+interface Props {
+	/**
+	 * Show the social row. Off on the About page, which already lists the same
+	 * links as chips under "Elsewhere" a few pixels above this footer.
+	 */
+	social?: boolean;
+}
+const { social = true } = Astro.props;
+
+// Social links live here and on the About page's "Elsewhere" section — both
+// read from SOCIAL in consts.ts, so there is one place to edit a handle.
+// Deliberately not in the nav: the header stays about site sections.
+const links = [
+	{ label: 'X/Twitter', href: SOCIAL.x },
+	{ label: 'Bluesky', href: SOCIAL.bluesky },
+	{ label: 'Threads', href: SOCIAL.threads },
+	{ label: 'LinkedIn', href: SOCIAL.linkedin },
+	{ label: 'GitHub', href: SOCIAL.github },
+	{ label: 'Email', href: SOCIAL.email },
+];
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+	{
+		social && (
+			<nav class="social" aria-label="Elsewhere on the web">
+				{links.map((link) => (
+					<a href={link.href} rel="me noopener">
+						{link.label}
+					</a>
+				))}
+			</nav>
+		)
+	}
+	<p class:list={['meta', { 'meta-only': !social }]}>
+		<span>© {year} Cory Bergman</span>
+		<a href="/rss.xml">RSS</a>
+	</p>
+</footer>
+
+<style>
+	.site-footer {
+		margin-top: 72px;
+		padding-top: 26px;
+		border-top: 1px solid var(--rule);
+	}
+	.social {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px 20px;
+		font-size: 14px;
+		font-weight: 500;
+	}
+	.social a:hover {
+		color: var(--pine-hover);
+	}
+	.meta {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		gap: 16px;
+		margin: 18px 0 0;
+		font-family: var(--font-mono);
+		font-size: 12px;
+		letter-spacing: 0.04em;
+		color: var(--faint);
+	}
+	.meta a:hover {
+		color: var(--pine-hover);
+	}
+	/* With the social row hidden the meta line is the whole footer, so it
+	   doesn't need the gap that separated it from the links above. */
+	.meta-only {
+		margin-top: 0;
+	}
+
+	@media (max-width: 700px) {
+		.site-footer {
+			margin-top: 54px;
+		}
+		.social {
+			gap: 10px 16px;
+			font-size: 13.5px;
+		}
+	}
+</style>

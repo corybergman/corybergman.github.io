@@ -2,6 +2,7 @@
 import BaseHead from '../components/BaseHead.astro';
 import TopoMasthead from '../components/TopoMasthead.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 import type { NavKey } from '../components/SiteHeader.astro';
 
 interface Props {
@@ -15,6 +16,8 @@ interface Props {
 	publishedDate?: Date;
 	modifiedDate?: Date;
 	tags?: string[];
+	/** Hide the footer's social row (see SiteFooter). */
+	footerSocial?: boolean;
 }
 const {
 	title,
@@ -27,6 +30,7 @@ const {
 	publishedDate,
 	modifiedDate,
 	tags,
+	footerSocial = true,
 } = Astro.props;
 ---
 
@@ -50,6 +54,7 @@ const {
 			<div class="frame-body">
 				<SiteHeader variant={variant} active={active} />
 				<slot />
+				<SiteFooter social={footerSocial} />
 			</div>
 		</div>
 	</body>
