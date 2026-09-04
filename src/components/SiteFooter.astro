@@ -10,16 +10,35 @@ interface Props {
 }
 const { social = true } = Astro.props;
 
+// Brand marks on a 24x24 grid, inlined as path data so there is no icon
+// dependency and no extra request. The four brand glyphs come from
+// simple-icons (installed with --no-save, paths extracted, then removed);
+// `linkedin` is hand-drawn because simple-icons dropped LinkedIn at the
+// company's request, and `email` is a generic envelope, not a brand.
+const ICON: Record<string, string> = {
+	linkedin:
+		'M.5 8.7h4.4V22H.5zM2.7 1.9a2.55 2.55 0 1 1 0 5.1 2.55 2.55 0 0 1 0-5.1zM8.2 8.7h4.2v1.82h.06c.58-1.1 2.02-2.26 4.16-2.26 4.45 0 5.27 2.93 5.27 6.74V22h-4.4v-6.13c0-1.46-.03-3.34-2.03-3.34-2.04 0-2.35 1.59-2.35 3.23V22H8.2z',
+	x: 'M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z',
+	bluesky:
+		'M5.202 2.857C7.954 4.922 10.913 9.11 12 11.358c1.087-2.247 4.046-6.436 6.798-8.501C20.783 1.366 24 .213 24 3.883c0 .732-.42 6.156-.667 7.037-.856 3.061-3.978 3.842-6.755 3.37 4.854.826 6.089 3.562 3.422 6.299-5.065 5.196-7.28-1.304-7.847-2.97-.104-.305-.152-.448-.153-.327 0-.121-.05.022-.153.327-.568 1.666-2.782 8.166-7.847 2.97-2.667-2.737-1.432-5.473 3.422-6.3-2.777.473-5.899-.308-6.755-3.369C.42 10.04 0 4.615 0 3.883c0-3.67 3.217-2.517 5.202-1.026',
+	threads:
+		'M18.263 11.097c-.03-3.486-1.92-5.586-5.111-5.586-2.13 0-3.922.963-4.863 2.499l2.062 1.438c.535-.843 1.272-1.543 2.628-1.543 1.528 0 2.318.85 2.544 2.431a15 15 0 0 0-2.236-.173c-4.125 0-6.068 1.867-6.068 4.336s1.943 3.99 4.804 3.99c3.139 0 5.013-2.115 5.781-4.735.798.361 1.348 1.204 1.348 2.47 0 3.387-3.907 5.232-7.22 5.232-4.885 0-8.077-3.207-8.077-8.424 0-6.392 4.223-10.487 9.9-10.487 3.808 0 5.69 1.671 6.97 3.914l2.108-1.475C21.44 2.078 18.331 0 13.663 0 6.227 0 1.168 5.277 1.168 12.934c0 7 4.953 11.066 10.856 11.066 4.878 0 9.809-2.846 9.809-7.716 0-2.545-1.46-4.231-3.569-5.187m-6.33 4.855c-1.077 0-2.026-.512-2.026-1.453 0-1.483 1.822-1.934 3.606-1.934.678 0 1.34.045 1.927.173-.422 1.927-1.671 3.215-3.508 3.214Z',
+	github:
+		'M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12',
+	email:
+		'M1.6 4.6h20.8c.88 0 1.6.72 1.6 1.6v11.2c0 .88-.72 1.6-1.6 1.6H1.6C.72 19 0 18.28 0 17.4V6.2c0-.88.72-1.6 1.6-1.6zm.9 2.2 9.5 6.4 9.5-6.4z',
+};
+
 // Social links live here and on the About page's "Elsewhere" section — both
 // read from SOCIAL in consts.ts, so there is one place to edit a handle.
 // Deliberately not in the nav: the header stays about site sections.
 const links = [
-	{ label: 'X/Twitter', href: SOCIAL.x },
-	{ label: 'Bluesky', href: SOCIAL.bluesky },
-	{ label: 'Threads', href: SOCIAL.threads },
-	{ label: 'LinkedIn', href: SOCIAL.linkedin },
-	{ label: 'GitHub', href: SOCIAL.github },
-	{ label: 'Email', href: SOCIAL.email },
+	{ label: 'LinkedIn', href: SOCIAL.linkedin, icon: 'linkedin' },
+	{ label: 'X/Twitter', href: SOCIAL.x, icon: 'x' },
+	{ label: 'Bluesky', href: SOCIAL.bluesky, icon: 'bluesky' },
+	{ label: 'Threads', href: SOCIAL.threads, icon: 'threads' },
+	{ label: 'GitHub', href: SOCIAL.github, icon: 'github' },
+	{ label: 'Email', href: SOCIAL.email, icon: 'email' },
 ];
 
 const year = new Date().getFullYear();
@@ -31,14 +50,25 @@ const year = new Date().getFullYear();
 			<nav class="social" aria-label="Elsewhere on the web">
 				{links.map((link) => (
 					<a href={link.href} rel="me noopener">
-						{link.label}
+						<svg
+							class="icon"
+							viewBox="0 0 24 24"
+							width="15"
+							height="15"
+							fill="currentColor"
+							aria-hidden="true"
+							focusable="false"
+						>
+							<path d={ICON[link.icon]} />
+						</svg>
+						<span>{link.label}</span>
 					</a>
 				))}
 			</nav>
 		)
 	}
 	<p class:list={['meta', { 'meta-only': !social }]}>
-		<span>© {year} Cory Bergman</span>
+		<span>&copy; {year} Cory Bergman</span>
 		<a href="/rss.xml">RSS</a>
 	</p>
 </footer>
@@ -56,8 +86,23 @@ const year = new Date().getFullYear();
 		font-size: 14px;
 		font-weight: 500;
 	}
+	.social a {
+		display: inline-flex;
+		align-items: center;
+		gap: 7px;
+	}
 	.social a:hover {
 		color: var(--pine-hover);
+	}
+	/* Icons sit slightly dimmer than the label so the row reads as text with a
+	   mark, not a row of logos; they come up to full strength on hover. */
+	.icon {
+		flex: none;
+		opacity: 0.72;
+		transition: opacity 0.15s ease;
+	}
+	.social a:hover .icon {
+		opacity: 1;
 	}
 	.meta {
 		display: flex;
@@ -84,7 +129,7 @@ const year = new Date().getFullYear();
 			margin-top: 54px;
 		}
 		.social {
-			gap: 10px 16px;
+			gap: 12px 16px;
 			font-size: 13.5px;
 		}
 	}
