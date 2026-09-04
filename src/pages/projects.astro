@@ -316,7 +316,7 @@ const press: Entry[] = [
 		<h2 class="section">Press</h2>
 		{
 			press.length > 0 ? (
-				<ul class="entries">
+				<ul class="entries entries--press">
 					{press.map((item) => (
 						<li class="entry">
 							<a href={item.url} class="entry-title">
@@ -463,6 +463,20 @@ const press: Entry[] = [
 	}
 	.entry-desc :global(li) {
 		margin: 4px 0;
+	}
+	/* Press is a long reference list of other people's headlines, so it sits a
+	   step smaller and tighter than Companies and Writing. */
+	.entries--press {
+		gap: 16px;
+	}
+	.entries--press .entry-title {
+		font-size: 15.5px;
+		font-weight: 500;
+		line-height: 1.45;
+	}
+	.entries--press .entry-meta {
+		font-size: 12.5px;
+		margin-top: 2px;
 	}
 	.soon {
 		font-size: 15.5px;
