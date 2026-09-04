@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import headshot from '../assets/corybergman_photo.png';
 import aboutMasthead from '../assets/masthead-about.jpg';
+import { companyUrl } from '../lib/companies';
 import { SOCIAL } from '../consts';
 
 const roles = [
@@ -63,7 +64,8 @@ const roles = [
 			<a href="https://www.factal.com">Factal</a>, the verified risk
 			intelligence company. A product leader and journalist, he has spent two
 			decades building real-time information products that protect people in
-			harm's way. Before Factal, he co-founded and led BreakingNews.com, which
+			harm's way. Before Factal, he co-founded and led{' '}
+			<a href={companyUrl({ slug: 'breaking-news' })}>Breaking News</a>, which
 			later became part of NBC News. He{' '}
 			<a href="/speaking">speaks frequently</a> on how global security and risk
 			teams can put AI to work, and has won national awards for both television
