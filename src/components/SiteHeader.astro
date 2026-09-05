@@ -29,7 +29,10 @@ const links: Array<{ href: string; label: string; key: NavKey }> = [
 				<h1 class="name">{SITE_TITLE}</h1>
 				<p class="tagline">
 					I build products to get trusted information to people in harm's
-					way. <a href="/about" class="tagline-more">More →</a>
+					way.{'\u00A0'}
+					<a href="/about" class="tagline-more" aria-label="More about Cory">
+						→
+					</a>
 				</p>
 			</div>
 		</header>
@@ -92,12 +95,16 @@ const links: Array<{ href: string; label: string; key: NavKey }> = [
 		color: var(--muted);
 		margin: 0;
 	}
-	/* Quiet trailing link into the About page — deliberately short, and set in
-	   the accent colour so it reads as a link rather than more bio. */
+	/* Quiet trailing link into the About page. The visible label is just the
+	   arrow, so it carries an aria-label; it's preceded by a non-breaking space
+	   so it can never wrap onto a line by itself. */
 	.tagline-more {
 		color: var(--pine-2);
 		font-weight: 500;
-		white-space: nowrap;
+		/* Pad the arrow out to a 24x24 tap target (WCAG 2.2) and pull the same
+		   amount back in margin, so the layout doesn't shift. */
+		padding: 6px 7px;
+		margin: -6px -7px;
 	}
 	.tagline-more:hover {
 		color: var(--pine-hover);
