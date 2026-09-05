@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import speakingPhoto from '../assets/cory_osac_ai.jpeg';
+import { pageCard } from '../lib/og-cards';
 
 // ── Fill these in ────────────────────────────────────────────────────────────
 // Each engagement: { event, url, venue, date, description }
@@ -46,6 +47,7 @@ const recentEvents: Array<{
 	description="Cory Bergman speaks on breaking news, AI, product and the future of real-time information. Booking and past engagements."
 	variant="sub"
 	active="speaking"
+	image={pageCard('speaking')}
 >
 	<div class="page">
 		<h1>Speaking</h1>

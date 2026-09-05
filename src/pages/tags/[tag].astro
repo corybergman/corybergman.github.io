@@ -4,6 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PostListItem from '../../components/PostListItem.astro';
 import { postUrl, tagSlug } from '../../consts';
 import { excerptFrom } from '../../lib/excerpt';
+import { pageCard } from '../../lib/og-cards';
 
 // One archive page per tag, at /tags/<slug>/, listing its posts newest-first.
 export async function getStaticPaths() {
@@ -36,6 +37,7 @@ const { tag, posts } = Astro.props;
 	description={`Writing tagged “${tag}” by Cory Bergman.`}
 	variant="sub"
 	active="topics"
+	image={pageCard('topics')}
 >
 	<div class="page">
 		<p class="crumb"><a href="/tags/">Topics</a> <span>/</span> {tag}</p>

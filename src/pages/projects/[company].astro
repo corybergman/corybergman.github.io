@@ -4,6 +4,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import { companies, companySummary, type Company } from '../../lib/companies';
+import { pageCard } from '../../lib/og-cards';
 
 export function getStaticPaths() {
 	return companies.map((company) => ({
@@ -22,6 +23,7 @@ const { company } = Astro.props;
 		`${company.title}, one of the companies Cory Bergman founded or helped build.`}
 	variant="sub"
 	active="projects"
+	image={pageCard(company.slug)}
 >
 	<div class="page">
 		<a href="/projects" class="back">← Projects</a>

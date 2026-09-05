@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import { companies, companyUrl, companyPlainText } from '../lib/companies';
+import { pageCard } from '../lib/og-cards';
 
 // ── Fill these in ────────────────────────────────────────────────────────────
 // Each entry: { title, url, source, date, description, logo }
@@ -239,6 +240,7 @@ const press: Entry[] = [
 	description="The companies Cory Bergman founded — Factal, Breaking News, My Ballard, Lost Remote — plus an index of his writing and the press coverage about him over the years."
 	variant="sub"
 	active="projects"
+	image={pageCard('projects')}
 >
 	<div class="page">
 		<h1>Projects</h1>

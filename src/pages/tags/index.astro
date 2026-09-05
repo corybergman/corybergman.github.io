@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { tagSlug } from '../../consts';
+import { pageCard } from '../../lib/og-cards';
 
 // All tags across the blog, most-used first. Each links to its archive page.
 const posts = await getCollection('blog');
@@ -24,6 +25,7 @@ const tags = [...counts.entries()]
 	description="Browse Cory Bergman's writing by topic."
 	variant="sub"
 	active="topics"
+	image={pageCard('topics')}
 >
 	<div class="page">
 		<h1>Topics</h1>

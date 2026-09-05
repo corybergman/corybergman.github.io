@@ -5,6 +5,7 @@ import headshot from '../assets/corybergman_photo.png';
 import aboutMasthead from '../assets/masthead-about.jpg';
 import { companyUrl } from '../lib/companies';
 import { SOCIAL } from '../consts';
+import { pageCard } from '../lib/og-cards';
 
 // `detail` may contain HTML, so a role can link out — e.g. to a company page.
 const roles = [
@@ -36,6 +37,7 @@ const roles = [
 	description="Cory Bergman is co-founder and chief product officer of Factal, the verified risk intelligence company. A product leader and journalist who has spent two decades building real-time information products that protect people in harm's way."
 	variant="sub"
 	active="about"
+	image={pageCard('about')}
 	footerSocial={false}
 	masthead={aboutMasthead}
 >
