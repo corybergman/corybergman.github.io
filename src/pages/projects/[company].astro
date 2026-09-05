@@ -104,6 +104,12 @@ const { company } = Astro.props;
 		line-height: 1.7;
 		color: var(--excerpt);
 	}
+	.desc :global(p) {
+		margin: 0 0 20px;
+	}
+	.desc :global(p:last-child) {
+		margin-bottom: 0;
+	}
 	.desc :global(a) {
 		color: var(--pine);
 		text-decoration: underline;

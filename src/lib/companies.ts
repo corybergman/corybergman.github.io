@@ -34,7 +34,10 @@ export const companies: Company[] = [
 		url: 'https://www.factal.com',
 		date: '2018–present',
 		logo: factalLogo,
-		description: `Factal is a verified risk intelligence platform for global security, risk and supply chain teams. It sprang from the ashes of Breaking News, pairing AI with experienced journalists to empower global organizations to protect their people and operations at scale. Co-founded by Ben Tesch, Charlie Tillinghast and me, Factal brought back several Breaking News team members, got funded and <a href="https://blog.factal.com/2018/08/introducing-factal-from-the-founders-of-breaking-news/">launched</a> in October 2018. It grew quickly as global volatility and AI-generated content made it harder for companies to navigate critical events in real time. Today its members include many of the largest companies in the world, and I'm particularly proud that we provide Factal free to more than 300 humanitarian and disaster relief organizations.`,
+		description: `<p>Factal is a verified risk intelligence platform for global security, risk and supply chain teams. A hybrid of advanced AI and experienced journalists, Factal enables organizations to quickly anticipate and respond to critical events that pose a risk to their people, operations and reputation.</p>
+<p>As the name suggests, Factal puts a premium on getting the facts right in real time. While news organizations tell stories and social media commands attention, Factal focuses on the operational details organizations need to make decisions in the moment. For example, as a wildfire approaches a hotel where employees are staying in Greece, do they need to evacuate now?</p>
+<p>Operational certainty has become harder as the internet fills with AI-generated content, misinformation and noise. That makes verification more important than ever. At Factal, verification isn't a feature layered onto the product; it's built into the architecture of the platform and the ethos of how we work. From the AI tooling, <a href="https://www.factal.com/code/">journalism standards</a> and Factal chat network, the platform is designed to help people act with confidence in high pressure situations. That same verified foundation can also plug into the tools, dashboards and AI agents organizations already use, grounding their decisions in Factal's data rather than the open web.</p>
+<p>Factal sprang from the ashes of Breaking News, a popular consumer service inside NBC News. Co-founded by Ben Tesch, Charlie Tillinghast and me, Factal launched in October 2018. It grew steadily, and today its members include many of the largest companies in the world. I'm particularly proud that we provide Factal free to more than 300 humanitarian and disaster relief organizations, including the largest Red Cross teams around the world.</p>`,
 	},
 	{
 		slug: 'breaking-news',
@@ -74,7 +77,9 @@ export function companyUrl(company: Pick<Company, 'slug'>): string {
 export function companyPlainText(company: Company): string {
 	if (!company.description) return '';
 	return company.description
-		.replace(/<[^>]+>/g, '')
+		// A space, not an empty string: descriptions are multi-paragraph, and
+		// stripping `</p><p>` bare would run the last word into the first.
+		.replace(/<[^>]+>/g, ' ')
 		.replace(/\s+/g, ' ')
 		.trim();
 }
