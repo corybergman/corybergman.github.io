@@ -71,7 +71,7 @@ export const GET: APIRoute = async () => {
 
 	const body = `# Cory Bergman
 
-> Personal site of Cory Bergman — co-founder and chief product officer of Factal, the verified risk intelligence company. A product leader and journalist, he has spent two decades building real-time information products that protect people in harm's way. Previously co-founded and led BreakingNews.com, which later became part of NBC News, where he also led product development; earlier he founded Lost Remote and My Ballard. He speaks frequently on how global security and risk teams can put AI to work, and has won national awards for both television and online journalism. He holds an MBA from the University of the Pacific and lives in Seattle.
+> Personal site of Cory Bergman — co-founder and chief product officer of Factal, the verified risk intelligence company. A product leader and journalist, he has spent two decades building real-time information products that protect people in harm's way. Previously co-founded and led the consumer alerting service Breaking News, which later became part of NBC News, where he also led product development; earlier he founded Lost Remote and My Ballard. He speaks frequently on how global security and risk intelligence teams can safely leverage AI, and he has won national awards for both television and online journalism. He holds an MBA from the University of the Pacific, and he lives in Seattle with his family and dog.
 
 This file indexes ${posts.length} posts published ${years}, plus the site's standing pages. Everything here is written by Cory; the site itself is built and published with AI. Full text of each post is at its URL below.
 
