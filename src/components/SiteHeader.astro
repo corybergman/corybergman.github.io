@@ -28,8 +28,8 @@ const links: Array<{ href: string; label: string; key: NavKey }> = [
 			<div class="intro">
 				<h1 class="name">{SITE_TITLE}</h1>
 				<p class="tagline">
-					Facts save lives. I build products to get trusted information to
-					people in harm's way.
+					I build products to get trusted information to people in harm's
+					way. <a href="/about" class="tagline-more">More →</a>
 				</p>
 			</div>
 		</header>
@@ -91,6 +91,16 @@ const links: Array<{ href: string; label: string; key: NavKey }> = [
 		line-height: 1.45;
 		color: var(--muted);
 		margin: 0;
+	}
+	/* Quiet trailing link into the About page — deliberately short, and set in
+	   the accent colour so it reads as a link rather than more bio. */
+	.tagline-more {
+		color: var(--pine-2);
+		font-weight: 500;
+		white-space: nowrap;
+	}
+	.tagline-more:hover {
+		color: var(--pine-hover);
 	}
 	.sub {
 		display: flex;
