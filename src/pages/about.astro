@@ -6,21 +6,22 @@ import aboutMasthead from '../assets/masthead-about.jpg';
 import { companyUrl } from '../lib/companies';
 import { SOCIAL } from '../consts';
 
+// `detail` may contain HTML, so a role can link out — e.g. to a company page.
 const roles = [
 	{
 		years: '2017–now',
 		title: 'Co-founder and Chief Product Officer',
-		detail: 'Factal',
+		detail: `<a href="${companyUrl({ slug: 'factal' })}">Factal</a>`,
 	},
 	{
 		years: '2009–2016',
 		title: 'Co-founder and General Manager',
-		detail: 'BreakingNews.com at NBC News',
+		detail: `<a href="${companyUrl({ slug: 'breaking-news' })}">Breaking News</a> at <a href="https://www.nbcnews.com">NBC News</a>`,
 	},
 	{
 		years: '2008–2011',
 		title: 'Director of New Product Development',
-		detail: 'NBC News',
+		detail: `<a href="https://www.nbcnews.com">NBC News</a>`,
 	},
 	{
 		years: 'Earlier',
@@ -85,7 +86,12 @@ const roles = [
 						<div class="years">{role.years}</div>
 						<div>
 							<span class="role-title">{role.title}</span>
-							{role.detail && <span class="role-detail"> — {role.detail}</span>}
+							{role.detail && (
+								<span class="role-detail">
+									{' — '}
+									<Fragment set:html={role.detail} />
+								</span>
+							)}
 						</div>
 					</div>
 				))
@@ -152,7 +158,8 @@ const roles = [
 		color: var(--body);
 		margin: 0 0 22px;
 	}
-	.about p a {
+	.about p a,
+	.role-detail :global(a) {
 		color: var(--pine);
 		text-decoration: underline;
 		text-underline-offset: 3px;
