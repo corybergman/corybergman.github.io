@@ -11,7 +11,7 @@ interface Props {
 const { variant = 'home', active } = Astro.props;
 
 // Single source of truth for the nav, used by both the home and sub headers.
-// RSS is appended separately — it has no active state and gets pushed right.
+// RSS is not here — it lives in the footer with the social links.
 const links: Array<{ href: string; label: string; key: NavKey }> = [
 	{ href: '/', label: 'Home', key: 'home' },
 	{ href: '/tags/', label: 'Topics', key: 'topics' },
@@ -46,7 +46,6 @@ const links: Array<{ href: string; label: string; key: NavKey }> = [
 						{link.label}
 					</a>
 				))}
-				<a href="/rss.xml">RSS</a>
 			</nav>
 		</header>
 	)
@@ -60,7 +59,6 @@ const links: Array<{ href: string; label: string; key: NavKey }> = [
 					{link.label}
 				</a>
 			))}
-			<a href="/rss.xml" class="push">RSS</a>
 		</nav>
 	)
 }
@@ -135,9 +133,6 @@ const links: Array<{ href: string; label: string; key: NavKey }> = [
 		gap: 22px;
 		margin-left: auto;
 	}
-	.nav .push {
-		margin-left: auto;
-	}
 	.nav a.active {
 		color: var(--pine);
 		border-bottom: 2px solid var(--pine);
@@ -145,9 +140,9 @@ const links: Array<{ href: string; label: string; key: NavKey }> = [
 	}
 
 	@media (max-width: 700px) {
-		/* Six links plus RSS won't fit a phone row at 14px — a small step down
-		   in size and gap keeps them on one line at 375px wide, and they still
-		   wrap cleanly on anything narrower. */
+		/* Five links won't fit a phone row at 14px — a small step down in size
+		   and gap keeps them on one line at 375px wide, and they still wrap
+		   cleanly on anything narrower. */
 		.nav {
 			font-size: 13px;
 		}
@@ -155,9 +150,6 @@ const links: Array<{ href: string; label: string; key: NavKey }> = [
 			flex-wrap: wrap;
 			gap: 14px 13px;
 			margin: 28px 0 40px;
-		}
-		.nav .push {
-			margin-left: 0;
 		}
 
 		/* Sub-page header: let the compact nav wrap to its own line so no
