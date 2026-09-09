@@ -50,17 +50,17 @@ const topics: Array<{ title: string; description: string }> = [
 	{
 		title: 'Putting AI to work in global security',
 		description:
-			'Practical tactics, useful tips and best practices to ensure teams are using AI securely.',
+			'Practical tactics, tips and best practices to ensure teams are using AI securely.',
 	},
 	{
 		title: 'Knowing what to trust when the stakes are high',
 		description:
-			'Spotting AI-generated media, checking sources and avoiding hidden contextual errors.',
+			'Spotting AI-generated media, checking sources and avoiding hidden errors.',
 	},
 	{
 		title: 'Human judgment in an increasingly automated world',
 		description:
-			'Validating AI outputs, evaluating AI in security stacks and balancing AI and human work.',
+			'Validating AI, evaluating security stacks and balancing AI and human work.',
 	},
 ];
 // ─────────────────────────────────────────────────────────────────────────────
@@ -115,11 +115,14 @@ const topics: Array<{ title: string; description: string }> = [
 			</ul>
 			<p class="cta">
 				Interested in having me speak? <a href={SPEAKING_EMAIL}>Email me →</a>
-				<span class="cta-alt">or find me on <a href={SOCIAL.linkedin}>LinkedIn</a>.</span>
+				<span class="cta-alt">
+					You can also find me on <a href={SOCIAL.linkedin}>LinkedIn</a> or read
+					<a href="/about">more about my background</a>.
+				</span>
 			</p>
 		</section>
 
-		<h2 class="section">Upcoming events</h2>
+		<h2 class="section">Upcoming speaking events</h2>
 		{
 			engagements.length > 0 ? (
 				<ul class="entries">
@@ -148,7 +151,7 @@ const topics: Array<{ title: string; description: string }> = [
 			)
 		}
 
-		<h2 class="section">Recent events</h2>
+		<h2 class="section">Recent speaking events</h2>
 		{
 			recentEvents.length > 0 ? (
 				<ul class="entries">
