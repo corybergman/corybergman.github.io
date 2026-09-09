@@ -17,12 +17,13 @@ const sansSemiBold = fs.readFileSync(path.join(fontDir, 'IBMPlexSans-SemiBold.wo
 const mono = fs.readFileSync(path.join(fontDir, 'IBMPlexMono-Regular.woff'));
 
 // Avatar embedded as a data URI so satori can draw it without a network fetch.
-// The source is landscape (1000×645), so center-crop it to a square first —
-// otherwise satori stretches it to fill the 72×72 box and distorts the face.
+// Uses the same square crop as the site header and About page
+// (src/assets/headshot-2026.jpg) so every appearance of the face matches;
+// it's already square, so this only downsizes it to 2× the 72px box.
 let avatarUriCache: string | null = null;
 async function avatarUri(): Promise<string> {
 	if (!avatarUriCache) {
-		const square = await sharp(path.join(root, 'public/corybergman.jpg'))
+		const square = await sharp(path.join(root, 'src/assets/headshot-2026.jpg'))
 			.resize(144, 144, { fit: 'cover', position: 'centre' })
 			.jpeg({ quality: 90 })
 			.toBuffer();
