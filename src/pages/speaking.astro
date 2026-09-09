@@ -39,6 +39,25 @@ const recentEvents: Array<{
 	{ title: 'Strategic communication for security leaders', date: 'April 2026', context: 'SVSG Create fireside chat' },
 	{ title: 'A practical guide to identifying AI videos', date: 'Feb 2026', context: 'Factal webinar' },
 ];
+
+// Speaking topics, shown between the photo and the events. Copy is Cory's.
+const topics: Array<{ title: string; description: string }> = [
+	{
+		title: 'Putting AI to work in global security',
+		description:
+			'Practical tactics, common mistakes and best practices to ensure teams are using AI securely.',
+	},
+	{
+		title: 'Knowing what to trust when the stakes are high',
+		description:
+			'Spotting AI-generated media, checking sources and avoiding hidden contextual errors.',
+	},
+	{
+		title: 'Human judgment in an increasingly automated world',
+		description:
+			'Validating AI outputs, evaluating AI in security stacks and balancing AI and human work.',
+	},
+];
 // ─────────────────────────────────────────────────────────────────────────────
 ---
 
@@ -77,6 +96,18 @@ const recentEvents: Array<{
 			/>
 			<figcaption>Keynote about AI at OSAC's Annual Briefing in 2024</figcaption>
 		</figure>
+
+		<h2 class="section">Topics</h2>
+		<ul class="entries">
+			{
+				topics.map((t) => (
+					<li class="entry">
+						<span class="entry-title">{t.title}</span>
+						<p class="entry-desc">{t.description}</p>
+					</li>
+				))
+			}
+		</ul>
 
 		<h2 class="section">Upcoming events</h2>
 		{
