@@ -3,6 +3,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import speakingPhoto from '../assets/cory_osac_ai.jpeg';
 import { pageCard } from '../lib/og-cards';
+import { SOCIAL } from '../consts';
+
+// Speaking inquiries go to a dedicated Factal alias (not the blog Gmail alias
+// the About page uses). The prefilled subject makes them easy to spot.
+const SPEAKING_EMAIL = `mailto:speaking+cory@factal.com?subject=${encodeURIComponent('Speaking inquiry')}`;
 
 // ── Fill these in ────────────────────────────────────────────────────────────
 // Each engagement: { event, url, venue, date, description }
@@ -71,6 +76,18 @@ const topics: Array<{ title: string; description: string }> = [
 	<div class="page">
 		<h1>Speaking</h1>
 		<p class="subhed">Putting AI to work. Knowing what to trust.</p>
+
+		<figure class="hero">
+			<Image
+				src={speakingPhoto}
+				alt="Cory Bergman delivering an AI keynote to a packed room at a regional OSAC event"
+				widths={[620, 940, 1240]}
+				sizes="(max-width: 660px) 100vw, 620px"
+				class="hero-img"
+			/>
+			<figcaption>Keynote about AI at OSAC's Annual Briefing in 2024</figcaption>
+		</figure>
+
 		<p class="pitch">
 			AI is changing how security and risk teams work. I help audiences explore
 			what's possible, understand where things can go wrong and make better
@@ -87,20 +104,11 @@ const topics: Array<{ title: string; description: string }> = [
 			Factal's <a
 				href="https://blog.factal.com/ai-training-resources-for-security-professionals/"
 				>AI events page</a
-			>. If you're organizing an event, please get in touch and learn more about
-			my background on the <a href="/about">about page</a>.
+			>. If you're organizing an event, please <a href={SPEAKING_EMAIL}
+				>get in touch</a
+			> and learn more about my background on the <a href="/about">about page</a>.
 		</p>
 
-		<figure class="hero">
-			<Image
-				src={speakingPhoto}
-				alt="Cory Bergman delivering an AI keynote to a packed room at a regional OSAC event"
-				widths={[620, 940, 1240]}
-				sizes="(max-width: 660px) 100vw, 620px"
-				class="hero-img"
-			/>
-			<figcaption>Keynote about AI at OSAC's Annual Briefing in 2024</figcaption>
-		</figure>
 
 		<h2 class="section">Topics</h2>
 		<ul class="entries">
@@ -113,6 +121,11 @@ const topics: Array<{ title: string; description: string }> = [
 				))
 			}
 		</ul>
+
+		<p class="cta">
+			Interested in having me speak? <a href={SPEAKING_EMAIL}>Email me →</a>
+			<span class="cta-alt">or find me on <a href={SOCIAL.linkedin}>LinkedIn</a>.</span>
+		</p>
 
 		<h2 class="section">Upcoming events</h2>
 		{
@@ -196,7 +209,7 @@ const topics: Array<{ title: string; description: string }> = [
 		text-underline-offset: 3px;
 	}
 	.hero {
-		margin: 28px 0 0;
+		margin: 24px 0 28px;
 	}
 	.hero-img {
 		display: block;
@@ -212,6 +225,28 @@ const topics: Array<{ title: string; description: string }> = [
 		font-size: 13px;
 		color: var(--faint);
 		margin-top: 8px;
+	}
+	.cta {
+		margin: 32px 0 0;
+		padding: 18px 20px;
+		border: 1px solid var(--rule);
+		border-radius: 6px;
+		background: var(--card-bg);
+		font-size: 16px;
+		line-height: 1.6;
+		color: var(--ink);
+	}
+	.cta a {
+		color: var(--pine);
+	}
+	.cta a:hover {
+		color: var(--pine-hover);
+	}
+	.cta-alt {
+		display: block;
+		font-size: 14px;
+		color: var(--muted);
+		margin-top: 2px;
 	}
 	.section {
 		font-size: 14px;
