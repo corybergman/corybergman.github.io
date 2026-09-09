@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import { companies, companyUrl, companyPlainText } from '../lib/companies';
 import { pageCard } from '../lib/og-cards';
+import projectsMasthead from '../assets/masthead-projects.jpg';
 
 // ── Fill these in ────────────────────────────────────────────────────────────
 // Each entry: { title, url, source, date, description, logo }
@@ -241,6 +242,7 @@ const press: Entry[] = [
 	variant="sub"
 	active="projects"
 	image={pageCard('projects')}
+	masthead={projectsMasthead}
 >
 	<div class="page">
 		<h1>Projects</h1>
