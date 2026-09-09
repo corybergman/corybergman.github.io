@@ -3,7 +3,7 @@ title: "Building trust and protecting people in the age of AI and disinformation
 description: "As we say at Factal, facts save lives. From severe weather and wildfires to shootings and regional conflicts, it\u2019s critical that first responders, security professionals\u2026"
 pubDate: 'Oct 13 2024'
 tumblrId: '764237038341029888'
-tags: ["ai"]
+tags: ["ai", "verification"]
 ---
 
 As we say at [Factal](https://www.factal.com/), facts save lives. From severe weather and wildfires to shootings and regional conflicts, it’s critical that first responders, security professionals and anyone in harm’s way have access to fast, accurate information.

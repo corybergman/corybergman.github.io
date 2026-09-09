@@ -2,7 +2,7 @@
 title: "Verifying AI in your global security stack"
 description: "As security systems become more automated, an AI error in one tool can disrupt the rest down the chain."
 pubDate: 'Sep 09 2026'
-tags: ['ai']
+tags: ['ai', 'verification']
 ---
 
 Decisions have real-world consequences in global security. Lives can be on the line, and teams are under considerable pressure to make the right call. As it becomes harder to know what's true, your credibility matters more than ever.
