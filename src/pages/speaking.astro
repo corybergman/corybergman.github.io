@@ -99,33 +99,25 @@ const topics: Array<{ title: string; description: string }> = [
 			takeaways. I offer keynotes, hands-on workshops, fireside conversations and
 			team training, tailored to your audience and experience with AI.
 		</p>
-		<p class="pitch">
-			Some of my upcoming events are listed below, and you can also check
-			Factal's <a
-				href="https://blog.factal.com/ai-training-resources-for-security-professionals/"
-				>AI events page</a
-			>. If you're organizing an event, please <a href={SPEAKING_EMAIL}
-				>get in touch</a
-			> and learn more about my background on the <a href="/about">about page</a>.
-		</p>
 
 
-		<h2 class="section">Topics</h2>
-		<ul class="entries">
-			{
-				topics.map((t) => (
-					<li class="entry">
-						<span class="entry-title">{t.title}</span>
-						<p class="entry-desc">{t.description}</p>
-					</li>
-				))
-			}
-		</ul>
-
-		<p class="cta">
-			Interested in having me speak? <a href={SPEAKING_EMAIL}>Email me →</a>
-			<span class="cta-alt">or find me on <a href={SOCIAL.linkedin}>LinkedIn</a>.</span>
-		</p>
+		<section class="topics">
+			<h2 class="section first">Topics</h2>
+			<ul class="entries">
+				{
+					topics.map((t) => (
+						<li class="entry">
+							<span class="entry-title">{t.title}</span>
+							<p class="entry-desc">{t.description}</p>
+						</li>
+					))
+				}
+			</ul>
+			<p class="cta">
+				Interested in having me speak? <a href={SPEAKING_EMAIL}>Email me →</a>
+				<span class="cta-alt">or find me on <a href={SOCIAL.linkedin}>LinkedIn</a>.</span>
+			</p>
+		</section>
 
 		<h2 class="section">Upcoming events</h2>
 		{
@@ -226,12 +218,22 @@ const topics: Array<{ title: string; description: string }> = [
 		color: var(--faint);
 		margin-top: 8px;
 	}
-	.cta {
-		margin: 32px 0 0;
-		padding: 18px 20px;
+	/* Topics and the inquiry call-to-action share one card — the only enclosed
+	   block on the page, matching the speaking card on the home page. */
+	.topics {
+		margin: 40px 0 0;
+		padding: 28px 28px 24px;
 		border: 1px solid var(--rule);
 		border-radius: 6px;
 		background: var(--card-bg);
+	}
+	.topics .section.first {
+		margin-top: 0;
+	}
+	.cta {
+		margin: 28px 0 0;
+		padding: 20px 0 0;
+		border-top: 1px solid var(--rule);
 		font-size: 16px;
 		line-height: 1.6;
 		color: var(--ink);
