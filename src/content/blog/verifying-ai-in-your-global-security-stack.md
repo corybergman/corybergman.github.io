@@ -11,7 +11,9 @@ AI is rapidly improving, but it still makes mistakes. Striking a balance is a mo
 
 These are hard questions for global security professionals who work in time-sensitive situations. At a recent Factal workshop, "A practical guide to verifying AI," I walked through a framework that balances risk and judgment. The higher the risk, the more you should verify. The more judgment is required, the more a human needs to own the decision.
 
-*(If you missed the workshop, security professionals can request a link to the video.)*
+![AI verification framework: two sliders, risk if it's wrong and judgment required, each running from low to high. Low risk calls for a spot check; high risk means verify thoroughly. Low judgment means review the reasoning; high judgment means you own the call.](/blog-images/factal-ai-verification-framework.png)
+
+*(If you missed the workshop, security professionals can [request](https://share.hsforms.com/1_NIrUGtvSEiZXGkCHWK6oA2mybn) a link to the video.)*
 
 Verifying AI in a chat conversation is relatively straightforward. You see each response as it happens, and mistakes are easier to catch. Agents are different. They combine steps and complete tasks in a single workflow, and mistakes are often hidden behind the scenes. One mistake in the chain cascades all the way through.
 
