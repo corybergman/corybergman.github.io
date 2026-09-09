@@ -1,7 +1,7 @@
 ---
 import { SITE_TITLE } from '../consts';
 
-export type NavKey = 'home' | 'topics' | 'projects' | 'speaking' | 'about';
+export type NavKey = 'home' | 'writing' | 'projects' | 'speaking' | 'about';
 
 interface Props {
 	active?: NavKey;
@@ -12,7 +12,7 @@ const { active } = Astro.props;
 // footer with the social links.
 const links: Array<{ href: string; label: string; key: NavKey }> = [
 	{ href: '/', label: 'Home', key: 'home' },
-	{ href: '/tags/', label: 'Topics', key: 'topics' },
+	{ href: '/writing/', label: 'Writing', key: 'writing' },
 	{ href: '/projects', label: 'Projects', key: 'projects' },
 	{ href: '/speaking', label: 'Speaking', key: 'speaking' },
 	{ href: '/about', label: 'About', key: 'about' },

@@ -36,11 +36,11 @@ const { tag, posts } = Astro.props;
 	title={`Tagged “${tag}” · Cory Bergman`}
 	description={`Writing tagged “${tag}” by Cory Bergman.`}
 	variant="sub"
-	active="topics"
-	image={pageCard('topics')}
+	active="writing"
+	image={pageCard('writing')}
 >
 	<div class="page">
-		<p class="crumb"><a href="/tags/">Topics</a> <span>/</span> {tag}</p>
+		<p class="crumb"><a href="/writing/">Writing</a> <span>/</span> {tag}</p>
 		<h1>{tag}</h1>
 		<p class="intro">
 			{posts.length} post{posts.length === 1 ? '' : 's'} tagged “{tag}”.

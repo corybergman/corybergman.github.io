@@ -81,7 +81,7 @@ This file indexes ${posts.length} posts published ${years}, plus the site's stan
 ${companies.map((c) => `  - [${c.title}](${SITE}${companyUrl(c)})${c.date ? ` — ${c.date}` : ''}`).join('\n')}
 - [Speaking](${SITE}/speaking): Speaking topics, recent talks and booking. Cory speaks to global security and risk audiences about applying AI in practice.
 - [About](${SITE}/about): Biography and career history.
-- [Topics](${SITE}/tags/): Every post grouped by topic.
+- [Writing](${SITE}/writing/): Every post, newest first and grouped by year, with topic filters.
 - [RSS](${SITE}/rss.xml): Full-content feed.
 
 ## Writing

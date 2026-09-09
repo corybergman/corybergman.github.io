@@ -16,7 +16,7 @@ const standing = [
 	{ slug: 'about', title: 'About Cory Bergman' },
 	{ slug: 'projects', title: 'Companies, writing and press' },
 	{ slug: 'speaking', title: 'Speaking on AI and global security' },
-	{ slug: 'topics', title: 'Every post by topic' },
+	{ slug: 'writing', title: 'Every post, back to 2011' },
 ];
 
 /** Every card this endpoint generates: the standing pages plus one per company. */

@@ -10,6 +10,10 @@ export default defineConfig({
 	// Pages on deploy. This drives canonical URLs and the RSS feed; base stays
 	// '/' because an apex domain serves from the root.
 	site: 'https://corybe.com',
+	// The old topic index moved to /writing/ on 2026-09-09. Static output
+	// emits a meta-refresh page at /tags/index.html. The per-topic archives
+	// at /tags/<slug>/ are untouched.
+	redirects: { '/tags': '/writing' },
 	integrations: [mdx(), sitemap()],
 	fonts: [
 		{

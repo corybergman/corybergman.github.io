@@ -1,0 +1,186 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { postUrl, tagSlug } from '../consts';
+import { pageCard } from '../lib/og-cards';
+
+// The archive. Every post newest-first, grouped by year, with the topic chips
+// up top as the filter. This replaced the old /tags/ index (a bare list of tag
+// chips) on 2026-09-09; /tags/ now redirects here and the per-topic archives
+// stay at /tags/<slug>/.
+const posts = (await getCollection('blog')).sort(
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+
+// Topics, most-used first.
+const counts = new Map<string, { tag: string; count: number }>();
+for (const post of posts) {
+	for (const tag of post.data.tags ?? []) {
+		const slug = tagSlug(tag);
+		const entry = counts.get(slug) ?? { tag, count: 0 };
+		entry.count += 1;
+		counts.set(slug, entry);
+	}
+}
+const topics = [...counts.entries()]
+	.map(([slug, { tag, count }]) => ({ slug, tag, count }))
+	.sort((a, b) => b.count - a.count || a.tag.localeCompare(b.tag));
+
+// Posts grouped by year, newest year first.
+const years: Array<{ year: number; posts: typeof posts }> = [];
+for (const post of posts) {
+	const year = post.data.pubDate.getUTCFullYear();
+	const group = years.at(-1);
+	if (group && group.year === year) group.posts.push(post);
+	else years.push({ year, posts: [post] });
+}
+const oldest = years.at(-1)?.year;
+
+const monthDay = (d: Date) =>
+	d.toLocaleDateString('en-us', { month: 'short', day: 'numeric', timeZone: 'UTC' });
+---
+
+<BaseLayout
+	title="Writing · Cory Bergman"
+	description={`Everything Cory Bergman has written here, newest first, back to ${oldest}. Filter by topic.`}
+	variant="sub"
+	active="writing"
+	image={pageCard('writing')}
+>
+	<div class="page">
+		<h1>Writing</h1>
+		<p class="intro">
+			{posts.length} posts, newest first, back to {oldest}. Or browse by topic:
+		</p>
+
+		<ul class="topics">
+			{
+				topics.map((t) => (
+					<li>
+						<a href={`/tags/${t.slug}/`}>
+							{t.tag}
+							<span class="count">{t.count}</span>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+
+		{
+			years.map(({ year, posts }) => (
+				<section class="year">
+					<h2 class="year-label">{year}</h2>
+					{posts.map((post) => (
+						<article class="row">
+							<p class="date">
+								<time datetime={post.data.pubDate.toISOString()}>
+									{monthDay(post.data.pubDate)}
+								</time>
+							</p>
+							<h3 class="title">
+								<a href={postUrl(post)}>{post.data.title}</a>
+							</h3>
+						</article>
+					))}
+				</section>
+			))
+		}
+	</div>
+</BaseLayout>
+
+<style>
+	.page {
+		max-width: var(--content-max);
+		margin: 35px auto 0; /* matches the home hero top padding */
+	}
+	.page h1 {
+		font-size: 34px;
+		font-weight: 600;
+		letter-spacing: -0.02em;
+		margin: 0 0 12px;
+	}
+	.intro {
+		font-size: 16.5px;
+		line-height: 1.7;
+		color: var(--muted);
+		margin: 0 0 18px;
+	}
+
+	/* Topic chips — the filter row. */
+	.topics {
+		list-style: none;
+		margin: 0 0 44px;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 10px;
+	}
+	.topics a {
+		display: inline-flex;
+		align-items: center;
+		gap: 7px;
+		border: 1px solid var(--outline);
+		border-radius: 5px;
+		padding: 6px 11px;
+		font-size: 13.5px;
+		font-weight: 500;
+		color: var(--ink);
+	}
+	.topics a:hover {
+		border-color: var(--pine);
+		color: var(--pine-hover);
+	}
+	.count {
+		font-family: var(--font-mono);
+		font-size: 11.5px;
+		color: var(--faint);
+	}
+
+	/* Year groups. */
+	.year {
+		margin-top: 28px;
+	}
+	.year-label {
+		margin: 0;
+		padding-bottom: 12px;
+		border-bottom: 1px solid var(--rule);
+		font-family: var(--font-mono);
+		font-size: 12px;
+		font-weight: 500;
+		letter-spacing: 0.16em;
+		color: var(--section-label);
+	}
+	.row {
+		display: grid;
+		grid-template-columns: 72px minmax(0, 1fr);
+		gap: 20px;
+		padding: 14px 0;
+		border-bottom: 1px solid var(--rule);
+	}
+	.date {
+		margin: 0;
+		font-family: var(--font-mono);
+		font-size: 12.5px;
+		line-height: 1.7;
+		color: var(--faint);
+	}
+	.title {
+		margin: 0;
+		font-size: 17px;
+		font-weight: 500;
+		line-height: 1.4;
+		letter-spacing: -0.01em;
+		color: var(--ink);
+		text-wrap: pretty;
+	}
+	.title a:hover {
+		color: var(--pine);
+	}
+
+	@media (max-width: 700px) {
+		.row {
+			grid-template-columns: 1fr;
+			gap: 2px;
+		}
+	}
+</style>
