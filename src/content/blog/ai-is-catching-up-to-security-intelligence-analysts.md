@@ -1,5 +1,5 @@
 ---
-title: "AI is catching up to security intelligence analysts. But here’s what it still can’t do."
+title: "AI is catching up to intel analysts. But here’s what it still can’t do."
 description: "Former Acting CIA Director Michael Morell says AI analysis is nearly there. Trust, verification and judgment are not."
 pubDate: 'May 17 2026'
 tags: ['ai', 'verification']
