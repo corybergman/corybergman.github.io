@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import speakingPhoto from '../assets/cory_osac_ai.jpeg';
 import { pageCard } from '../lib/og-cards';
 import { SOCIAL } from '../consts';
+import speakingMasthead from '../assets/masthead-speaking.jpg';
 
 // Speaking inquiries go to a dedicated Factal alias (not the blog Gmail alias
 // the About page uses). The prefilled subject makes them easy to spot.
@@ -76,6 +77,7 @@ const topics: Array<{ title: string; description: string }> = [
 	variant="sub"
 	active="speaking"
 	image={pageCard('speaking')}
+	masthead={speakingMasthead}
 >
 	<div class="page">
 		<h1>Speaking</h1>
