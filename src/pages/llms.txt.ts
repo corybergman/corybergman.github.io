@@ -76,7 +76,7 @@ export const GET: APIRoute = async () => {
 This file indexes ${posts.length} posts published ${years}, plus the site's standing pages. Everything here is written by Cory; the site itself is built and published with AI. Full text of each post is at its URL below.
 
 ## Pages
-- [Home](${SITE}/): Reverse-chronological feed of every post.
+- [Home](${SITE}/): Positioning, focus areas (products, verification, AI), speaking and the five newest posts.
 - [Projects](${SITE}/projects): Index of the companies Cory founded or helped build, plus his writing elsewhere and press coverage. Each company has its own page:
 ${companies.map((c) => `  - [${c.title}](${SITE}${companyUrl(c)})${c.date ? ` — ${c.date}` : ''}`).join('\n')}
 - [Speaking](${SITE}/speaking): Speaking topics, recent talks and booking. Cory speaks to global security and risk audiences about applying AI in practice.
