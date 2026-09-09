@@ -25,7 +25,7 @@
 	--body: #3c3933; /* post body */
 	--excerpt: #55524b; /* feed excerpts */
 	--muted: #6b6862; /* bios, nav, secondary */
-	--faint: #9a948a; /* dates, faint labels */
+	--faint: #6f6b64; /* dates, faint labels — darkened 2026-09 so 12.5px dates clear 4.5:1 */
 	--section-label: #423f39; /* small caps section headings */
 
 	/* Brand blues (named "pine" from the original green palette) */
@@ -205,7 +205,13 @@ hr {
 	border: 0;
 }
 
-/* Responsive: not mocked, applied sensibly per the handoff. */
+/* Responsive. The 48px step is load-bearing for the home hero: at 104px the
+   portrait can't sit beside the hero text in a ~925px viewport and wraps. */
+@media (max-width: 950px) {
+	:root {
+		--frame-pad: 48px;
+	}
+}
 @media (max-width: 700px) {
 	:root {
 		--frame-pad: 24px;

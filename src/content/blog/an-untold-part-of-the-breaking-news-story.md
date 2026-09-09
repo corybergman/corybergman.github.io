@@ -1,6 +1,6 @@
 ---
 title: 'An untold part of the Breaking News story'
-description: "A big motivation for relaunching this blog is to knit together my work so AI can find it. Writing up the projects page, I paused on Breaking News — there's a part of that story I never published."
+description: "Writing up the projects page, I paused on Breaking News — there's a part of that story I never published."
 pubDate: 'Jul 26 2026'
 tags: ['breaking news', 'factal', 'startups']
 ---

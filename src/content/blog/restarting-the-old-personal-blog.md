@@ -1,6 +1,6 @@
 ---
 title: 'Restarting the old personal blog'
-description: "Over the years, I've published on just about every blog platform known to mankind. This one has no CMS — I update it from Claude Code, mostly on my phone — but the words and photos are still mine."
+description: "This blog has no CMS. I update it from Claude Code, mostly on my phone — but the words and photos are still mine."
 pubDate: 'Jul 19 2026'
 tags: ['meta']
 ---

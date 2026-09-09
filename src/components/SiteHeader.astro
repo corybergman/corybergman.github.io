@@ -1,17 +1,15 @@
 ---
 import { SITE_TITLE } from '../consts';
-import Avatar from './Avatar.astro';
 
 export type NavKey = 'home' | 'topics' | 'projects' | 'speaking' | 'about';
 
 interface Props {
-	variant?: 'home' | 'sub';
 	active?: NavKey;
 }
-const { variant = 'home', active } = Astro.props;
+const { active } = Astro.props;
 
-// Single source of truth for the nav, used by both the home and sub headers.
-// RSS is not here — it lives in the footer with the social links.
+// Single source of truth for the nav. RSS is not here — it lives in the
+// footer with the social links.
 const links: Array<{ href: string; label: string; key: NavKey }> = [
 	{ href: '/', label: 'Home', key: 'home' },
 	{ href: '/tags/', label: 'Topics', key: 'topics' },
@@ -21,147 +19,61 @@ const links: Array<{ href: string; label: string; key: NavKey }> = [
 ];
 ---
 
-{
-	variant === 'home' ? (
-		<header class="home">
-			<Avatar size={52} />
-			<div class="intro">
-				<h1 class="name">{SITE_TITLE}</h1>
-				<p class="tagline">
-					I build products to get trusted information to people in harm's
-					way.{'\u00A0'}
-					<a href="/about" class="tagline-more" aria-label="More about Cory">
-						→
-					</a>
-				</p>
-			</div>
-		</header>
-	) : (
-		<header class="sub">
-			<a href="/" class="avatar-link" aria-label="Home"><Avatar size={36} /></a>
-			<a href="/" class="name-link">{SITE_TITLE}</a>
-			<nav class="nav compact">
-				{links.map((link) => (
-					<a href={link.href} class:list={[active === link.key && 'active']}>
-						{link.label}
-					</a>
-				))}
-			</nav>
-		</header>
-	)
-}
-
-{
-	variant === 'home' && (
-		<nav class="nav full">
-			{links.map((link) => (
+<!-- One header for every page (2026-09 home redesign): name on the left, nav
+     on the right, no avatar. The home page's H1 now lives in its hero, so the
+     name here is a plain link everywhere. -->
+<header class="bar">
+	<a href="/" class="name">{SITE_TITLE}</a>
+	<nav class="nav">
+		{
+			links.map((link) => (
 				<a href={link.href} class:list={[active === link.key && 'active']}>
 					{link.label}
 				</a>
-			))}
-		</nav>
-	)
-}
+			))
+		}
+	</nav>
+</header>
 
 <style>
-	.avatar-link {
-		display: inline-flex;
-		flex-shrink: 0;
-	}
-
-	.home {
+	.bar {
 		display: flex;
 		align-items: center;
-		gap: 18px;
-	}
-	.intro {
-		display: flex;
-		flex-direction: column;
-		gap: 3px;
-		min-width: 0;
+		justify-content: space-between;
+		gap: 24px;
+		flex-wrap: wrap;
+		/* Spec is 18px above; .frame-body already contributes 8px. */
+		padding: 10px 0 20px;
+		border-bottom: 1px solid var(--rule);
 	}
 	.name {
-		margin: 0;
-		font-size: 24px;
+		font-size: 22px;
 		font-weight: 600;
-		letter-spacing: -0.01em;
+		letter-spacing: -0.015em;
 		color: var(--ink);
 	}
-	.tagline {
-		font-size: 14.5px;
-		line-height: 1.45;
-		color: var(--muted);
-		margin: 0;
+	.name:hover {
+		color: var(--pine);
 	}
-	/* Quiet trailing link into the About page. The visible label is just the
-	   arrow, so it carries an aria-label; it's preceded by a non-breaking space
-	   so it can never wrap onto a line by itself. */
-	.tagline-more {
-		color: var(--pine-2);
-		font-weight: 500;
-		/* Pad the arrow out to a 24x24 tap target (WCAG 2.2) and pull the same
-		   amount back in margin, so the layout doesn't shift. */
-		padding: 6px 7px;
-		margin: -6px -7px;
-	}
-	.tagline-more:hover {
-		color: var(--pine-hover);
-	}
-	.sub {
-		display: flex;
-		align-items: center;
-		gap: 14px;
-	}
-	.name-link {
-		font-size: 16px;
-		font-weight: 600;
-		letter-spacing: -0.01em;
-		color: var(--ink);
-	}
-
 	.nav {
 		display: flex;
+		flex-wrap: wrap;
+		gap: 24px;
 		font-size: 14px;
-		font-weight: 500;
 		color: var(--muted);
 	}
-	.nav.full {
-		gap: 24px;
-		margin: 40px 0 60px;
-	}
-	.nav.compact {
-		gap: 22px;
-		margin-left: auto;
+	.nav a:hover {
+		color: var(--pine);
 	}
 	.nav a.active {
-		color: var(--pine);
-		border-bottom: 2px solid var(--pine);
-		padding-bottom: 4px;
+		color: var(--ink);
 	}
 
 	@media (max-width: 700px) {
 		/* Five links won't fit a phone row at 14px — a small step down in size
-		   and gap keeps them on one line at 375px wide, and they still wrap
-		   cleanly on anything narrower. */
+		   and gap keeps them on one line at 375px wide. */
 		.nav {
 			font-size: 13px;
-		}
-		.nav.full {
-			flex-wrap: wrap;
-			gap: 14px 13px;
-			margin: 28px 0 40px;
-		}
-
-		/* Sub-page header: let the compact nav wrap to its own line so no
-		   items get clipped by the frame. */
-		.sub {
-			flex-wrap: wrap;
-		}
-		.nav.compact {
-			margin-left: 0;
-			margin-top: 6px;
-			width: 100%;
-			flex-wrap: wrap;
 			gap: 14px 13px;
 		}
 	}

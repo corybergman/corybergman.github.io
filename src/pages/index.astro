@@ -1,34 +1,39 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PostListItem from '../components/PostListItem.astro';
+import FormattedDate from '../components/FormattedDate.astro';
 import { SITE_DESCRIPTION, postUrl } from '../consts';
-import { excerptFrom } from '../lib/excerpt';
+import portrait from '../assets/corybe_2026.jpg';
 
-const posts = (await getCollection('blog')).sort(
-	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
-);
+// Home page (redesigned 2026-09 from the Claude Design handoff in
+// ~/Documents/design_handoff_corybe_home/): a showcase up top — positioning,
+// focus areas, speaking — with a condensed blog roll underneath. The roll shows
+// the newest RECENT_COUNT posts only; the archive lives on /tags/.
+const RECENT_COUNT = 5;
+const posts = (await getCollection('blog'))
+	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+	.slice(0, RECENT_COUNT);
 
-// The feed shows the most recent RECENT_COUNT posts and collapses everything
-// older behind a toggle, so the homepage stays short without pushing anything
-// onto a second page (every post keeps one URL, good for search and linking).
-//
-// The split is deliberately by COUNT, not by `tumblrId`. The archive is three
-// eras — post-relaunch (2026), Medium imports (2011–2020) and Tumblr imports
-// (2011–2024) — and only the Tumblr ones carry `tumblrId`, so keying off that
-// field lands on the right row purely by accident and would move the boundary
-// the moment an older native post is added.
-const RECENT_COUNT = 12;
-const recent = posts.slice(0, RECENT_COUNT);
-const archive = posts.slice(RECENT_COUNT);
+const focus = [
+	{
+		text: 'Products and companies that help people act on trusted information in critical situations.',
+		label: 'More in projects →',
+		href: '/projects',
+	},
+	{
+		text: "Journalistic methods for finding what's true when speed matters and mistakes have consequences.",
+		label: 'More about journalism →',
+		href: '/tags/journalism/',
+	},
+	{
+		text: 'Practical applications, emerging risks and the human judgment needed to use AI well.',
+		label: 'More about AI →',
+		href: '/tags/ai/',
+	},
+];
 
-const archiveYears = archive.length
-	? (() => {
-			const years = archive.map((p) => p.data.pubDate.getUTCFullYear());
-			const [lo, hi] = [Math.min(...years), Math.max(...years)];
-			return lo === hi ? `${lo}` : `${lo}–${hi}`;
-		})()
-	: '';
+const GSB_URL = 'https://www.factal.com/promo/globalsecuritybriefing/';
 ---
 
 <BaseLayout
@@ -37,127 +42,331 @@ const archiveYears = archive.length
 	variant="home"
 	active="home"
 >
-	<section class="feed">
+	<section class="hero">
+		<div class="hero-text">
+			<h1>Trusted information for people in harm's way.</h1>
+			<p class="lede">
+				I combine technology and journalism to build mission-critical products
+				that protect people at scale.
+			</p>
+			<p class="affiliation">
+				Co-founder and chief product officer at <a href="https://www.factal.com"
+					>Factal</a
+				>.
+			</p>
+			<div class="hero-links">
+				<a href="/about" class="link">More about me →</a>
+			</div>
+		</div>
+		<!-- The portrait is a three-quarter shot; the fixed 225px box with a
+		     high object-position crops it to head and shoulders (no hands). -->
+		<Image
+			src={portrait}
+			alt="Cory Bergman"
+			widths={[295, 590]}
+			sizes="295px"
+			class="portrait"
+			loading="eager"
+		/>
+	</section>
+
+	<section class="focus">
+		<p class="eyebrow">Where I focus</p>
+		<div class="focus-grid">
+			{
+				focus.map((f) => (
+					<div class="focus-col">
+						<p>{f.text}</p>
+						<a href={f.href} class="link small">
+							{f.label}
+						</a>
+					</div>
+				))
+			}
+		</div>
+	</section>
+
+	<section class="speaking">
+		<div>
+			<p class="eyebrow tight">Speaking</p>
+			<p class="speaking-head">
+				I speak about practical AI for global security and risk teams.
+			</p>
+			<p class="speaking-body">
+				Keynotes, fireside chats, panels and hands-on Fortune 500 training
+				focused on practical applications, emerging risks and human judgment.
+			</p>
+			<div class="speaking-links">
+				<a href="/speaking" class="link">Learn more about speaking →</a>
+			</div>
+		</div>
+		<div class="upcoming">
+			<p class="eyebrow tight">Upcoming</p>
+			<p class="cadence">Every two weeks</p>
+			<h2 class="upcoming-title"><a href={GSB_URL}>Global Security Briefing</a></h2>
+			<p class="upcoming-body">
+				Factal and Emergent Risk International's biweekly briefing for global
+				security professionals. I cover practical AI, emerging technology and
+				what they mean for security teams.
+			</p>
+			<a href={GSB_URL} class="link small">Register free →</a>
+		</div>
+	</section>
+
+	<section class="writing">
+		<div class="writing-head">
+			<h2 class="eyebrow">Writing</h2>
+		</div>
 		{
-			recent.map((post) => (
-				<PostListItem
-					href={postUrl(post)}
-					title={post.data.title}
-					excerpt={excerptFrom(post.body ?? '')}
-					pubDate={post.data.pubDate}
-				/>
+			posts.map((post) => (
+				<article class="post">
+					<p class="post-date">
+						<FormattedDate date={post.data.pubDate} />
+					</p>
+					<div>
+						<h3 class="post-title">
+							<a href={postUrl(post)}>{post.data.title}</a>
+						</h3>
+						<p class="post-excerpt">{post.data.description}</p>
+					</div>
+				</article>
 			))
 		}
-
-		{
-			archive.length > 0 && (
-				<details class="archive">
-					<summary>
-						<span class="archive-label">
-							Earlier writing<span class="archive-years"> · {archiveYears}</span>
-							<span class="archive-count">{archive.length} posts</span>
-						</span>
-					</summary>
-					<div class="archive-list">
-						{archive.map((post) => (
-							<PostListItem
-								href={postUrl(post)}
-								title={post.data.title}
-								excerpt={excerptFrom(post.body ?? '')}
-								pubDate={post.data.pubDate}
-							/>
-						))}
-					</div>
-				</details>
-			)
-		}
+		<div class="archive-link">
+			<a href="/tags/" class="link">Browse the full archive, back to 2011 →</a>
+		</div>
 	</section>
 </BaseLayout>
 
 <style>
-	/* The archive collapses behind a hairline divider that doubles as the
-	   toggle — same quiet coordinate/trail feel as the masthead label. Built on
-	   <details> so it works with no JavaScript. */
-	.archive {
-		margin-top: 14px;
-	}
-	.archive summary {
-		display: flex;
-		align-items: center;
-		gap: 18px;
-		margin: 0 0 6px;
-		padding: 6px 0;
-		cursor: pointer;
-		list-style: none;
+	/* Shared bits ---------------------------------------------------------- */
+	.eyebrow {
+		margin: 0;
 		font-family: var(--font-mono);
-		font-size: 12px;
-		letter-spacing: 0.14em;
+		font-size: 11.5px;
+		font-weight: 500;
+		letter-spacing: 0.16em;
 		text-transform: uppercase;
-		color: var(--faint);
-		transition: color 0.15s ease;
+		color: var(--section-label);
 	}
-	/* Hide the native disclosure triangle in every engine. */
-	.archive summary::-webkit-details-marker {
-		display: none;
+	.eyebrow.tight {
+		margin: 0 0 18px;
 	}
-	.archive summary::before,
-	.archive summary::after {
-		content: '';
-		flex: 1;
-		height: 1px;
-		background: var(--rule);
-	}
-	.archive-label {
-		flex: none;
-		display: inline-flex;
-		align-items: baseline;
-		gap: 10px;
-	}
-	/* Chevron, rotated when open. */
-	.archive-label::after {
-		content: '';
-		display: inline-block;
-		width: 5px;
-		height: 5px;
-		margin-left: 2px;
-		border-right: 1.5px solid currentColor;
-		border-bottom: 1.5px solid currentColor;
-		transform: translateY(-2px) rotate(45deg);
-		transition: transform 0.18s ease;
-	}
-	.archive[open] .archive-label::after {
-		transform: translateY(0) rotate(-135deg);
-	}
-	.archive-count {
-		letter-spacing: 0.08em;
-		opacity: 0.75;
-	}
-	.archive summary:hover {
+	.link {
+		font-size: 15px;
 		color: var(--pine);
 	}
-	.archive summary:focus-visible {
-		outline: 2px solid var(--pine);
-		outline-offset: 4px;
-		border-radius: 2px;
+	.link.small {
+		font-size: 14px;
 	}
-	.archive-list {
-		margin-top: 44px;
+	.link:hover {
+		color: var(--pine-hover);
 	}
 
-	/* At phone widths the full label squeezes the hairlines to nothing and
-	   pushes the chevron against the edge, so drop the year range and tighten
-	   up — the post count is the more useful half. */
+	/* Hero ------------------------------------------------------------------ */
+	.hero {
+		padding: 48px 0 40px;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 52px;
+		align-items: start;
+	}
+	.hero-text {
+		flex: 1 1 320px;
+		min-width: 0;
+	}
+	.hero h1 {
+		margin: 0;
+		font-size: clamp(30px, 3.9vw, 44px);
+		font-weight: 600;
+		line-height: 1.18;
+		letter-spacing: -0.02em;
+		color: var(--ink);
+		text-wrap: pretty;
+	}
+	.lede {
+		margin: 18px 0 0;
+		max-width: var(--content-max);
+		font-size: 17px;
+		line-height: 1.6;
+		color: var(--excerpt);
+		text-wrap: pretty;
+	}
+	.affiliation {
+		margin: 12px 0 0;
+		max-width: var(--content-max);
+		font-size: 15.5px;
+		line-height: 1.6;
+		color: var(--muted);
+	}
+	.affiliation a {
+		color: var(--pine);
+	}
+	.affiliation a:hover {
+		color: var(--pine-hover);
+	}
+	.hero-links {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 12px;
+		margin-top: 20px;
+	}
+	/* min-width: 0 matters: without it a replaced element's automatic minimum
+	   size clamps to max-width and the photo wraps onto its own row. */
+	.portrait {
+		flex: 0 1 250px;
+		min-width: 0;
+		width: 100%;
+		max-width: 295px;
+		height: 225px;
+		object-fit: cover;
+		object-position: 50% 8%;
+		border-radius: 12px;
+		filter: var(--photo-filter);
+		display: block;
+	}
+
+	/* Where I focus --------------------------------------------------------- */
+	.focus {
+		border-top: 1px solid var(--rule);
+		padding: 40px 0 56px;
+	}
+	.focus .eyebrow {
+		margin-bottom: 24px;
+	}
+	.focus-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: 40px;
+	}
+	.focus-col {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		align-items: start;
+	}
+	.focus-col p {
+		margin: 0;
+		font-size: 16px;
+		line-height: 1.55;
+		color: var(--ink);
+		text-wrap: pretty;
+	}
+	/* Bottom-align the links across columns of unequal text length. */
+	.focus-col .link {
+		margin-top: auto;
+		padding-top: 4px;
+	}
+
+	/* Speaking card --------------------------------------------------------- */
+	.speaking {
+		border: 1px solid var(--rule);
+		border-radius: 6px;
+		background: var(--card-bg);
+		padding: 36px;
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 36px;
+	}
+	.speaking-head {
+		margin: 0;
+		font-size: clamp(19px, 2vw, 23px);
+		font-weight: 600;
+		line-height: 1.35;
+		letter-spacing: -0.015em;
+		color: var(--ink);
+		text-wrap: pretty;
+	}
+	.speaking-body {
+		margin: 14px 0 0;
+		max-width: 56ch;
+		font-size: 15.5px;
+		line-height: 1.6;
+		color: var(--excerpt);
+		text-wrap: pretty;
+	}
+	.speaking-links {
+		margin-top: 20px;
+	}
+	.cadence {
+		margin: 0 0 6px;
+		font-family: var(--font-mono);
+		font-size: 12px;
+		color: var(--faint);
+	}
+	.upcoming-title {
+		margin: 0 0 10px;
+		font-size: 19px;
+		font-weight: 600;
+		line-height: 1.3;
+		color: var(--ink);
+	}
+	.upcoming-body {
+		margin: 0 0 12px;
+		font-size: 15px;
+		line-height: 1.6;
+		color: var(--muted);
+		text-wrap: pretty;
+	}
+	/* The hairline between the two halves is wanted only once the grid wraps
+	   to a single column — side by side it would float over half the card. */
+	@media (max-width: 780px) {
+		.upcoming {
+			border-top: 1px solid var(--rule);
+			padding-top: 24px;
+		}
+	}
+
+	/* Writing --------------------------------------------------------------- */
+	.writing {
+		padding: 56px 0 0;
+	}
+	.writing-head {
+		border-bottom: 1px solid var(--rule);
+		padding-bottom: 14px;
+	}
+	.post {
+		display: grid;
+		grid-template-columns: 110px minmax(0, 1fr);
+		gap: 28px;
+		padding: 28px 0;
+		border-bottom: 1px solid var(--rule);
+	}
+	.post-date {
+		margin: 0;
+		font-family: var(--font-mono);
+		font-size: 12.5px;
+		line-height: 1.9;
+		color: var(--faint);
+	}
+	.post-title {
+		margin: 0 0 8px;
+		font-size: 21px;
+		font-weight: 600;
+		line-height: 1.3;
+		letter-spacing: -0.015em;
+		color: var(--ink);
+		text-wrap: pretty;
+	}
+	.post-title a:hover {
+		color: var(--pine);
+	}
+	.post-excerpt {
+		margin: 0;
+		max-width: 70ch;
+		font-size: 15.5px;
+		line-height: 1.65;
+		color: var(--excerpt);
+		text-wrap: pretty;
+	}
+	.archive-link {
+		padding-top: 26px;
+	}
+
 	@media (max-width: 700px) {
-		.archive summary {
-			gap: 12px;
-			font-size: 11px;
-			letter-spacing: 0.1em;
-		}
-		.archive-years {
-			display: none;
-		}
-		.archive-list {
-			margin-top: 34px;
+		.post {
+			grid-template-columns: 1fr;
+			gap: 6px;
 		}
 	}
 </style>

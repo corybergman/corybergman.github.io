@@ -1,6 +1,6 @@
 ---
 title: 'The disruptive product has to leave the building'
-description: "The lead of OpenAI's Codex team says Google had ChatGPT a year before it launched — and was too nervous to ship it. That's the Innovator's Dilemma in a single tweet, and why the product has to leave the building."
+description: "Google had ChatGPT a year before launch and was too nervous to ship it. That's the Innovator's Dilemma in a single tweet."
 pubDate: 'Aug 03 2026'
 tags: ['startups', 'ai', 'innovation']
 ---
