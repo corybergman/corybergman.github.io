@@ -23,7 +23,7 @@ As we’ve seen with enterprise AI, what the technology can do and putting it to
 
 Or as one CSO put it bluntly: "We can’t be wrong."
 
-In another SVSG fireside chat, I spoke with Matt Abrahams, a popular strategic communicator, author and lecturer at Stanford. He explained how relationships and in-person communication skills are more important than ever as AI advances. Without it, even the smartest intelligence won’t land with the decision-makers who need it most. (I recommend his podcast, “Think Fast, Talk Smart,” for some great practical advice.)
+In another SVSG fireside chat, I spoke with Matt Abrahams, a popular strategic communicator, author and lecturer at Stanford. He explained how relationships and in-person communication skills are more important than ever as AI advances. Without it, even the smartest intelligence won’t land with the decision-makers who need it most. (I recommend his podcast, “[Think Fast, Talk Smart](https://www.fastersmarter.io/),” for some great practical advice.)
 
 ## 2. Real-time verification
 
