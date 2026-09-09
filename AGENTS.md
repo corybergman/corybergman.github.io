@@ -35,7 +35,7 @@ All colors, spacing, and type live as CSS variables in `src/styles/global.css`
 (`--pine`, `--ink`, `--contour`, `--frame-max`, etc.). Change the design there
 first; components reference the variables.
 
-**Dark mode** follows the reader's system setting — there is no toggle UI (yet).
+**The site is dark-only** since 2026-09-08 (Cory: "it looks a lot better"): `BaseLayout` sets `data-theme="dark"` on `<html>`, so the `[data-theme='dark']` palette always wins, `BaseHead` ships a single dark `theme-color`, and the manifest's `background_color` is the dark page color. To go back to following the system setting, remove that one attribute and restore the paired `theme-color` metas. Under the hood dark mode still works the original way — keep the palettes complete:
 The complete light palette is declared on bare `:root`; the dark palette
 redefines those same names twice, in `@media (prefers-color-scheme: dark)`
 (guarded as `:root:not([data-theme='light'])`) and in `:root[data-theme='dark']`.

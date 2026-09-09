@@ -14,6 +14,10 @@
 	--frame-pad: 104px;
 
 	/* ── Light theme ─────────────────────────────────────────────────────────
+	   NOTE: the site currently ships dark-only — BaseLayout puts
+	   data-theme="dark" on <html>, so the [data-theme='dark'] block below
+	   always wins and this light palette is dormant (kept complete so the
+	   site can follow the system setting again by removing that attribute).
 	   Every color the site uses is declared here, on bare :root, so the light
 	   palette is always complete. The dark blocks below redefine the same
 	   names and nothing else — never give a color its only definition inside
