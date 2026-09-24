@@ -321,6 +321,36 @@ const focus = [
 	}
 
 	@media (max-width: 700px) {
+		/* Phones: instead of wrapping onto its own row at full size, the portrait
+		   shrinks and sits beside the H1. display: contents lets the h1 and the
+		   copy below it join the hero grid directly. */
+		.hero {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) auto;
+			column-gap: 18px;
+			row-gap: 0;
+		}
+		.hero-text {
+			display: contents;
+		}
+		.hero h1 {
+			grid-column: 1;
+			grid-row: 1;
+			align-self: center;
+		}
+		.lede,
+		.affiliation,
+		.hero-links {
+			grid-column: 1 / -1;
+		}
+		.portrait {
+			grid-column: 2;
+			grid-row: 1;
+			width: 104px;
+			height: 116px;
+			object-position: 50% 12%;
+			border-radius: 10px;
+		}
 		.post {
 			grid-template-columns: 1fr;
 			gap: 6px;
