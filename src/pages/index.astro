@@ -1,16 +1,26 @@
 ---
 import { getCollection } from 'astro:content';
-import { Image } from 'astro:assets';
+import { getImage } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import FormattedDate from '../components/FormattedDate.astro';
 import { SITE_DESCRIPTION, postUrl } from '../consts';
 import portrait from '../assets/corybe_2026.jpg';
+import faceCrop from '../assets/headshot-2026.jpg';
 
 // Home page (redesigned 2026-09 from the Claude Design handoff in
 // ~/Documents/design_handoff_corybe_home/): a showcase up top — positioning,
 // focus areas, speaking — with a condensed blog roll underneath. The roll shows
 // the newest RECENT_COUNT posts only; the archive lives on /tags/.
 const RECENT_COUNT = 5;
+
+// Phones get the About page's square face crop instead of the head-and-shoulders
+// portrait: at thumbnail size the wider shot leaves the face too small.
+const desktopPortrait = await getImage({ src: portrait, widths: [295, 590] });
+const phonePortrait = await getImage({
+	src: faceCrop,
+	widths: [112, 224, 336],
+	format: 'webp',
+});
 const posts = (await getCollection('blog'))
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 	.slice(0, RECENT_COUNT);
@@ -56,16 +66,27 @@ const focus = [
 				<a href="/about" class="link">More about me →</a>
 			</div>
 		</div>
-		<!-- The portrait is a three-quarter shot; the fixed 225px box with a
-		     high object-position crops it to head and shoulders (no hands). -->
-		<Image
-			src={portrait}
-			alt="Cory Bergman"
-			widths={[295, 590]}
-			sizes="295px"
-			class="portrait"
-			loading="eager"
-		/>
+		<!-- Desktop: the head-and-shoulders portrait in a 250×225 box. Phones
+		     (≤700px): the square face crop, via the <source> below. -->
+		<picture class="portrait-frame">
+			<source
+				media="(max-width: 700px)"
+				srcset={phonePortrait.srcSet.attribute}
+				sizes="112px"
+				type="image/webp"
+			/>
+			<img
+				src={desktopPortrait.src}
+				srcset={desktopPortrait.srcSet.attribute}
+				sizes="295px"
+				width={desktopPortrait.attributes.width}
+				height={desktopPortrait.attributes.height}
+				alt="Cory Bergman"
+				class="portrait"
+				loading="eager"
+				decoding="async"
+			/>
+		</picture>
 	</section>
 
 	<section class="focus">
@@ -201,6 +222,16 @@ const focus = [
 	}
 	/* min-width: 0 matters: without it a replaced element's automatic minimum
 	   size clamps to max-width and the photo wraps onto its own row. */
+	/* The <picture> wrapper is layout-transparent so the img stays the flex
+	   (and, on phones, grid) item. */
+	.portrait-frame {
+		display: contents;
+	}
+	/* <source> never renders, but if anything gives it a box it becomes an
+	   empty flex item and adds a second 52px gap. */
+	.portrait-frame source {
+		display: none;
+	}
 	.portrait {
 		flex: 0 1 250px;
 		min-width: 0;
@@ -346,9 +377,9 @@ const focus = [
 		.portrait {
 			grid-column: 2;
 			grid-row: 1;
-			width: 104px;
-			height: 116px;
-			object-position: 50% 12%;
+			width: 112px;
+			height: 112px;
+			object-position: 50% 50%;
 			border-radius: 10px;
 		}
 		.post {
