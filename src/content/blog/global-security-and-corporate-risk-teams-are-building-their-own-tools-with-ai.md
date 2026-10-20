@@ -1,5 +1,5 @@
 ---
-title: "Global security and corporate risk teams are building their own tools with AI"
+title: "Global security and risk teams are building their own tools with AI"
 description: "AI makes it cheaper to build your own security tools. That raises the stakes on data quality and upkeep."
 pubDate: 'Oct 15 2026'
 tags: ['ai', 'factal']
