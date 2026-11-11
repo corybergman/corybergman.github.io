@@ -30,23 +30,23 @@ const posts = (await getCollection('blog'))
 ---
 
 <BaseLayout
-	title="Cory Bergman — Trusted information for people in harm's way"
+	title="Cory Bergman — Building Factal, and helping security teams put AI to work"
 	description={SITE_DESCRIPTION}
 	variant="home"
 	active="home"
 >
 	<section class="hero">
 		<div class="hero-text">
-			<h1>Trusted information for people in harm's way.</h1>
+			<h1>
+				Building <a href="https://www.factal.com">Factal</a>, and helping security
+				teams put AI to work.
+			</h1>
 			<p class="lede">
-				I combine technology and journalism to build mission-critical products
-				in global security and disaster response.
+				I combine journalism and technology to build real-time information
+				products. These days I focus on AI that security and risk teams can
+				actually trust.
 			</p>
-			<p class="affiliation">
-				Co-founder and chief product officer at <a href="https://www.factal.com"
-					>Factal</a
-				>.
-			</p>
+			<p class="affiliation">Co-founder and chief product officer.</p>
 			<div class="hero-links">
 				<a href="/about" class="link">More about me →</a>
 			</div>
@@ -190,10 +190,11 @@ const posts = (await getCollection('blog'))
 		line-height: 1.6;
 		color: var(--muted);
 	}
-	.affiliation a {
+	.hero h1 a {
 		color: var(--pine);
+		text-decoration: none;
 	}
-	.affiliation a:hover {
+	.hero h1 a:hover {
 		color: var(--pine-hover);
 	}
 	.hero-links {
