@@ -30,23 +30,26 @@ const posts = (await getCollection('blog'))
 ---
 
 <BaseLayout
-	title="Cory Bergman — Building Factal, and helping security teams put AI to work"
+	title="Cory Bergman — Getting it right in an AI world"
 	description={SITE_DESCRIPTION}
 	variant="home"
 	active="home"
 >
 	<section class="hero">
 		<div class="hero-text">
-			<h1>
-				Building <a href="https://www.factal.com">Factal</a>, and helping security
-				teams put AI to work.
-			</h1>
+			<p class="eyebrow hero-eyebrow">Verification · AI · Global security</p>
+			<h1>Getting it right in an AI world.</h1>
 			<p class="lede">
-				I combine journalism and technology to build real-time information
-				products. These days I focus on AI that security and risk teams can
-				actually trust.
+				AI makes information faster and cheaper than ever. Verifying what's true,
+				when people's safety depends on it, is still the hard part. I've worked on
+				that problem my whole career, from newsrooms to Factal, where AI and
+				journalists verify global events in real time.
 			</p>
-			<p class="affiliation">Co-founder and chief product officer.</p>
+			<p class="affiliation">
+				Co-founder and chief product officer at <a href="https://www.factal.com"
+					>Factal</a
+				>.
+			</p>
 			<div class="hero-links">
 				<a href="/about" class="link">More about me →</a>
 			</div>
@@ -190,11 +193,13 @@ const posts = (await getCollection('blog'))
 		line-height: 1.6;
 		color: var(--muted);
 	}
-	.hero h1 a {
-		color: var(--pine);
-		text-decoration: none;
+	.hero-eyebrow {
+		margin: 0 0 14px;
 	}
-	.hero h1 a:hover {
+	.affiliation a {
+		color: var(--pine);
+	}
+	.affiliation a:hover {
 		color: var(--pine-hover);
 	}
 	.hero-links {
@@ -338,9 +343,14 @@ const posts = (await getCollection('blog'))
 		.hero-text {
 			display: contents;
 		}
+		/* The keyword label runs full width above the H1 + portrait row. */
+		.hero-eyebrow {
+			grid-column: 1 / -1;
+			grid-row: 1;
+		}
 		.hero h1 {
 			grid-column: 1;
-			grid-row: 1;
+			grid-row: 2;
 			align-self: center;
 		}
 		.lede,
@@ -350,7 +360,7 @@ const posts = (await getCollection('blog'))
 		}
 		.portrait {
 			grid-column: 2;
-			grid-row: 1;
+			grid-row: 2;
 			width: 112px;
 			height: 112px;
 			object-position: 50% 50%;
