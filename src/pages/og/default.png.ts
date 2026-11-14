@@ -3,7 +3,7 @@ import { renderOgCard } from '../../og/card';
 
 // Fallback OG card for non-post pages (home, About, Projects, Speaking).
 export const GET: APIRoute = async () => {
-	const png = await renderOgCard("Getting it right in an AI world");
+	const png = await renderOgCard("Getting the facts right in an AI world");
 	return new Response(new Uint8Array(png), {
 		headers: {
 			'Content-Type': 'image/png',
