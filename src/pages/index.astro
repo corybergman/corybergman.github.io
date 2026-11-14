@@ -79,9 +79,6 @@ const posts = (await getCollection('blog'))
 
 	<section class="speaking">
 		<p class="eyebrow tight">Upcoming speaking events</p>
-		<p class="speaking-head">
-			I speak about practical AI for global security and risk teams.
-		</p>
 		<ul class="events">
 			{
 				engagements.map((e) => (
@@ -239,15 +236,6 @@ const posts = (await getCollection('blog'))
 		border-radius: 6px;
 		background: var(--card-bg);
 		padding: 36px;
-	}
-	.speaking-head {
-		margin: 0;
-		font-size: clamp(19px, 2vw, 23px);
-		font-weight: 600;
-		line-height: 1.35;
-		letter-spacing: -0.015em;
-		color: var(--ink);
-		text-wrap: pretty;
 	}
 	/* Events: title (linked when there's a URL) over a mono venue · date line.
 	   Descriptions stay on /speaking. */
