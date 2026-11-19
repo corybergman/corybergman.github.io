@@ -11,13 +11,6 @@ export const engagements: Array<{
 	description?: string;
 }> = [
 	{
-		event: 'Security at the Frontier: How Security Leaders at Frontier Labs Leverage AI',
-		venue: 'OSAC Annual Briefing',
-		date: 'Nov 18, 2026',
-		description:
-			"The security teams at the companies building frontier AI are the first to face a question coming for all of us: what happens to the security function when the tools can do a growing share of the work? This panel brings together corporate security leaders at the top AI labs for a candid look at which decisions still demand human judgment, how to evolve the team as tasks get automated and what they'd build if they designed a security shop from scratch today.",
-	},
-	{
 		event: 'Global Security Briefing',
 		url: 'https://www.factal.com/promo/globalsecuritybriefing/',
 		date: 'every two weeks',
