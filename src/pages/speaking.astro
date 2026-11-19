@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
-import speakingPhoto from '../assets/cory_osac_2026_panel.jpg';
+import speakingPhoto from '../assets/cory_osac_2026_panel.webp';
 import { pageCard } from '../lib/og-cards';
 import { SOCIAL } from '../consts';
 import speakingMasthead from '../assets/masthead-speaking.jpg';
@@ -189,9 +189,6 @@ const topics: Array<{ title: string; description: string }> = [
 		display: block;
 		width: 100%;
 		height: auto;
-		aspect-ratio: 16 / 9;
-		object-fit: cover;
-		object-position: center 30%;
 		border-radius: 6px;
 		border: 1px solid var(--contour);
 	}
