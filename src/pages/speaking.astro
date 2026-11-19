@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
-import speakingPhoto from '../assets/cory_osac_ai.jpeg';
+import speakingPhoto from '../assets/cory_osac_2026_panel.jpg';
 import { pageCard } from '../lib/og-cards';
 import { SOCIAL } from '../consts';
 import speakingMasthead from '../assets/masthead-speaking.jpg';
@@ -67,12 +67,12 @@ const topics: Array<{ title: string; description: string }> = [
 		<figure class="hero">
 			<Image
 				src={speakingPhoto}
-				alt="Cory Bergman delivering an AI keynote to a packed room at a regional OSAC event"
+				alt="Cory Bergman speaking on a four-person panel in front of a full audience at the 2026 OSAC Annual Briefing"
 				widths={[620, 940, 1240]}
 				sizes="(max-width: 660px) 100vw, 620px"
 				class="hero-img"
 			/>
-			<figcaption>Keynote about AI at OSAC's Annual Briefing in 2024</figcaption>
+			<figcaption>On a panel at OSAC's 2026 Annual Briefing</figcaption>
 		</figure>
 
 		<p class="pitch">
@@ -191,7 +191,7 @@ const topics: Array<{ title: string; description: string }> = [
 		height: auto;
 		aspect-ratio: 21 / 9;
 		object-fit: cover;
-		object-position: center 38%;
+		object-position: center 20%;
 		border-radius: 6px;
 		border: 1px solid var(--contour);
 	}
