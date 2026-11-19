@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import speakingPhoto from '../assets/cory_osac_2026_panel.webp';
+import keynotePhoto from '../assets/cory_osac_ai.jpeg';
 import { pageCard } from '../lib/og-cards';
 import { SOCIAL } from '../consts';
 import speakingMasthead from '../assets/masthead-speaking.jpg';
@@ -138,6 +139,17 @@ const topics: Array<{ title: string; description: string }> = [
 			)
 		}
 
+		<figure class="hero event-photo">
+			<Image
+				src={keynotePhoto}
+				alt="Cory Bergman delivering an AI keynote to a packed room at the 2024 OSAC Annual Briefing"
+				widths={[620, 940, 1240]}
+				sizes="(max-width: 660px) 100vw, 620px"
+				class="hero-img event-img"
+			/>
+			<figcaption>Keynote about AI at OSAC's Annual Briefing in 2024</figcaption>
+		</figure>
+
 		<h2 class="section">Recent speaking events</h2>
 		{
 			recentEvents.length > 0 ? (
@@ -191,6 +203,19 @@ const topics: Array<{ title: string; description: string }> = [
 		height: auto;
 		border-radius: 6px;
 		border: 1px solid var(--contour);
+	}
+	/* The 2024 keynote photo sits between Upcoming and Recent events. It's
+	   cropped to 16:9 (the original is 4:3); the page's top photo is not. */
+	.event-photo {
+		margin: 48px 0 0;
+	}
+	.event-photo + .section {
+		margin-top: 36px;
+	}
+	.event-img {
+		aspect-ratio: 16 / 9;
+		object-fit: cover;
+		object-position: center 38%;
 	}
 	.hero figcaption {
 		font-size: 13px;
